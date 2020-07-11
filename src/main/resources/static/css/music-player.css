@@ -6,6 +6,11 @@
     border-radius: 45px;
     margin: 5px 15px;
 }
+.player-control-button>img{
+    width: 60%;
+    height: 60%;
+    margin: 20%;
+}
 .progress-bar{
     width: 70%;
     height: 100%;
@@ -22,6 +27,10 @@
     width: 90%;
     height: 100%;
     float: left;
+}
+.bar > input{
+    width: 100%;
+    height: 100%;
 }
 .volume{
     width: 15%;
