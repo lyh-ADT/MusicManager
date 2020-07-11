@@ -1,0 +1,36 @@
+.player-control-button{
+    float: left;
+    background-color: red;
+    width: 45px;
+    height: 45px;
+    border-radius: 45px;
+    margin: 5px 15px;
+}
+.progress-bar{
+    width: 70%;
+    height: 100%;
+    float: left;
+}
+.progress-bar>.time{
+    background-color: white;
+    width: 10%;
+    height: 100%;
+    float: left;
+}
+.progress-bar>.bar{
+    background-color: green;
+    width: 90%;
+    height: 100%;
+    float: left;
+}
+.volume{
+    width: 15%;
+    height: 100%;
+    background-color: white;
+    float: left;
+}
+.buttons{
+    width: 15%;
+    height: 100%;
+    float: left;
+}
