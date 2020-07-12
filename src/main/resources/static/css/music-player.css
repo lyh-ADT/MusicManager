@@ -1,10 +1,10 @@
 .player-control-button{
     float: left;
     background-color: red;
-    width: 45px;
-    height: 45px;
-    border-radius: 45px;
-    margin: 5px 15px;
+    width: 3vw;
+    height: 3vw;
+    border-radius: 3vw;
+    margin: 5px 1vw;
 }
 .player-control-button>img{
     width: 60%;
