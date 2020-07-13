@@ -30,6 +30,14 @@ class MusicPlayer extends Audio{
         }
         this.time = document.getElementById("player_time");
         
+        this.volume_bar = document.getElementById("player_volume_bar");
+        this.volume_bar.value = this.volume_bar.max = 100;
+        this.volume_bar.min = 0;
+        this.volume_bar.step = 1;
+        this.volume_bar.oninput = (ev)=>{
+            super.volume = this.volume_bar.value / this.volume_bar.max;
+        }
+        
         super.onloadeddata = this.loadeddata;
         super.ontimeupdate = this.timeupdate;
     }
