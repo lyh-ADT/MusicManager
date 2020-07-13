@@ -41,30 +41,71 @@ def generate_list():
     with open("list.json", 'wt') as f:
         f.write(json.dumps(r))
 
+def download_mp3():
+    # 读取任务列表，进行下载歌曲文件
+    r = []
+    with open("list.json") as f:
+        r = json.load(f)
 
-# 读取任务列表，进行下载歌曲文件
-r = []
-with open("list.json") as f:
-    r = json.load(f)
-
-infos = []
-with open("infos.json") as f:
-    infos = json.load(f)
+    infos = []
+    with open("infos.json") as f:
+        infos = json.load(f)
 
 
-def task(r, i, infos):
-    info = download(*i)
-    r.remove(i)
-    infos.append(info)
-    with open("list.json", 'wt') as f:
-        f.write(json.dumps(r))
-    with open("infos.json", 'wt') as f:
-        f.write(json.dumps(infos))
-    print(" " * 30, end='\r')
-    print(info)
-    print(f"剩余{len(r)}", end='')
+    def task(r, i, infos):
+        info = download(*i)
+        r.remove(i)
+        infos.append(info)
+        with open("list.json", 'wt') as f:
+            f.write(json.dumps(r))
+        with open("infos.json", 'wt') as f:
+            f.write(json.dumps(infos))
+        print(" " * 30, end='\r')
+        print(info)
+        print(f"剩余{len(r)}", end='')
 
-pool = ThreadPoolExecutor(max_workers=20)
-tasks = [pool.submit(task, r, i, infos) for i in r] 
+    pool = ThreadPoolExecutor(max_workers=20)
+    tasks = [pool.submit(task, r, i, infos) for i in r] 
 
-wait(tasks, return_when=ALL_COMPLETED)
+    wait(tasks, return_when=ALL_COMPLETED)
+
+def download_lyrics():
+    # 读取任务列表，进行下载歌曲文件
+    r = []
+    with open("list.json") as f:
+        r = json.load(f)
+    
+    def task(r, i):
+        url = i[1]
+        name = i[2]
+        sid = url[url.rindex("/")+1:url.rindex(".")]
+        mulu = str(int(sid) / 10000)
+        mulu = mulu[:mulu.index(".")]
+        lyrics_url = "http://www.yymp3.com/Songword/"+mulu+"/"+sid+".htm"
+        print(lyrics_url)
+        text = requests.get(lyrics_url).content.decode("utf8")
+        soup = bs4.BeautifulSoup(text, "lxml")
+        lrc = soup.select_one("#lrc")
+        with open("lyrics/"+name+".txt", "wt", encoding="utf-8") as f:
+            f.write(re.sub("(\[\d\d:\d\d.\d\d\])", "\n\\1", lrc.text).strip(" \n"))
+
+        r.remove(i)
+        with open("list.json", 'wt') as f:
+            f.write(json.dumps(r))
+        print(" " * 30, end='\r')
+        print(name)
+        print(f"剩余{len(r)}", end='')
+
+    pool = ThreadPoolExecutor(max_workers=20)
+    tasks = [pool.submit(task, r, i) for i in r] 
+    # tasks = [pool.submit(task, r, r[0])]
+
+    wait(tasks, return_when=ALL_COMPLETED)
+if __name__ == "__main__":
+    option = input("1.生成任务列表\n2.下载MP3\n3.下载歌词\n")
+    if option == "1":
+        generate_list()
+    elif option == "2":
+        download_mp3()
+    elif option == "3":
+        download_lyrics()
