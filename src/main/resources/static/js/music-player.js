@@ -4,6 +4,17 @@ class MusicPlayer extends Audio{
         this.bindListeners();
     }
 
+    /**
+     * 把秒钟数转换成“分钟：秒钟”的字符串
+     * @param {number} seconds 
+     * @returns {string}
+     */
+    static parseTime(seconds){
+        let second = Math.round(seconds % 60);
+        let minute = Math.round(seconds / 60);
+        return `${minute}:${second < 10? "0"+second: second}`;
+    }
+
     bindListeners(){
         this.play_btn = document.getElementById("player_play_btn");
         this.play_btn.onclick = ()=>{
@@ -17,6 +28,7 @@ class MusicPlayer extends Audio{
         this.progress_bar.oninput = (ev)=>{
             super.currentTime = this.progress_bar.value;
         }
+        this.time = document.getElementById("player_time");
         
         super.onloadeddata = this.loadeddata;
         super.ontimeupdate = this.timeupdate;
@@ -35,6 +47,7 @@ class MusicPlayer extends Audio{
 
     timeupdate = ()=>{
         this.progress_bar.value = this.currentTime;
+        this.time.textContent = MusicPlayer.parseTime(this.currentTime);
     }
 }
 
