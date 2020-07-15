@@ -2,7 +2,9 @@ create table song(
     sid int primary key auto_increment,
     url varchar(500) not null unique,
     sname varchar(255) not null,
-    imgUrl varchar(255)
+    imgUrl varchar(255),
+    lyric text,
+    singer varchar(255)
 );
 
 create table user(
@@ -25,5 +27,5 @@ create table music_list_detail(
     sid int not null,
     mlid int not null,
     constraint FK_music_list_detail_sid foreign key (sid) references song(sid),
-    constraint FK_music_list_detail_mlid foreign key (smlidid) references music_list(mlid)
+    constraint FK_music_list_detail_mlid foreign key (mlid) references music_list(mlid)
 );
