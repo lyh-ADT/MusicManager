@@ -2,15 +2,17 @@ create table song(
     sid int primary key auto_increment,
     url varchar(500) not null unique,
     sname varchar(255) not null,
-    imgUrl varchar(255)
-);
+    imgUrl varchar(255),
+    lyric text,
+    singer varchar(255)
+)CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
 create table user(
     uid int primary key auto_increment,
     pwd varchar(255) not null,
     cookies varchar(255),
     level varchar(30)
-);
+)CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
 create table music_list(
     mlid int primary key auto_increment,
@@ -19,11 +21,11 @@ create table music_list(
     imgUrl varchar(255),
     description varchar(500),
     constraint FK_music_list_uid foreign key (uid) references user(uid)
-);
+)CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
 create table music_list_detail(
     sid int not null,
     mlid int not null,
     constraint FK_music_list_detail_sid foreign key (sid) references song(sid),
-    constraint FK_music_list_detail_mlid foreign key (smlidid) references music_list(mlid)
-);
+    constraint FK_music_list_detail_mlid foreign key (mlid) references music_list(mlid)
+)CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;

@@ -31,12 +31,10 @@
         }
         footer{
             height: 8%;
-            background-color: red;
         }
         .left-side{
             width: 20%;
             height: 100%;
-            background-color: green;
             float: left;
         }
         .right-side{
@@ -45,6 +43,7 @@
             float: left;
         }
     </style>
+    <link rel="stylesheet" href="css/music-player.css">
 </head>
 <body>
     <header></header>
@@ -55,6 +54,42 @@
         </div>
         <div class="right-side"></div>
     </article>
-    <footer></footer>
+    <footer>
+        <div class="left-side">
+            <div style="width: fit-content;">
+                <div class="player-control-button">
+                    <img src="./images/last_button.png" alt="" srcset="">
+                </div>
+                <div class="player-control-button">
+                    <img src="./images/play_button.png" alt="" srcset="" style="padding-left: 10%;" id="player_play_btn">
+                </div>
+                <div class="player-control-button">
+                    <img src="./images/next_button.png" alt="" srcset="">
+                </div>
+            </div>
+        </div>
+        <div class="right-side">
+            <div class="progress-bar">
+                <div class="time">
+                    <div id="player_time">03:25</div>
+                </div>
+                <div class="bar">
+                    <input type="range" id="player_progress_bar">
+                </div>
+            </div>
+            <div class="volume">
+                <div>
+                    <img src="./images/volume_icon_on.png" alt="">
+                    <input type="range" id="player_volume_bar">
+                </div>
+            </div>
+            <div class="buttons">
+                <div>
+                    <img src="./images/loop_list.png" alt="">
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="js/music-player.js"></script>
 </body>
 </html>
