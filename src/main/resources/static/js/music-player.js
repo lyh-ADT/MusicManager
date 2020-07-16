@@ -42,8 +42,17 @@ class MusicPlayer extends Audio{
         super.ontimeupdate = this.timeupdate;
     }
 
-    play(src){
-        super.src = src;
+    /**
+     * 播放指定歌曲ID的歌，
+     * @param {number} sid 歌曲ID
+     * @param {number} mlid 歌单ID可选
+     */
+    play(sid, mlid){
+        if(sid != undefined){
+            const src = `/song/${sid}/mp3`;
+            super.src = src;
+        }
+        // TODO: 歌单部分的逻辑，等dsq
         super.play();
     }
 
@@ -60,4 +69,3 @@ class MusicPlayer extends Audio{
 }
 
 let mp = new MusicPlayer();
-// mp.src = "成都 - 赵雷.mp3";
