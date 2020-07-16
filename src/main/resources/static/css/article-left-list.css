@@ -1,0 +1,38 @@
+.music-list {
+    font-size: 20px;
+}
+
+.music-list>form {
+    margin: 1px;
+    padding: 5px;
+    width: 100%;
+    float: left;
+}
+
+.music-list>form>span {
+    float: left;
+    color: gray;
+    
+    
+}
+.music-list>form>span:hover{
+    color: black;
+}
+
+.music-list>form>span {
+    margin: 1px;
+    padding: 3px;
+    padding-left: 40px;
+}
+
+.music-list>form>p {
+    color: gray;
+    font-family: '黑体';
+}
+
+.music-list>form>span>img {
+    width: 7%;
+    height: 8%;
+    margin-top: 2%;
+}
+

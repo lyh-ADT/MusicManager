@@ -1,58 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>音乐</title>
     <style>
-        *{
+        * {
             margin: 0 auto;
             padding: 0;
         }
-        html, body{
+        
+        html,
+        body {
             height: 100%;
         }
-        header, article, footer{
+        
+        header,
+        article,
+        footer {
             width: 100%;
         }
-        header{
+        
+        header {
             height: 8%;
             background-color: red;
         }
-        article{
+        
+        article {
             height: 84%;
         }
-        .left-side>.music-list{
+        
+        .left-side>.music-list {
             height: 90%;
+            overflow-x: hidden;
+            overflow-y: auto;
         }
-        .left-side>.player-info{
+        
+        .left-side>.player-info {
             height: 10%;
             background-color: white;
         }
-        footer{
+        
+        footer {
             height: 8%;
         }
-        .left-side{
+        
+        article>.left-side {
+            width: 19%;
+            height: 100%;
+            float: left;
+            border-right: 1px solid gray;
+        }
+        
+        .left-side {
             width: 20%;
             height: 100%;
             float: left;
         }
-        .right-side{
+        
+        .right-side {
             width: 80%;
             height: 100%;
             float: left;
         }
     </style>
     <link rel="stylesheet" href="css/music-player.css">
+    <link rel="stylesheet" href="css/article-left-list.css">
 </head>
+
 <body>
     <header></header>
     <article>
         <div class="left-side">
-            <div class="music-list"></div>
-            <div class="player-info"></div>
-        </div>
-        <div class="right-side"></div>
+            <div class="music-list">
+
+                <form class="recommend">
+                    <p>推荐</p>
+                    <span id="recommend" ><img src="./images/song-list.png">发现音乐</span>
+                    <span id="recommend"><img src="./images/song-list.png">发现音乐</span>
+                    <span id="recommend"><img src="./images/song-list.png">发现音乐</span>
+                    <span id="recommend"><img src="./images/song-list.png">发现音乐</span>
+                    <span id="recommend"><img src="./images/song-list.png">发现音乐</span>
+                </form>
+
+                <form class="MyMusic">
+                    <p>我的音乐</p>
+                    <span id="recommend"><img src="./images/song-list.png">发现音乐</span>
+                    <span id="recommend"><img src="./images/song-list.png">发现音乐</span>
+                    <span id="recommend"><img src="./images/song-list.png">发现音乐</span>
+                    <span id="recommend"><img src="./images/song-list.png">发现音乐</span>
+                </form>
+
+                <form  class="MySonglist">
+                    <p>创建的歌单</p>
+                    <span id="recommend"><img src="./images/song-list.png">发现音乐</span>
+                    <span id="recommend"><img src="./images/song-list.png">发现音乐</span>
+                    <span id="recommend"><img src="./images/song-list.png">发现音乐</span>
+                    <span id="recommend"><img src="./images/song-list.png">发现音乐</span>
+                    
+                </form>
+                <div class="player-info"></div>
+            </div>
+            <div class="right-side"></div>
     </article>
     <footer>
         <div class="left-side">
@@ -92,4 +142,5 @@
     </footer>
     <script src="js/music-player.js"></script>
 </body>
+
 </html>
