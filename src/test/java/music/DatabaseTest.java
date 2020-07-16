@@ -1,5 +1,6 @@
 package music;
 
+import music.dao.SongDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class DatabaseTest {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    @Autowired
+    private SongDao songDao;
+
     @Test
     public void testConnection(){
         jdbcTemplate.execute("show tables");
@@ -25,5 +29,12 @@ public class DatabaseTest {
 
         final String[] expected = {"music_list", "music_list_detail", "song", "user"};
         assertArrayEquals(expected, tables.toArray(new String[0]));
+    }
+
+    @Test
+    public void testMybatis(){
+        Object obj = songDao.getSongBySid(1);
+        System.out.println(obj);
+        assertNotEquals(null, obj);
     }
 }
