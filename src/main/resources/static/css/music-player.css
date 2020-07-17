@@ -1,3 +1,28 @@
+.player-info .cover{
+    float: left;
+    height: 100%;
+    width: 25%;
+}
+.player-info img{
+    width:auto;
+    height:auto;
+    max-width:100%;
+    max-height:100%;
+}
+.player-info .info{
+    float: left;
+    height: 100%;
+    width: 75%;
+    padding-top: 10px;
+}
+.player-info .info>div{
+    width: 100%;
+    margin-top: 10px;
+    height: 25%;
+}
+.player-info .info>div>img{
+    float: right;
+}
 .player-control-button{
     float: left;
     background-color: red;
