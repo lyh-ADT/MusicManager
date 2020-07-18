@@ -30,6 +30,7 @@
     height: 3vw;
     border-radius: 3vw;
     margin: 5px 1vw;
+    cursor: pointer;
 }
 .player-control-button>img{
     width: 60%;

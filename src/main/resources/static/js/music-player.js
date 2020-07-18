@@ -20,8 +20,10 @@ class MusicPlayer extends Audio{
         this.play_btn.onclick = ()=>{
             if(this.paused){
                 super.play();
+                this.play_btn.src = "./images/pause_button.png";
             }else{
                 super.pause();
+                this.play_btn.src = "./images/play_button.png";
             }
         };
         this.progress_bar = document.getElementById("player_progress_bar");
@@ -49,11 +51,26 @@ class MusicPlayer extends Audio{
      */
     play(sid, mlid){
         if(sid != undefined){
+            this.sid = sid;
             const src = `/song/${sid}/mp3`;
             super.src = src;
+            this.updateInfo();
         }
         // TODO: 歌单部分的逻辑，等dsq
         super.play();
+        this.play_btn.src = "./images/pause_button.png";
+    }
+
+    updateInfo(){
+        $.get(`/song/${this.sid}/info`, (data)=>{
+            this.setInfo(data);
+        }, "json");
+    }
+
+    setInfo(data){
+        document.getElementById("player_info_title").textContent = data.name;
+        document.getElementById("player_info_singer").textContent = data.singer;
+        document.getElementById("player_info_liked").src = data.liked ?　"./images/favor_icon_like.png":"./images/favor_icon_unlike.png";
     }
 
     loadeddata = ()=>{
