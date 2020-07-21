@@ -1,0 +1,26 @@
+.disk>.box{
+    width: 80%;
+    height: fit-content;
+    animation: rotat 15s linear infinite;
+    position: relative;
+}
+
+.disk-back{
+    width: 100%;
+    height: auto;
+}
+
+.disk-cover{
+    position: absolute;
+    top: 17.5%;
+    left: 17.5%;
+    width:65%;
+    height: 65%;
+    border-radius: 50%;
+}
+
+@keyframes rotat{
+    0%{transform: rotate(0deg);}
+    50%{transform: rotate(180deg);}
+    100%{transform: rotate(360deg);}
+}
