@@ -13,17 +13,17 @@
             height: 100%;
             width: 100%;
         }
-        .disk, .lyric, .comments, .recommend{
+        .disk, .info, .comments, .recommend{
             float: left;
         }
-        .disk, .lyric{
+        .disk, .info{
             width: 50%;
             height: 100%;
         }
         .disk{
             background-color: red;
         }
-        .lyric{
+        .info{
             background-color: blue;
         }
         .comments{
@@ -45,7 +45,9 @@
                 <img class="disk-cover" src="http://p1.music.126.net/sQKLXBR_GThk5n-M2wtdDg==/758663033420897.jpg?param=130y130" alt="">
             </div>
         </div>
-        <div class="lyric"></div>
+        <div class="info">
+            <div id="lyrics"></div>
+        </div>
     </div>
     <div>
         <div class="comments">
@@ -62,5 +64,6 @@
         </div>
         <div class="recommend">s</div>
     </div>
+    <script src="js/music-player-lyric.js"></script>
 </body>
 </html>
