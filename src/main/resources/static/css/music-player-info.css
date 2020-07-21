@@ -24,3 +24,9 @@
     50%{transform: rotate(180deg);}
     100%{transform: rotate(360deg);}
 }
+.comment{
+    width: 100%;
+}
+.comment>div{
+    float: left;
+}
