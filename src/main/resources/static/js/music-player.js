@@ -2,6 +2,7 @@ class MusicPlayer extends Audio{
     constructor(url){
         super(url);
         this.bindListeners();
+        this.timeUpdateListeners = [];
     }
 
     /**
@@ -82,6 +83,17 @@ class MusicPlayer extends Audio{
     timeupdate = ()=>{
         this.progress_bar.value = this.currentTime;
         this.time.textContent = MusicPlayer.parseTime(this.currentTime);
+        for (let callback of this.timeUpdateListeners) {
+            callback();
+        }
+    }
+
+    /**
+     * 添加更新播放时间的回调函数
+     * @param {function():void} callback 
+     */
+    bindTimeUpdateListener(callback) {
+        this.timeUpdateListeners.push(callback);
     }
 }
 
