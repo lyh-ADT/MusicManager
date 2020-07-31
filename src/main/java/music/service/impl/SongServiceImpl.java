@@ -38,4 +38,11 @@ public class SongServiceImpl implements SongService {
 
         return result;
     }
+
+    @Override
+    public String getSongLyricUrl(String sid){
+        int songId = Integer.parseInt(sid);
+        Song song = songDao.getSongBySid(songId);
+        return song.getLyric();
+    }
 }

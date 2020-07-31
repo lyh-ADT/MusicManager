@@ -26,4 +26,11 @@ public interface SongService {
      * }
      */
     Map<String, Object> getSongInfo(String sid, String uid);
+
+    /**
+     * 返回歌曲对应的歌词
+     * @param sid 歌曲ID
+     * @return 歌词
+     */
+    String getSongLyricUrl(String sid);
 }

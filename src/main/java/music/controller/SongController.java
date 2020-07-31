@@ -1,6 +1,5 @@
 package music.controller;
 
-import music.dao.SongDao;
 import music.service.SongService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,5 +27,11 @@ public class SongController {
     @ResponseBody
     public Object getSongInfo(@PathVariable("sid") String sid, @SessionAttribute(value = "uid", required = false) String uid){
         return songService.getSongInfo(sid, uid);
+    }
+
+    @GetMapping("/song/{sid}/lyric")
+    @ResponseBody
+    public String getSongLyric(@PathVariable("sid") String sid){
+        return songService.getSongLyricUrl(sid);
     }
 }
