@@ -5,104 +5,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>音乐</title>
-    <style>
-        * {
-            margin: 0 auto;
-            padding: 0;
-        }
-        
-        html,
-        body {
-            height: 100%;
-        }
-        
-        header,
-        article,
-        footer {
-            width: 100%;
-        }
-        
-        header {
-            height: 8%;
-            background-color: red;
-        }
-        
-        article {
-            height: 84%;
-        }
-        
-        .left-side>.music-list {
-            height: 90%;
-            overflow-x: hidden;
-            overflow-y: auto;
-        }
-        
-        .left-side>.player-info {
-            height: 10%;
-            background-color: white;
-        }
-        
-        footer {
-            height: 8%;
-        }
-        
-        article>.left-side {
-            width: 19%;
-            height: 100%;
-            float: left;
-            border-right: 1px solid gray;
-        }
-        
-        .left-side {
-            width: 20%;
-            height: 100%;
-            float: left;
-        }
-        
-        .right-side {
-            width: 80%;
-            height: 100%;
-            float: left;
-        }
-    </style>
-    <link rel="stylesheet" href="css/music-player.css">
-    <link rel="stylesheet" href="css/article-left-list.css">
+    <link rel="stylesheet" href="css/common.css">
+     <link rel="stylesheet" href="css/music-player.css">
+     <link rel="stylesheet" href="css/article-left-list.css">
+     <link rel="stylesheet" href="css/header.css">
 </head>
 
 <body>
-    <header></header>
+    <header>
+        <div class = "header-title">
+            <span class="Title">
+                <img src="./images/logo111.png" >&nbsp;&nbsp;
+                <span id="TitleName">网易云音乐</span>
+            </span>
+            
+        </div>
+        <div class = "header-search">
+            <input type="text" value="  搜索音乐、视频、歌手、电台" size="25" />
+        </div>
+        <div class = "header-userInfo"></div>
+    </header>
     <article>
         <div class="left-side">
             <div class="music-list">
 
                 <form class="recommend">
                     <p>推荐</p>
-                    <span id="recommend" ><img src="./images/song-list.png">发现音乐</span>
-                    <span id="recommend"><img src="./images/song-list.png">发现音乐</span>
-                    <span id="recommend"><img src="./images/song-list.png">发现音乐</span>
-                    <span id="recommend"><img src="./images/song-list.png">发现音乐</span>
-                    <span id="recommend"><img src="./images/song-list.png">发现音乐</span>
+                    <span id="recommend" ><img src="./images/song-list.png"  onclick="showpage(this,'admin.html')">发现音乐</span>
+                    <span id="recommend"><img src="./images/song-list.png"  onclick="showpage(this,'PersonalBStation.html')">私人电台</span>
+                    <span id="recommend"><img src="./images/song-list.png"  onclick="showpage(this,'LookLive.html')">look直播</span>
                 </form>
 
                 <form class="MyMusic">
                     <p>我的音乐</p>
-                    <span id="recommend"><img src="./images/song-list.png">发现音乐</span>
-                    <span id="recommend"><img src="./images/song-list.png">发现音乐</span>
-                    <span id="recommend"><img src="./images/song-list.png">发现音乐</span>
-                    <span id="recommend"><img src="./images/song-list.png">发现音乐</span>
+                    <span id="recommend"><img src="./images/song-list.png"  onclick="showpage(this,'Local.html')">本地音乐</span>
+                    <span id="recommend"><img src="./images/song-list.png"  onclick="showpage(this,'DownLoadManage.html')">下载管理</span>
+                    <span id="recommend"><img src="./images/song-list.png"  onclick="showpage(this,'MycCollectMusic.html')">我的收藏</span>
                 </form>
 
-                <form  class="MySonglist">
+                <form  class="MySonglist" id="hide" onclick="ShowOrHide(this)" style="margin:0 auto" >
                     <p>创建的歌单</p>
-                    <span id="recommend"><img src="./images/song-list.png">发现音乐</span>
-                    <span id="recommend"><img src="./images/song-list.png">发现音乐</span>
-                    <span id="recommend"><img src="./images/song-list.png">发现音乐</span>
-                    <span id="recommend"><img src="./images/song-list.png">发现音乐</span>
+                    <span id="recommend"><img src="./images/song-list.png"  onclick="showpage(this,'MyLikeMusic.html')">我喜欢的音乐</span>
                     
                 </form>
+
+                
                 <div class="player-info"></div>
             </div>
-            <div class="right-side"></div>
+        </div>
+            <div class="right-side" >
+                <iframe name="right" id="rightMain" src="FindMusic.html" frameborder="no" scrolling="no"></iframe>
+            </div>
     </article>
     <footer>
         <div class="left-side">
@@ -141,6 +94,28 @@
         </div>
     </footer>
     <script src="js/music-player.js"></script>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    
+    <script type="text/javascript">
+       function ShowOrHide(obj){
+
+           var id = $(obj).attr("id");
+           if( "hide"==id){
+               $("#hide span").show();
+               $("#hide").attr("id" , "show");
+           } else if("show"==id){
+               $("#show span").hide();
+               $("#show").attr("id" , "hide");
+           }
+        }
+
+        function showpage(obj,page){
+            $("#rightMain").attr("src",page);
+            $("#sideMenu li").removeClass("on");
+            $(obj).parent().addClass("on");
+            $("#here_area").text("当前位置："+$(obj).text()); 
+        }
+    </script>
 </body>
 
 </html>
