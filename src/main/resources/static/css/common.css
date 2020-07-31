@@ -44,7 +44,7 @@ footer {
 }
 
 article>.left-side {
-    width: 19.9%;
+    width: 19%;
     height: 100%;
     float: left;
     border-right: 1px solid gray;
@@ -80,3 +80,10 @@ article .right-side iframe {
     
 }
 
+.music-list p{
+    margin-left: 20px;
+}
+
+.music-list span{
+    cursor:pointer;  /*鼠标停留显示小手*/
+}
