@@ -23,6 +23,7 @@ create table music_list(
     mlname varchar(255) not null,
     imgUrl varchar(255),
     description varchar(500),
+    date datetime not null,
     constraint FK_music_list_uid foreign key (uid) references user(uid)
 )CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
