@@ -1,0 +1,88 @@
+* {
+    margin: 0 auto;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100%;
+   
+}
+
+header,
+article,
+footer {
+    width: 100%;
+}
+
+header {
+    height: 8%;
+    background-color:crimson
+   
+    
+}
+
+article {
+    height: 84%;
+    
+}
+
+.left-side>.music-list {
+    height: 90%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    
+}
+
+.left-side>.player-info {
+    height: 10%;
+}
+
+footer {
+    height: 8%;
+}
+
+article>.left-side {
+    width: 19%;
+    height: 100%;
+    float: left;
+    border-right: 1px solid gray;
+}
+
+
+.left-side {
+    width: 20%;
+    height: 100%;
+    float: left;
+}
+
+.right-side {
+    width: 80%;
+    height: 100%;
+    float: left;
+}
+
+article .right-side{
+    width: 80%;
+	right: 0px;
+	background-color: #fff;
+    overflow: hidden;
+    
+}
+
+article .right-side iframe {
+	width: 100%;
+    height: 100%;
+    overflow-y : auto;
+    overflow-x:hidden;
+    background-color:pink;
+    
+}
+
+.music-list p{
+    margin-left: 20px;
+}
+
+.music-list span{
+    cursor:pointer;  /*鼠标停留显示小手*/
+}
