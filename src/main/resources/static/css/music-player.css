@@ -36,6 +36,7 @@
     width: 60%;
     height: 60%;
     margin: 20%;
+    cursor: pointer;
 }
 .progress-bar{
     width: 70%;

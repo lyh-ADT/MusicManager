@@ -28,7 +28,7 @@ class MusicPlayer extends Audio{
             }
         };
         this.progress_bar = document.getElementById("player_progress_bar");
-        this.progress_bar.oninput = (ev)=>{
+        this.progress_bar.oninput = ()=>{
             super.currentTime = this.progress_bar.value;
         }
         this.time = document.getElementById("player_time");
@@ -37,7 +37,7 @@ class MusicPlayer extends Audio{
         this.volume_bar.value = this.volume_bar.max = 100;
         this.volume_bar.min = 0;
         this.volume_bar.step = 1;
-        this.volume_bar.oninput = (ev)=>{
+        this.volume_bar.oninput = ()=>{
             super.volume = this.volume_bar.value / this.volume_bar.max;
         }
         
@@ -51,10 +51,9 @@ class MusicPlayer extends Audio{
      * @param {number} mlid 歌单ID可选
      */
     play(sid, mlid){
-        if(sid != undefined){
+        if(sid !== undefined){
             this.sid = sid;
-            const src = `/song/${sid}/mp3`;
-            super.src = src;
+            super.src = `/song/${sid}/mp3`;
             this.updateInfo();
         }
         // TODO: 歌单部分的逻辑，等dsq
@@ -97,4 +96,5 @@ class MusicPlayer extends Audio{
     }
 }
 
-let mp = new MusicPlayer();
+// 绑定到window对象，让iframe内可以访问
+window.musicPlayer = new MusicPlayer();

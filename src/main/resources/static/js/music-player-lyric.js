@@ -20,7 +20,7 @@ class Lyrics{
         this.script = this.parseText(text);
         this.fillLyric();
         this.music_player = music_player;
-        music_player.bindTimeUpdateListener(this.updateHightlight);
+        music_player.bindTimeUpdateListener(this.updateHighlight);
     }
 
     parseText(text){
@@ -72,10 +72,13 @@ class Lyrics{
         let needUpdate = null;
         for (let line of lines) {
             line.classList.remove(Lyrics.highlightCssClass);
-            if (line.dataset.timestamp == timestamp) {
+            if (line.dataset.timestamp === timestamp) {
                 needUpdate = line;
             }
         }
         needUpdate.classList.add(Lyrics.highlightCssClass);
     }
 }
+
+const musicPlayer = window.parent.musicPlayer;
+const lyrics = new Lyrics("", musicPlayer);
