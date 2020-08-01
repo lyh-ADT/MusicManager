@@ -30,3 +30,11 @@
 .comment>div{
     float: left;
 }
+
+.active{
+    color: white;
+}
+
+.info{
+    overflow: scroll;
+}

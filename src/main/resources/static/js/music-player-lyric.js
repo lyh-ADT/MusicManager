@@ -1,31 +1,36 @@
 class Lyrics{
     static highlightCssClass = "active";
+    static lyricSplit = "<br>";
 
     /**
-     * 把00:00:00格式的字符串转换成秒钟数
+     * 把00:00.00格式的字符串转换成秒钟数
      * @param {string} text 
      * @return {number} 秒钟数
      */
     static parseTime(text) {
         const components = text.split(":");
-        const hours = parseInt(components[0]);
-        const minutes = parseInt(components[1]);
-        const seconds = parseInt(components[2]);
-        return ((hours * 60) + minutes) * 60 + seconds;
+        const minutes = parseInt(components[0]);
+        const seconds = parseFloat(components[1]);
+        return (minutes * 60) + seconds;
     }
 
-    constructor(text, music_player){
+    constructor(music_player){
         this.current_line = 0;
         this.root = document.getElementById("lyrics");
-        this.script = this.parseText(text);
-        this.fillLyric();
         this.music_player = music_player;
         music_player.bindTimeUpdateListener(this.updateHighlight);
+        music_player.oncanplay = ()=>this.getLyric();
+        this.getLyric();
     }
 
+    /**
+     * 解析文本得到歌词脚本
+     * @param text
+     * @returns {[{time, content}]}
+     */
     parseText(text){
         let script = [];
-        const list = text.split("\n");
+        const list = text.split(Lyrics.lyricSplit);
         for(const line of list){
             const arr = line.split("]", 2);
             // 去掉前面的 "["
@@ -37,6 +42,23 @@ class Lyrics{
             });
         }
         return script;
+    }
+
+    getLyric(){
+        const sid = this.music_player.sid;
+        if(!sid){
+            console.warn("没有播放音乐");
+            return;
+        }
+        $.ajax({
+            url:`/song/${this.music_player.sid}/lyric`,
+            method:"GET",
+            dataType:"text",
+            success:(result)=>{
+                this.script = this.parseText(result);
+                this.fillLyric();
+            }
+        })
     }
 
     fillLyric(){
@@ -56,7 +78,7 @@ class Lyrics{
             const line = this.script[i];
             const line_timestamp = Lyrics.parseTime(line.time);
             if (line_timestamp > currentTime) {
-                index = i;
+                index = i > 0? i - 1: 0;
                 break;
             }
         }
@@ -77,8 +99,9 @@ class Lyrics{
             }
         }
         needUpdate.classList.add(Lyrics.highlightCssClass);
+        needUpdate.scrollIntoView();
     }
 }
 
 const musicPlayer = window.parent.musicPlayer;
-const lyrics = new Lyrics("", musicPlayer);
+const lyrics = new Lyrics(musicPlayer);
