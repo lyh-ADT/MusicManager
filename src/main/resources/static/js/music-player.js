@@ -2,6 +2,7 @@ class MusicPlayer extends Audio{
     constructor(url){
         super(url);
         this.bindListeners();
+        this.timeUpdateListeners = [];
     }
 
     /**
@@ -20,12 +21,14 @@ class MusicPlayer extends Audio{
         this.play_btn.onclick = ()=>{
             if(this.paused){
                 super.play();
+                this.play_btn.src = "./images/pause_button.png";
             }else{
                 super.pause();
+                this.play_btn.src = "./images/play_button.png";
             }
         };
         this.progress_bar = document.getElementById("player_progress_bar");
-        this.progress_bar.oninput = (ev)=>{
+        this.progress_bar.oninput = ()=>{
             super.currentTime = this.progress_bar.value;
         }
         this.time = document.getElementById("player_time");
@@ -34,7 +37,7 @@ class MusicPlayer extends Audio{
         this.volume_bar.value = this.volume_bar.max = 100;
         this.volume_bar.min = 0;
         this.volume_bar.step = 1;
-        this.volume_bar.oninput = (ev)=>{
+        this.volume_bar.oninput = ()=>{
             super.volume = this.volume_bar.value / this.volume_bar.max;
         }
         
@@ -42,9 +45,32 @@ class MusicPlayer extends Audio{
         super.ontimeupdate = this.timeupdate;
     }
 
-    play(src){
-        super.src = src;
+    /**
+     * 播放指定歌曲ID的歌，
+     * @param {number} sid 歌曲ID
+     * @param {number} mlid 歌单ID可选
+     */
+    play(sid, mlid){
+        if(sid !== undefined){
+            this.sid = sid;
+            super.src = `/song/${sid}/mp3`;
+            this.updateInfo();
+        }
+        // TODO: 歌单部分的逻辑，等dsq
         super.play();
+        this.play_btn.src = "./images/pause_button.png";
+    }
+
+    updateInfo(){
+        $.get(`/song/${this.sid}/info`, (data)=>{
+            this.setInfo(data);
+        }, "json");
+    }
+
+    setInfo(data){
+        document.getElementById("player_info_title").textContent = data.name;
+        document.getElementById("player_info_singer").textContent = data.singer;
+        document.getElementById("player_info_liked").src = data.liked ?　"./images/favor_icon_like.png":"./images/favor_icon_unlike.png";
     }
 
     loadeddata = ()=>{
@@ -56,8 +82,19 @@ class MusicPlayer extends Audio{
     timeupdate = ()=>{
         this.progress_bar.value = this.currentTime;
         this.time.textContent = MusicPlayer.parseTime(this.currentTime);
+        for (let callback of this.timeUpdateListeners) {
+            callback();
+        }
+    }
+
+    /**
+     * 添加更新播放时间的回调函数
+     * @param {function():void} callback 
+     */
+    bindTimeUpdateListener(callback) {
+        this.timeUpdateListeners.push(callback);
     }
 }
 
-let mp = new MusicPlayer();
-// mp.src = "成都 - 赵雷.mp3";
+// 绑定到window对象，让iframe内可以访问
+window.musicPlayer = new MusicPlayer();

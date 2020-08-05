@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>播放器详情</title>
+    <style>
+        *{
+            margin: 0 auto;
+            padding: 0;
+        }
+        html, body{
+            height: 100%;
+            width: 100%;
+        }
+        .disk, .info, .comments, .recommend{
+            float: left;
+        }
+        .disk, .info{
+            width: 50%;
+            height: 100%;
+        }
+        .disk{
+            background-color: red;
+        }
+        .info{
+            background-color: blue;
+        }
+        .comments{
+            width: 70%;
+            background-color: blue;
+        }
+        .recommend{
+            width: 30%;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <link rel="stylesheet" href="css/music-player-info.css">
+    <div style="width: 100%;height: 80%;">
+        <div class="disk">
+            <div class="box">
+                <img class="disk-back" src="images/music_disk.png" alt="">
+                <img class="disk-cover" src="http://p1.music.126.net/sQKLXBR_GThk5n-M2wtdDg==/758663033420897.jpg?param=130y130" alt="">
+            </div>
+        </div>
+        <div class="info">
+            <div id="lyrics"></div>
+        </div>
+    </div>
+    <div>
+        <div class="comments">
+            <div class="comment">
+                <div style="width: 10%;margin:0 2%;">
+                    <img style="width: 100%;" src="http://p1.music.126.net/sQKLXBR_GThk5n-M2wtdDg==/758663033420897.jpg?param=130y130" alt="">
+                </div>
+                <div>
+                    <h3 style="margin-bottom:10%">昵称</h3>
+                    <p>评论</p>
+                </div>
+                <hr style="clear: both;">
+            </div>
+        </div>
+        <div class="recommend">s</div>
+    </div>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/music-player-lyric.js"></script>
+</body>
+</html>

@@ -18,7 +18,7 @@
                 <img src="./images/logo111.png" >&nbsp;&nbsp;
                 <span id="TitleName">网易云音乐</span>
             </span>
-            
+
         </div>
         <div class = "header-search">
             <input type="text" value="  搜索音乐、视频、歌手、电台" size="25" />
@@ -40,17 +40,29 @@
                     <p>我的音乐</p>
                     <span id="recommend" onclick="showpage(this,'LocalMusic.html')"><img src="images/song-list.png"  >本地音乐</span>
                     <span id="recommend"  onclick="showpage(this,'DownLoadManage.html')"><img src="images/song-list.png" >下载管理</span>
-                    <span id="recommend"  onclick="showpage(this,'MycCollectMusic.html'><img src="images/song-list.png" )">我的收藏</span>
+                    <span id="recommend"  onclick="showpage(this,'MycCollectMusic.html')"><img src="images/song-list.png" >我的收藏</span>
                 </form>
 
                 <form  class="MySonglist" id="hide" onclick="ShowOrHide(this)" style="margin:0 auto" >
                     <p>创建的歌单</p>
                     <span id="recommend" onclick="showpage(this,'MyLikeMusic.html')"><img src="images/song-list.png"  >我喜欢的音乐</span>
-                    
-                </form>
 
-                
-                <div class="player-info"></div>
+                </form>
+            </div>
+            <div class="player-info">
+                <div class="cover">
+                    <img id="player_info_img" src="./images/favor_icon_like.png" alt="" onclick="showpage(this, 'player-detail.html')">
+                </div>
+                <div class="info">
+                    <div>
+                        <span id="player_info_title">标题</span>
+                        <img id="player_info_liked" src="./images/favor_icon_like.png" alt="">
+                    </div>
+                    <div>
+                        <span id="player_info_singer">歌手</span>
+                        <img id="player_info_share" src="./images/share_icon.png" alt="">
+                    </div>
+                </div>
             </div>
         </div>
             <div class="right-side" >
@@ -93,9 +105,9 @@
             </div>
         </div>
     </footer>
-    <script src="js/music-player.js"></script>
     <script src="js/jquery-3.4.1.min.js"></script>
-    
+    <script src="js/music-player.js"></script>
+
     <script type="text/javascript">
        function ShowOrHide(obj){
 
@@ -113,7 +125,7 @@
             $("#rightMain").attr("src",page);
             // $("#sideMenu li").removeClass("on");
             // $(obj).parent().addClass("on");
-            // $("#here_area").text("当前位置："+$(obj).text()); 
+            // $("#here_area").text("当前位置："+$(obj).text());
         }
     </script>
 </body>

@@ -13,6 +13,9 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RunWith(SpringRunner.class)
 @WebMvcTest(SongController.class)
 public class SongControllerTests {
@@ -32,5 +35,18 @@ public class SongControllerTests {
                 .andExpect(MockMvcResultMatchers.forwardedUrl("success"));
 
         Mockito.verify(songService, Mockito.times(1)).getUrlBySid("1");
+    }
+
+    @Test
+    public void testGetSongInfo() throws Exception{
+        final Map<String, Object> songInfo = new HashMap<>();
+        songInfo.put("success", "true");
+        Mockito.when(songService.getSongInfo(Mockito.eq("1"), Mockito.any())).thenReturn(songInfo);
+
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/song/1/info");
+        mockMvc.perform(requestBuilder)
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().json("{\"success\": \"true\"}"));
+        Mockito.verify(songService, Mockito.times(1)).getSongInfo(Mockito.eq("1"), Mockito.any());
     }
 }
