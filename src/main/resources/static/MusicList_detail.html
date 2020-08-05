@@ -49,6 +49,11 @@
     </header>
 
     <article>
+         <!-- 显示添加歌单下载等信息 -->
+        <div class="showOptions">
+            <div id="addInSongList">添加到歌单</div>
+            <div id="songDownload">下载</div> 
+        </div>
         <div style="margin-left:50px ; color: rgb(73, 70, 236);">歌曲列表</div>
         <table id="table4Songs" >
             <thead>
@@ -60,8 +65,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td align="center">111</td>
+                <tr id="songInfo">
+                    <td align="center" >111</td>
                     <td align="center">111</td>
                     <td>111</td>
                     <td>111</td>
@@ -270,6 +275,7 @@
     <script src="js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript">
     $(function(){
+        document.oncontextmenu = function(){return false};     //禁止鼠标右键菜单显示
         showTrCSS();  
     })
 
@@ -287,6 +293,19 @@
                 }
                 
             })
+    }
+
+    document.getElementById("songInfo").onmouseup = function(e){
+        if(e.button===2){       //如果button=1（鼠标左键），button=2（鼠标右键），button=0（鼠标中间键）
+            // console.log(e);     //将传进去的参数打印出来
+            // console.log(e.offsetY);     //打印出鼠标点击的Y轴坐标
+            // console.log(e.offsetX);     //打印出鼠标点击的X轴坐标
+            $(".showOptions").css("margin-top",(e.clientY-350)+'px');     //鼠标点击时给div定位Y轴
+            $(".showOptions").css("margin-left",e.clientX+'px');    //鼠标点击时给div定位X轴
+            $(".showOptions").css("display" , "block");        //显示div盒子
+        }else{
+            $(".showOptions").css("display" , "none");           //否则不显示div盒子
+        }
     }
     
     </script>
