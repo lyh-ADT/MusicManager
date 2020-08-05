@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 /**
  * 歌曲的Controller
  * @author lyhADT
@@ -20,7 +23,7 @@ public class SongController {
 
     @GetMapping("/song/{sid}/mp3")
     public String getMp3(@PathVariable("sid")String sid){
-        return songService.getUrlBySid(sid);
+        return "redirect:"+urlEncodeLastPath(songService.getUrlBySid(sid));
     }
 
     @GetMapping("/song/{sid}/info")
@@ -33,5 +36,20 @@ public class SongController {
     @ResponseBody
     public String getSongLyric(@PathVariable("sid") String sid){
         return songService.getSongLyricUrl(sid);
+    }
+
+    private String urlEncodeLastPath(String url){
+        final int divide = url.lastIndexOf("/");
+        if(divide == -1){
+            return url;
+        }
+        final String address = url.substring(0, divide+1);
+        String path = url.substring(divide+1);
+        try {
+            return address+URLEncoder.encode(path, "utf-8").replace("+", "%20");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return url;
     }
 }
