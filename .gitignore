@@ -32,3 +32,7 @@ build/
 
 # 加密
 **/application.yml
+
+# 资源
+**/mp3/**
+**/lyrics/**

@@ -9,7 +9,7 @@ sqls = []
 for info in infos:
     name = info["name"]
     singer = info["singer"]
-    url = f"/song/{name}/mp3"
+    url = f"/mp3/{name}.mp3"
     imageUrl = ""
     lyric = ""
     with open(f"lyrics/{name}.txt", encoding="utf8") as f:
