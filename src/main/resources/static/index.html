@@ -18,7 +18,7 @@
                 <img src="./images/logo111.png" >&nbsp;&nbsp;
                 <span id="TitleName">网易云音乐</span>
             </span>
-            
+
         </div>
         <div class = "header-search">
             <input type="text" value="  搜索音乐、视频、歌手、电台" size="25" />
@@ -48,9 +48,21 @@
                     <span id="MyLikeMusic" onclick="showpage(this,'songs.html')"><img src="images/song-list.png"  >我喜欢的音乐</span>
                     
                 </form>
-
-                
-                <div class="player-info"></div>
+            </div>
+            <div class="player-info">
+                <div class="cover">
+                    <img id="player_info_img" src="./images/favor_icon_like.png" alt="" onclick="showpage(this, 'player-detail.html')">
+                </div>
+                <div class="info">
+                    <div>
+                        <span id="player_info_title">标题</span>
+                        <img id="player_info_liked" src="./images/favor_icon_like.png" alt="">
+                    </div>
+                    <div>
+                        <span id="player_info_singer">歌手</span>
+                        <img id="player_info_share" src="./images/share_icon.png" alt="">
+                    </div>
+                </div>
             </div>
         </div>
             <div class="right-side" >
@@ -93,9 +105,9 @@
             </div>
         </div>
     </footer>
-    <script src="js/music-player.js"></script>
     <script src="js/jquery-3.4.1.min.js"></script>
-    
+    <script src="js/music-player.js"></script>
+
     <script type="text/javascript">
        function ShowOrHide(obj){
 
