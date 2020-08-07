@@ -1,5 +1,5 @@
 .disk>.box{
-    width: 80%;
+    width: 50%;
     height: fit-content;
     animation: rotat 15s linear infinite;
     position: relative;
@@ -37,4 +37,8 @@
 
 .info{
     overflow: scroll;
+}
+
+.disk{
+    padding-top: 5%;
 }
