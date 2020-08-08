@@ -1,7 +1,6 @@
 class Lyrics{
     static highlightCssClass = "active";
     static lyricSplit = "<br>";
-    static instance = null;
 
     /**
      * 把00:00.00格式的字符串转换成秒钟数
@@ -15,22 +14,6 @@ class Lyrics{
         return (minutes * 60) + seconds;
     }
 
-    /**
-     * 获取实例
-     * @param music_player
-     * @returns {Lyrics}
-     */
-    static getInstance(music_player){
-        if(!Lyrics.instance){
-            Lyrics.instance = new Lyrics(music_player);
-        }
-        return Lyrics.instance;
-    }
-
-    /**
-     * 这是个单例模式的类，别直接调用
-     * @param music_player
-     */
     constructor(music_player){
         this.current_line = 0;
         this.root = document.getElementById("lyrics");
@@ -61,7 +44,7 @@ class Lyrics{
         return script;
     }
 
-    getLyric(){
+    getLyric = () => {
         const sid = this.music_player.sid;
         if(!sid){
             console.warn("没有播放音乐");
@@ -121,4 +104,9 @@ class Lyrics{
 }
 
 const musicPlayer = window.parent.musicPlayer;
-const lyrics = Lyrics.getInstance(musicPlayer);
+const lyrics = new Lyrics(musicPlayer);
+
+window.onunload = function () {
+    // 清除musicPlayer的监听器，目前只有Lyrics会绑定它，所以直接清空
+    window.parent.musicPlayer.timeUpdateListeners = [];
+}
