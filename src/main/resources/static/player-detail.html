@@ -47,7 +47,7 @@
         <div class="comments" id="comments_app">
             <div class="comment" v-for="comment in comments">
                 <div style="width: 10%;margin:0 2%;">
-                    <img style="width: 100%;" :src="comment.avatar" alt="">
+                    <img style="width: 100%;" :src="comment.avatar || '/images/song-list.png'" alt="">
                 </div>
                 <div>
                     <h3 style="margin-bottom:10%">{{comment.nickname}}</h3>
