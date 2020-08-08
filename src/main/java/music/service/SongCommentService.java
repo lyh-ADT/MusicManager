@@ -14,4 +14,11 @@ public interface SongCommentService {
      * @return 评论列表
      */
     List<Comment> getAllComments(String sid);
+
+    /**
+     * 添加歌曲评论
+     * @param comment 歌曲评论实体类
+     * @return 操作结果信息
+     */
+    String addComment(Comment comment);
 }

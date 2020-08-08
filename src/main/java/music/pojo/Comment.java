@@ -1,6 +1,7 @@
 package music.pojo;
 
 /**
+ * 歌曲评论实体类
  * @author lyhADT
  */
 public class Comment {

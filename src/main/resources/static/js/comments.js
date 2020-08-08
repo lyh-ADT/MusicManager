@@ -1,7 +1,29 @@
 const comments_app = new Vue({
     el: "#comments_app",
     data: {
-       comments: []
+        comments: [],
+        inputComment: ""
+    },
+    methods:{
+        addComment: function(ev){
+            console.log(ev.keyCode)
+            if(ev.keyCode !== 13){
+                return;
+            }
+            console.log(this.inputComment)
+            const sid = window.parent.musicPlayer.sid;
+            if(!sid){
+                return;
+            }
+            $.ajax({
+                url: `/song/${sid}/comment`,
+                method:"PUT",
+                data: {content:this.inputComment, sub_cid:null},
+                success:function(result){
+                    alert(result);
+                }
+            });
+        }
     },
     mounted: function () {
         const sid = window.parent.musicPlayer.sid;

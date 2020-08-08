@@ -4,9 +4,7 @@ import music.pojo.Comment;
 import music.service.SongCommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +22,17 @@ public class SongCommentController {
     @ResponseBody
     public List<Comment> getAllComments(@PathVariable("sid") String sid){
         return songCommentService.getAllComments(sid);
+    }
+
+    @PutMapping("/song/{sid}/comment")
+    @ResponseBody
+    public String addComment(@PathVariable("sid") Integer sid, String content, Integer subCid, @SessionAttribute("uid") Integer uid){
+        // TODO: uid 还未确定，要等brc
+        Comment comment = new Comment();
+        comment.setSid(sid);
+        comment.setContent(content);
+        comment.setSub_cid(subCid);
+        comment.setUid(uid);
+        return songCommentService.addComment(comment);
     }
 }

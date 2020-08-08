@@ -21,4 +21,13 @@ public class SongCommentServiceImpl implements SongCommentService {
     public List<Comment> getAllComments(String sid) {
         return songCommentDao.getAllComments(sid);
     }
+
+    @Override
+    public String addComment(Comment comment) {
+        if( comment.getContent() == null || comment.getContent().isEmpty()){
+            return "参数非法";
+        }
+        songCommentDao.addComment(comment);
+        return "评论成功";
+    }
 }
