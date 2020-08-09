@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
@@ -9,6 +9,7 @@
 </head>
 
 <body>
+<div id="vue-app">
     <header>
         <div class="MusicList_header">
             <div class="user_img">
@@ -19,13 +20,13 @@
 
             <div class="MusicListInfo">
                 <span id="MusicList_name">
-                    <div>&nbsp;歌单&nbsp;</div>好听的欧美歌曲
+                    <div>&nbsp;歌单&nbsp;</div>{{data[0].mlname}}
                 </span>
 
                 <div class="songInfoAndAddDate">
-                    <div id="songNumber">歌曲数<span>&nbsp;|&nbsp;</span>32</div>
-                    <div id="playNumber">播放数<span>&nbsp;|&nbsp;</span>10001</div>
-                    <font>2019-01-01创建</font>
+                    <div id="songNumber">歌曲数<span>&nbsp;|&nbsp;</span>{{data.length}}</div>
+                    <div id="playNumber">播放数<span>&nbsp;|&nbsp;</span>{{ Math.round(Math.random() * 100)}}</div>
+                    <font>{{data[0].date.substring(0,10)}}创建</font>
                 </div>
 
                 <div class="opeartor">
@@ -38,11 +39,11 @@
 
                 <div class="MusicList_label">
                     标签&nbsp;:
-                    <span id="MusicList_label">欧美</span>
+                    <span id="MusicList_label"></span>
                 </div>
                 <div class="MusicList_intro">
-                    简介&nbsp;:
-                    <sapn id="MusicList_lintro">欧美</span>
+                    简介&nbsp;:{{data[0].description}}
+                    <span id="MusicList_lintro">欧美</span>
                 </div>
             </div>
         </div>
@@ -64,215 +65,22 @@
                     <td style="width: 40%;">歌手</td>
                 </tr>
             </thead>
-            <tbody>
-                <tr id="songInfo">
-                    <td align="center" >111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
+            <tbody id="songsInfo">
+                <tr v-for="(song ,index) in data"    v-bind:id=song.sid>
+                    <td align="center" >{{index+1}}</td>
+                    <td align="center" class="likeOrNot"><img title="添加喜欢" src="images/like.gif"></td>
+                    <td>{{song.sname}}</td>
+                    <td>{{song.singer}}</td>
                 </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr >
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr><tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr >
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr><tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-
             </tbody>
         </table>
     </article>
+</div>
 
     <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script src="js/MusicList_detail.js"></script>
     <script type="text/javascript">
     $(function(){
         document.oncontextmenu = function(){return false};     //禁止鼠标右键菜单显示
@@ -295,18 +103,7 @@
             })
     }
 
-    document.getElementById("songInfo").onmouseup = function(e){
-        if(e.button===2){       //如果button=1（鼠标左键），button=2（鼠标右键），button=0（鼠标中间键）
-            // console.log(e);     //将传进去的参数打印出来
-            // console.log(e.offsetY);     //打印出鼠标点击的Y轴坐标
-            // console.log(e.offsetX);     //打印出鼠标点击的X轴坐标
-            $(".showOptions").css("margin-top",(e.clientY-350)+'px');     //鼠标点击时给div定位Y轴
-            $(".showOptions").css("margin-left",e.clientX+'px');    //鼠标点击时给div定位X轴
-            $(".showOptions").css("display" , "block");        //显示div盒子
-        }else{
-            $(".showOptions").css("display" , "none");           //否则不显示div盒子
-        }
-    }
+
     
     </script>
 </body>

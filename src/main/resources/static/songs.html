@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
 <body>
     <header>
         <div class="searchResult">
-           <div>搜索<font titla="111"id="searchResult">“好的”</font>，共找到<font id="searchSongNum">32首</font>歌曲</div> 
+           <div>搜索"<font titla="111"id="searchResult"></font>"，共找到<font id="searchSongNum"></font>首歌曲</div>
         </div>
     </header>
     <article>
@@ -28,121 +28,21 @@
                     <td style="width: 40%;">歌手</td>
                 </tr>
             </thead>
-            <tbody>
-                <tr  id="songInfo">
-                    <td align="center">111</td>
-                    <td align="center" id="likeOrNo"><img title="添加喜欢" src="images/like.gif"></td>
-                    <td>111</td>
-                    <td>111</td>
+            <tbody id="songsInfo">
+                <tr  v-for="(item , index) in songs" v-bind:id=item.sid>
+                    <td align="center" >{{index+1}}</td>
+                    <td align="center" class="likeOrNot"><img title="添加喜欢" src="images/like.gif"></td>
+                    <td id="sname">{{item.sname}}</td>
+                    <td id="singer">{{item.singer}}</td>
                 </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr >
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr><tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td align="center">111</td>
-                    <td align="center">111</td>
-                    <td>111</td>
-                    <td>111</td>
-                </tr>
-      
-
             </tbody>
         </table>
     </article>
      
-    <script src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript" src="js/axios.min.js"></script>
+    <script type="text/javascript" src="js/songs.js"></script>
     <script type="text/javascript">
     $(function(){
         document.oncontextmenu = function(){return false};     //禁止鼠标右键菜单显示
@@ -166,8 +66,7 @@
             })
     }
 
-    // console.info( $("#songInfo").val(0));
-    document.getElementById("songInfo").onmouseup = function(e){
+    document.getElementById("songsInfo").onmouseup = function(e){
         if(e.button===2){       //如果button=1（鼠标左键），button=2（鼠标右键），button=0（鼠标中间键）
             // console.log(e);     //将传进去的参数打印出来
             // console.log(e.offsetY);     //打印出鼠标点击的Y轴坐标
@@ -180,6 +79,7 @@
         }
     }
     </script>
-    
+
 </body>
+
 </html>

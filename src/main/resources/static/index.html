@@ -15,16 +15,16 @@
     <header>
         <div class = "header-title">
             <span class="Title">
-                <img src="./images/logo111.png" >&nbsp;&nbsp;
-                <span id="TitleName">网易云音乐</span>
+                <img src="../images/title.png">&nbsp;&nbsp;
             </span>
 
         </div>
         <div class = "header-search">
-            <input type="text" value="  搜索音乐、视频、歌手、电台" size="25" />
+            <input id="searchInfo" placeholder="搜索音乐、视频、歌手、电台" type="text"  size="25" />
         </div>
         <div class = "header-userInfo"></div>
     </header>
+<!--    <img src="images/title.png" height="41" width="147"/>-->
     <article>
         <div class="left-side">
             <div class="music-list">
@@ -45,7 +45,7 @@
 
                 <form  class="MySonglist" id="hide" onclick="ShowOrHide(this)" style="margin:0 auto" >
                     <p>创建的歌单</p>
-                    <span id="MyLikeMusic" onclick="showpage(this,'songs.html')"><img src="images/song-list.png"  >我喜欢的音乐</span>
+                    <span id="MyLikeMusic"  onclick="showpage(this,'MusicList_detail.html');getMlid(this);"><img src="images/song-list.png" >我喜欢的音乐</span>
                     
                 </form>
             </div>
@@ -66,7 +66,7 @@
             </div>
         </div>
             <div class="right-side" >
-                <iframe name="right" id="rightMain" src="songs.html" frameborder="no" scrolling="no"></iframe>
+                <iframe name="right" id="rightMain" src="FindMusic.html" frameborder="no" scrolling="no"></iframe>
             </div>
     </article>
     <footer>
@@ -106,6 +106,10 @@
         </div>
     </footer>
     <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/header.js"></script>
+    <script src="js/left_side.js"></script>
     <script src="js/music-player.js"></script>
 
     <script type="text/javascript">

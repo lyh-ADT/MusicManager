@@ -55,7 +55,7 @@ article {
     border-right: 0px;
 }
 
-#likeOrNo>img{
+.likeOrNot>img{
     height: 30px;
     overflow: auto;
     opacity: 0.2;
