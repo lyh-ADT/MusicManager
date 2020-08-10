@@ -68,7 +68,8 @@
             <tbody id="songsInfo">
                 <tr v-for="(song ,index) in data"    v-bind:id=song.sid>
                     <td align="center" >{{index+1}}</td>
-                    <td align="center" class="likeOrNot"><img title="添加喜欢" src="images/like.gif"></td>
+                    <td align="center" class="likeOrNot" v-if="song.likeOrNot"><img title="取消喜欢" src="images/favor_icon_like.png"></td>
+                    <td align="center" class="likeOrNot" v-else><img title="取消喜欢" src="images/favor_icon_unlike.png"></td>
                     <td>{{song.sname}}</td>
                     <td>{{song.singer}}</td>
                 </tr>
@@ -84,24 +85,10 @@
     <script type="text/javascript">
     $(function(){
         document.oncontextmenu = function(){return false};     //禁止鼠标右键菜单显示
-        showTrCSS();  
+        // showTrCSS();
     })
 
-    function showTrCSS(){
-        $("#table4Songs>tbody>tr:even").css("background", 'snow');
-        $("#table4Songs>tbody>tr:odd").css("background", 'white');
-        $("#table4Songs>tbody>tr").unbind();  //取消所有绑定
-        $("#table4Songs>tbody>tr").bind({
-                mouseout: function () {
-                    showTrCSS();
-                },
-                mouseover: function () {
-                    $(this).css("background", 'lightgrey');
 
-                }
-                
-            })
-    }
 
 
     

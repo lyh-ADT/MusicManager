@@ -1,6 +1,8 @@
 package music.controller;
 
 import music.pojo.Song;
+import music.pojo.music_list_detail;
+import music.pojo.music_list_info;
 import music.service.impl.MusicListServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,8 +19,22 @@ public class MusicListController {
 
     @PostMapping("/showMusicListInfo")
     @ResponseBody
-    public List<Map<String , Object>> search(Integer mlid){
+    public List<music_list_detail> search(Integer mlid){
 
         return musicListServiceImpl.getMusicListInfo(mlid);
+    }
+
+    @PostMapping("/judgeLikeOrNot")
+    @ResponseBody
+    public int[] judgeLikeOrNot(Integer mlid){
+
+        return musicListServiceImpl.judgeLikeOrNot(mlid);
+    }
+
+    @PostMapping("/getUserEstablishMusicList")
+    @ResponseBody
+    public List<music_list_info> getUserEstablishMusicList(Integer uid){
+
+        return musicListServiceImpl.getUserEstablishMusicList(uid);
     }
 }

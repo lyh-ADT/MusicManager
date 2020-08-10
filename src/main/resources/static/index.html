@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
@@ -43,11 +43,14 @@
                     <span id="MycCollectMusic"  onclick="showpage(this,'musicList_detail.html')"><img src="images/song-list.png">我的收藏</span>
                 </form>
 
-                <form  class="MySonglist" id="hide" onclick="ShowOrHide(this)" style="margin:0 auto" >
-                    <p>创建的歌单</p>
-                    <span id="MyLikeMusic"  onclick="showpage(this,'MusicList_detail.html');getMlid(this);"><img src="images/song-list.png" >我喜欢的音乐</span>
+                <form  class="MySonglist" id="hide"  style="margin:0 auto" >
+                    <div onclick="ShowOrHide(this)">创建的歌单</div>
+                    <span v-for="list in userEstablishMusicList" v-bind:id=list.mlid  onclick="showpage(this,'MusicList_detail.html');getMlid(this);">
+                        <img src="images/song-list.png" >
+                        {{list.mlname}}</span>
                     
                 </form>
+
             </div>
             <div class="player-info">
                 <div class="cover">
@@ -115,7 +118,7 @@
     <script type="text/javascript">
        function ShowOrHide(obj){
 
-           var id = $(obj).attr("id");
+           var id = $(obj).parent().attr("id");
            if( "hide"==id){
                $("#hide span").show();
                $("#hide").attr("id" , "show");
