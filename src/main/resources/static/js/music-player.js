@@ -34,6 +34,12 @@ class MusicPlayer extends Audio{
             super.currentTime = this.progress_bar.value;
         }
         this.time = document.getElementById("player_time");
+
+        this.player_last_song_btn = document.getElementById("player_last_song_btn");
+        this.player_last_song_btn.onclick = this.lastSong;
+
+        this.player_next_song_btn = document.getElementById("player_next_song_btn");
+        this.player_next_song_btn.onclick = this.nextSong;
         
         this.volume_bar = document.getElementById("player_volume_bar");
         this.volume_bar.value = this.volume_bar.max = 100;
@@ -45,6 +51,7 @@ class MusicPlayer extends Audio{
         
         super.onloadeddata = this.loadeddata;
         super.ontimeupdate = this.timeupdate;
+        super.onended = this.ended;
     }
 
     /**
@@ -52,7 +59,7 @@ class MusicPlayer extends Audio{
      * @param {number} sid 歌曲ID
      * @param {number} mlid 歌单ID可选
      */
-    play(sid, mlid){
+    play(sid, mlid=undefined){
         if(sid !== undefined){
             this.sid = sid;
             super.src = `/song/${sid}/mp3`;
@@ -93,6 +100,16 @@ class MusicPlayer extends Audio{
         });
     }
 
+    lastSong = ()=>{
+        this.currentMusicIndex = (this.currentMusicIndex - 1 + this.musicList.length)%this.musicList.length;
+        this.play(this.musicList[this.currentMusicIndex]);
+    }
+
+    nextSong = ()=>{
+        this.currentMusicIndex = (this.currentMusicIndex + 1)%this.musicList.length;
+        this.play(this.musicList[this.currentMusicIndex]);
+    }
+
     loadeddata = ()=>{
         this.progress_bar.value = this.progress_bar.min = 0;
         this.progress_bar.max = Math.round(this.duration);
@@ -105,6 +122,10 @@ class MusicPlayer extends Audio{
         for (let callback of this.timeUpdateListeners) {
             callback();
         }
+    }
+
+    ended = ()=>{
+        this.nextSong();
     }
 
     /**

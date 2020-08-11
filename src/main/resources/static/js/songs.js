@@ -15,7 +15,7 @@ var vue = new Vue({
             });
         },
         play:(sid)=>{
-            window.parent.musicPlayer.play(sid, null);
+            window.parent.musicPlayer.play(sid);
         }
     }
 });
