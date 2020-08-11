@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>网易云音乐</title>
+        <link href="images/title.jpg" rel="shortcut icon" type="image/x-icon"/>
+        <link href="css/login.css" rel="stylesheet" type="text/css"/>
+        <link href="css/footer.css" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    </head>
+
+
+    <script>
+        function checkLogin() {
+            var account = $.trim( $("#account").val() );
+            var pwd = $.trim( $("#pwd").val() );
+            if(account == "" || pwd == ""){
+                alert("帐号和密码不能为空...");
+                return;
+            }
+
+            $.post("/login", {account: account, pwd:pwd}, function(data) {
+                data = parseInt($.trim(data));
+                if(data == 0) {
+                    alert("帐号或者密码错误，请确认后重新登陆...");
+                }
+                else{
+                    alert("登录成功!")
+                }
+            },"text");
+        }
+    </script>
+    <body>
+        <header>
+            <img class="img" src="images/enter_index.jpg" title="网易云音乐">
+        </header>
+        <article>
+            <div class="login_board">
+                <div class="it">
+                    <h1><a href="register.html">立即注册</a></h1>
+                </div>
+                <div>
+                    <label>账户:</label>
+                    <input type="text" class="user" placeholder="请输入帐号" id="account"/>
+                </div>
+                <br>
+                <br>
+                <div>
+                    <label>密码:</label>
+                    <br>
+                    <input type="password" class="user" placeholder="其输入密码" id="pwd"/>
+                </div>
+                <div class="it">
+                        <button  class="login_button" onclick="checkLogin">登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</button>
+                </div>
+            </div>
+        </article>
+        <footer>
+            <div>
+                <a href="#">关于我们</a> <span>|</span>
+                <a href="#">联系我们</a> 
+            </div>
+            <p>电话:12345678</p>
+        </footer>
+    </body>
+</html>

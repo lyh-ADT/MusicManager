@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<style>
+        .div1{
+        position: relative;
+        top: 25px;
+        height: 220px;
+    }
+    .button1{
+        position: relative;
+        width: 30%;
+        height: 150px;
+        left: 15px;
+        border-width: 5px;
+        border-color: antiquewhite;
+    }
+    .button2{
+        position: relative;
+        width: 30%;
+        height: 150px;
+        left: 28px;
+        border-width: 5px;
+        border-color: antiquewhite;
+    }
+    .button3{
+        position: relative;
+        width: 30%;
+        height: 150px;
+        left: 41px;
+        border-width: 5px;
+        border-color: antiquewhite;
+    }
+
+
+    .button5{
+        position: relative;
+        width: 30%;
+        height: 150px;
+        left: 15px;
+        border-width: 5px;
+        border-color: antiquewhite;
+    }
+    .button6{
+        position: relative;
+        width: 30%;
+        height: 150px;
+        left: 28px;
+        border-width: 5px;
+        border-color: antiquewhite;
+    }
+    .button7{
+        position: relative;
+        width: 30%;
+        height: 150px;
+        left: 41px;
+        border-width: 5px;
+        border-color: antiquewhite;
+    }
+    .font1{
+        position: relative;
+        bottom: 30px;
+        font-size: 250%;
+        left: 50px;
+    }
+    .font2{
+        position: relative;
+        bottom: 30px;
+        font-size: 80%;
+        left: 50px;
+    }
+    .font3{
+        position: relative;
+        top: 5px;
+        right: 20px;
+    }
+    .font4{
+        position: relative;
+        top: 40px;
+        right: 19px;
+        font-size: 130%;
+    }
+</style>
+
+
+
+
+
+
+
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/jquery.min.js"></script>
+    <script type="text/javascript" src="/1.js"></script>
+</head>
+
+<script>
+    $(function () {
+        $.post("/findPrice", {}, function (data) {
+            $.each(data,function (index, item) {
+                $("#font"+ (index)).text(item.price);
+            })
+        },"json");
+    })
+</script>
+
+
+
+
+<div class="div1">
+    <button class="button1" onclick="window.parent.pricex0()">
+        <font class="font1" id="font0">4.8</font><font class="font2">元/月</font>
+        <span class="font3">到期自动付费13元...</span>
+        <font class="font4">续费</font>
+    </button>
+    <button class="button2">
+        <font class="font1" id="font1">99</font><font class="font2">元/年</font>
+        <span class="font3">到期自动付费138元...</span>
+        <font class="font4">续费</font>
+    </button>
+    <button class="button3">
+        <font class="font1" id="font2">26</font><font class="font2">元/季</font>
+        <span class="font3">到期自动付费39元...</span>
+        <font class="font4">续费</font>
+    </button>
+</div>
+<div>
+    <button class="button5">
+        <font class="font1" id="font3">88</font><font class="font2">元/月</font>
+        <span class="font3">14.66元/月</span>
+        <font class="font4">6个月</font>
+    </button>
+    <button class="button6">
+        <font class="font1" id="font4">45</font><font class="font2">元/月</font>
+        <span class="font3">15元/月</span>
+        <font class="font4">3个月</font>
+    </button>
+    <button class="button7">
+        <font class="font1" id="font5">16</font><font class="font2">元/月</font>
+        <span class="font3">16元/月</span>
+        <font class="font4">1个月</font>
+    </button>
+</div>
+</html>
