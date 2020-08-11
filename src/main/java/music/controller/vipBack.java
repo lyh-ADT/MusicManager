@@ -1,8 +1,12 @@
 package music.controller;
 
 import music.dao.VipDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.stereotype.Controller;
 
-import javax.annotation.PostConstruct;
+
 import java.util.List;
 import java.util.Map;
 
@@ -10,7 +14,7 @@ import java.util.Map;
 public class vipBack {
 
     @Autowired
-    VipDao vipDao;
+    private VipDao vipDao;
 
     @PostMapping("/findPrice")
     @ResponseBody
