@@ -5,6 +5,7 @@ var vue = new Vue({
         uriJudgeLikeORNotInfo:'judgeLikeOrNot',
         data:[],
         likeOrNot:[],
+        mild: ""
     },
     methods:{
         getMusicList:function(mlid){
@@ -21,6 +22,7 @@ var vue = new Vue({
             });
         },
         JudgeLikeORNotInfo:function(mlid){
+            vue.$data.mild = mlid;
             var url1 = this.uriJudgeLikeORNotInfo + "?mlid=" + mlid;
             axios.post(url1).then(function(response){
                 // console.info(response.data)
@@ -37,6 +39,9 @@ var vue = new Vue({
                     showTrCSS();
                 })
             });
+        },
+        play:(sid)=>{
+            window.parent.musicPlayer.play(sid, parseInt(vue.$data.mild));
         }
     },
     mounted:function(){

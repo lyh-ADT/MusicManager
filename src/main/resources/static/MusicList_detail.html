@@ -66,7 +66,7 @@
                 </tr>
             </thead>
             <tbody id="songsInfo">
-                <tr v-for="(song ,index) in data"    v-bind:id=song.sid>
+                <tr v-for="(song ,index) in data"    v-bind:id=song.sid v-on:dblclick="play(song.sid)">
                     <td align="center" >{{index+1}}</td>
                     <td align="center" class="likeOrNot" v-if="song.likeOrNot"><img title="取消喜欢" src="images/favor_icon_like.png"></td>
                     <td align="center" class="likeOrNot" v-else><img title="取消喜欢" src="images/favor_icon_unlike.png"></td>

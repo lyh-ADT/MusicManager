@@ -13,6 +13,9 @@ var vue = new Vue({
                 $("#searchResult").text(searchInfo);
                 $("#searchSongNum").text(response.data.length);
             });
+        },
+        play:(sid)=>{
+            window.parent.musicPlayer.play(sid, null);
         }
     }
 });
