@@ -29,7 +29,7 @@
                 </tr>
             </thead>
             <tbody id="songsInfo">
-                <tr  v-for="(item , index) in songs" v-bind:id=item.sid>
+                <tr  v-for="(item , index) in songs" v-bind:id=item.sid v-on:dblclick="play(item.sid)">
                     <td align="center" >{{index+1}}</td>
                     <td align="center" class="likeOrNot"><img title="添加喜欢" src="images/like.gif"></td>
                     <td id="sname">{{item.sname}}</td>

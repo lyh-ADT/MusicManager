@@ -42,3 +42,19 @@
 .disk{
     padding-top: 5%;
 }
+
+.add-comment{
+    width: 100%;
+    padding: 20px 0;
+}
+.add-comment>div{
+    border: 5px solid lightgray;
+    width: 80%;
+    margin: 0 auto;
+}
+.add-comment input{
+    width: 100%;
+    display: block;
+    height: 30px;
+
+}
