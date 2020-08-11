@@ -3,6 +3,8 @@ class MusicPlayer extends Audio{
         super(url);
         this.bindListeners();
         this.timeUpdateListeners = [];
+        this.musicList = [];
+        this.currentMusicIndex = 0;
     }
 
     /**
@@ -56,7 +58,9 @@ class MusicPlayer extends Audio{
             super.src = `/song/${sid}/mp3`;
             this.updateInfo();
         }
-        // TODO: 歌单部分的逻辑，等dsq
+        if(mlid){
+            this.getMusicList(mlid, sid);
+        }
         super.play();
         this.play_btn.src = "./images/pause_button.png";
     }
@@ -71,6 +75,22 @@ class MusicPlayer extends Audio{
         document.getElementById("player_info_title").textContent = data.name;
         document.getElementById("player_info_singer").textContent = data.singer;
         document.getElementById("player_info_liked").src = data.liked ?　"./images/favor_icon_like.png":"./images/favor_icon_unlike.png";
+    }
+
+    getMusicList(mlid, playingSid){
+        const uri = 'showMusicListInfo';
+        var url = uri + "?mlid=" + mlid;
+        $.post(url, (response)=>{
+            // console.info(response.data)
+            this.musicList = [];
+            for(let i=0; i < response.length; ++i){
+                const sid = response[i].sid;
+                this.musicList.push(sid);
+                if(parseInt(sid) === playingSid){
+                    this.currentMusicIndex = i;
+                }
+            }
+        });
     }
 
     loadeddata = ()=>{
