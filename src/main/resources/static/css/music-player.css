@@ -1,0 +1,98 @@
+.player-info .cover{
+    float: left;
+    height: 100%;
+    width: 25%;
+}
+.player-info img{
+    width:auto;
+    height:auto;
+    max-width:100%;
+    max-height:100%;
+}
+.player-info .info{
+    float: left;
+    height: 100%;
+    width: 75%;
+    padding-top: 10px;
+}
+.player-info .info>div{
+    width: 100%;
+    margin-top: 10px;
+    height: 25%;
+}
+.player-info .info>div>img{
+    float: right;
+}
+.player-control-button{
+    float: left;
+    background-color: red;
+    width: 3vw;
+    height: 3vw;
+    border-radius: 3vw;
+    margin: 5px 1vw;
+    cursor: pointer;
+}
+.player-control-button>img{
+    width: 60%;
+    height: 60%;
+    margin: 20%;
+    cursor: pointer;
+}
+.progress-bar{
+    width: 70%;
+    height: 100%;
+    float: left;
+}
+.progress-bar>.time{
+    height: 100%;
+    float: left;
+}
+.progress-bar>.time>div{
+    margin: 20% auto;
+    width: fit-content;
+}
+.progress-bar>.bar{
+    width: 90%;
+    height: 100%;
+    float: left;
+}
+.bar > input{
+    width: 100%;
+    height: 100%;
+}
+.volume{
+    width: 15%;
+    height: 100%;
+    background-color: white;
+    float: left;
+}
+.volume>div{
+    margin: 0 auto;
+    margin-top: 7%;
+    width: fit-content;
+}
+.volume img{
+    vertical-align: middle;
+    height: 2vw;
+    width: 2vw;
+}
+.volume input{
+    height: 2vw;
+    width: 7vw;
+    vertical-align: middle;
+}
+.buttons{
+    width: 15%;
+    height: 100%;
+    float: left;
+}
+.buttons>div{
+    width: fit-content;
+    margin: 0 auto;
+    margin-top: 7%;
+}
+.buttons img{
+    vertical-align: middle;
+    height: 2vw;
+    width: 2vw;
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音乐列表详情</title>
+    <link rel="stylesheet" href="css/MusicList_detail.css">
+</head>
+
+<body>
+<div id="vue-app">
+    <header>
+        <div class="MusicList_header">
+            <div class="user_img">
+                <div id="user_img">
+                    <img src="images/MusicListPhoto.jpg">
+                </div>
+            </div>
+
+            <div class="MusicListInfo">
+                <span id="MusicList_name">
+                    <div>&nbsp;歌单&nbsp;</div>{{data[0].mlname}}
+                </span>
+
+                <div class="songInfoAndAddDate">
+                    <div id="songNumber">歌曲数<span>&nbsp;|&nbsp;</span>{{data.length}}</div>
+                    <div id="playNumber">播放数<span>&nbsp;|&nbsp;</span>{{ Math.round(Math.random() * 100)}}</div>
+                    <font>{{data[0].date.substring(0,10)}}创建</font>
+                </div>
+
+                <div class="opeartor">
+                    <div id="palyAllSongs"></div>
+                    <div id="collecMusicList">
+
+                    </div>
+                    <div id="downloadAll"></div>
+                </div>
+
+                <div class="MusicList_label">
+                    标签&nbsp;:
+                    <span id="MusicList_label"></span>
+                </div>
+                <div class="MusicList_intro">
+                    简介&nbsp;:{{data[0].description}}
+                    <span id="MusicList_lintro">欧美</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <article>
+         <!-- 显示添加歌单下载等信息 -->
+        <div class="showOptions">
+            <div id="addInSongList">添加到歌单</div>
+            <div id="songDownload">下载</div> 
+        </div>
+        <div style="margin-left:50px ; color: rgb(73, 70, 236);">歌曲列表</div>
+        <table id="table4Songs" >
+            <thead>
+                <tr>
+                    <td style="width: 5%;"></td>
+                    <td style="width: 10%;" align="center">操作</td>
+                    <td style="width: 40%;">音乐标题</td>
+                    <td style="width: 40%;">歌手</td>
+                </tr>
+            </thead>
+            <tbody id="songsInfo">
+                <tr v-for="(song ,index) in data"    v-bind:id=song.sid v-on:dblclick="play(song.sid)">
+                    <td align="center" >{{index+1}}</td>
+                    <td align="center" class="likeOrNot" v-if="song.likeOrNot"><img title="取消喜欢" src="images/favor_icon_like.png"></td>
+                    <td align="center" class="likeOrNot" v-else><img title="取消喜欢" src="images/favor_icon_unlike.png"></td>
+                    <td>{{song.sname}}</td>
+                    <td>{{song.singer}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </article>
+</div>
+
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script src="js/MusicList_detail.js"></script>
+    <script type="text/javascript">
+    $(function(){
+        document.oncontextmenu = function(){return false};     //禁止鼠标右键菜单显示
+        // showTrCSS();
+    })
+
+
+
+
+    
+    </script>
+</body>
+
+</html>

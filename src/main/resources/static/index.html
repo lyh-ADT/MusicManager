@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音乐</title>
+    <link rel="stylesheet" href="css/common.css">
+     <link rel="stylesheet" href="css/music-player.css">
+     <link rel="stylesheet" href="css/article-left-list.css">
+     <link rel="stylesheet" href="css/header.css">
+</head>
+
+<body>
+    <header>
+        <div class = "header-title">
+            <span class="Title">
+                <img src="../images/title.png">&nbsp;&nbsp;
+            </span>
+
+        </div>
+        <div class = "header-search">
+            <input id="searchInfo" placeholder="搜索音乐、视频、歌手、电台" type="text"  size="25" />
+        </div>
+        <div class = "header-userInfo"></div>
+    </header>
+<!--    <img src="images/title.png" height="41" width="147"/>-->
+    <article>
+        <div class="left-side">
+            <div class="music-list">
+
+                <form class="recommend">
+                    <p>推荐</p>
+                    <span id="FindMusic" onclick="showpage(this,'FindMusic.html')"><img src="images/song-list.png"  >发现音乐</span>
+                    <span id="PersonalBStation" onclick="showpage(this,'PersonalBStation.html')"><img src="images/song-list.png"  >私人电台</span>
+                    <span id="LookLive" onclick="showpage(this,'LookLive.html')"><img src="images/song-list.png"  >look直播</span>
+                </form>
+
+                <form class="MyMusic">
+                    <p>我的音乐</p>
+                    <span id="LocalMusic" onclick="showpage(this,'LocalMusic.html')"><img src="images/song-list.png"  >本地音乐</span>
+                    <span id="DownLoadManage"  onclick="showpage(this,'DownLoadManage.html')"><img src="images/song-list.png" >下载管理</span>
+                    <span id="MycCollectMusic"  onclick="showpage(this,'musicList_detail.html')"><img src="images/song-list.png">我的收藏</span>
+                </form>
+
+                <form  class="MySonglist" id="hide"  style="margin:0 auto" >
+                    <div onclick="ShowOrHide(this)">创建的歌单</div>
+                    <span v-for="list in userEstablishMusicList" v-bind:id=list.mlid  onclick="showpage(this,'MusicList_detail.html');getMlid(this);">
+                        <img src="images/song-list.png" >
+                        {{list.mlname}}</span>
+                    
+                </form>
+
+            </div>
+            <div class="player-info">
+                <div class="cover">
+                    <img id="player_info_img" src="./images/favor_icon_like.png" alt="" onclick="showpage(this, 'player-detail.html')">
+                </div>
+                <div class="info">
+                    <div>
+                        <span id="player_info_title">标题</span>
+                        <img id="player_info_liked" src="./images/favor_icon_like.png" alt="">
+                    </div>
+                    <div>
+                        <span id="player_info_singer">歌手</span>
+                        <img id="player_info_share" src="./images/share_icon.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="right-side" >
+                <iframe name="right" id="rightMain" src="FindMusic.html" frameborder="no"></iframe>
+            </div>
+    </article>
+    <footer>
+        <div class="left-side">
+            <div style="width: fit-content;">
+                <div class="player-control-button">
+                    <img src="./images/last_button.png" alt="" srcset="" id="player_last_song_btn">
+                </div>
+                <div class="player-control-button">
+                    <img src="./images/play_button.png" alt="" srcset="" style="padding-left: 10%;" id="player_play_btn">
+                </div>
+                <div class="player-control-button">
+                    <img src="./images/next_button.png" alt="" srcset="" id="player_next_song_btn">
+                </div>
+            </div>
+        </div>
+        <div class="right-side">
+            <div class="progress-bar">
+                <div class="time">
+                    <div id="player_time">03:25</div>
+                </div>
+                <div class="bar">
+                    <input type="range" id="player_progress_bar">
+                </div>
+            </div>
+            <div class="volume">
+                <div>
+                    <img src="./images/volume_icon_on.png" alt="">
+                    <input type="range" id="player_volume_bar">
+                </div>
+            </div>
+            <div class="buttons">
+                <div>
+                    <img src="./images/loop_list.png" alt="">
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/header.js"></script>
+    <script src="js/left_side.js"></script>
+    <script src="js/music-player.js"></script>
+
+    <script type="text/javascript">
+       function ShowOrHide(obj){
+
+           var id = $(obj).parent().attr("id");
+           if( "hide"==id){
+               $("#hide span").show();
+               $("#hide").attr("id" , "show");
+           } else if("show"==id){
+               $("#show span").hide();
+               $("#show").attr("id" , "hide");
+           }
+        }
+
+        function showpage(obj,page){
+            $("#rightMain").attr("src",page);
+            // $("#sideMenu li").removeClass("on");
+            // $(obj).parent().addClass("on");
+            // $("#here_area").text("当前位置："+$(obj).text()); 
+        }
+    </script>
+</body>
+
+</html>

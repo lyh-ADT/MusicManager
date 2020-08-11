@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音乐列表</title>
+    <link rel="stylesheet" href="css/songs.css">
+
+</head>
+<body>
+    <header>
+        <div class="searchResult">
+           <div>搜索"<font titla="111"id="searchResult"></font>"，共找到<font id="searchSongNum"></font>首歌曲</div>
+        </div>
+    </header>
+    <article>
+        <!-- 显示添加歌单下载等信息 -->
+     <div class="showOptions">
+        <div id="addInSongList">添加到歌单</div>
+        <div id="songDownload">下载</div> 
+    </div>
+        <table id="table4SearchSongs" >
+            <thead>
+                <tr>
+                    <td style="width: 5%;"></td>
+                    <td style="width: 10%;" align="center">操作</td>
+                    <td style="width: 40%;">音乐标题</td>
+                    <td style="width: 40%;">歌手</td>
+                </tr>
+            </thead>
+            <tbody id="songsInfo">
+                <tr  v-for="(item , index) in songs" v-bind:id=item.sid v-on:dblclick="play(item.sid)">
+                    <td align="center" >{{index+1}}</td>
+                    <td align="center" class="likeOrNot"><img title="添加喜欢" src="images/like.gif"></td>
+                    <td id="sname">{{item.sname}}</td>
+                    <td id="singer">{{item.singer}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </article>
+     
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript" src="js/axios.min.js"></script>
+    <script type="text/javascript" src="js/songs.js"></script>
+    <script type="text/javascript">
+    $(function(){
+        document.oncontextmenu = function(){return false};     //禁止鼠标右键菜单显示
+        // console.info( $("#songInfo").html());
+        showTrCSS();  
+    })
+
+    function showTrCSS(){
+        $("#table4SearchSongs>tbody>tr:even").css("background", 'snow');
+        $("#table4SearchSongs>tbody>tr:odd").css("background", 'white');
+        $("#table4SearchSongs>tbody>tr").unbind();  //取消所有绑定
+        $("#table4SearchSongs>tbody>tr").bind({
+                mouseout: function () {
+                    showTrCSS();
+                },
+                mouseover: function () {
+                    $(this).css("background", 'lightgrey');
+
+                }
+                
+            })
+    }
+
+    document.getElementById("songsInfo").onmouseup = function(e){
+        if(e.button===2){       //如果button=1（鼠标左键），button=2（鼠标右键），button=0（鼠标中间键）
+            // console.log(e);     //将传进去的参数打印出来
+            // console.log(e.offsetY);     //打印出鼠标点击的Y轴坐标
+            // console.log(e.offsetX);     //打印出鼠标点击的X轴坐标
+            $(".showOptions").css("margin-top",(e.clientY-105)+'px');     //鼠标点击时给div定位Y轴
+            $(".showOptions").css("margin-left",e.clientX+'px');    //鼠标点击时给div定位X轴
+            $(".showOptions").css("display" , "block");        //显示div盒子
+        }else{
+            $(".showOptions").css("display" , "none");          //否则不显示div盒子
+        }
+    }
+    </script>
+
+</body>
+
+</html>

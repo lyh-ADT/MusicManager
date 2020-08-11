@@ -1,0 +1,60 @@
+.disk>.box{
+    width: 50%;
+    height: fit-content;
+    animation: rotat 15s linear infinite;
+    position: relative;
+}
+
+.disk-back{
+    width: 100%;
+    height: auto;
+}
+
+.disk-cover{
+    position: absolute;
+    top: 17.5%;
+    left: 17.5%;
+    width:65%;
+    height: 65%;
+    border-radius: 50%;
+}
+
+@keyframes rotat{
+    0%{transform: rotate(0deg);}
+    50%{transform: rotate(180deg);}
+    100%{transform: rotate(360deg);}
+}
+.comment{
+    width: 100%;
+}
+.comment>div{
+    float: left;
+}
+
+.active{
+    color: white;
+}
+
+.info{
+    overflow: scroll;
+}
+
+.disk{
+    padding-top: 5%;
+}
+
+.add-comment{
+    width: 100%;
+    padding: 20px 0;
+}
+.add-comment>div{
+    border: 5px solid lightgray;
+    width: 80%;
+    margin: 0 auto;
+}
+.add-comment input{
+    width: 100%;
+    display: block;
+    height: 30px;
+
+}

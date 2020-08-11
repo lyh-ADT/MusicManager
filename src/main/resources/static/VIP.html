@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<style>
+    .body{
+        width: 57%;
+        height: 500px;
+    }
+    .border {
+        height: 30px;
+        background: black;
+        padding-top: 0.3cm;
+        border-bottom: 1px solid #DDDDDD;
+        border-top: 1px solid #DDDDDD;
+    }
+    .vipFont{
+       color: aqua;
+    }
+    .Vip{
+        padding-left: 1cm;
+        border-bottom: 5px
+    }
+    .next1 {
+        height: 50px;
+        background: #F1F1F1;
+        border-bottom: 2px solid #DDDDDD;
+        border-top: 2px solid #DDDDDD;
+}
+    .hei{
+        position: relative;
+        text-decoration: none;
+        color: black;
+        left: 30%;
+        top: 25%;
+    }
+    .yinbao{
+        position: relative;
+        text-decoration: none;
+        color:black;
+        left: 50%;
+        top: 25%;
+    }
+
+    .a2{
+        position: relative;
+        color: green;
+        text-decoration: none;
+        left: 20px;
+    }
+
+    .a3{
+        position: relative;
+        color: blue;
+        text-decoration: none;
+        left: 40px;
+    }
+
+    .div2{
+        position: relative;
+        top: 0px;
+    }
+    .div3{
+        position: relative;
+        top: 230px;
+        left: 15px;
+    }
+
+    .div4{
+        position: relative;
+        top: 250px;
+        left: 15px;
+    }
+    .span1{
+        position: relative;
+        left: 30px;
+    }
+    .div5{
+        position: relative;
+        left: 30px;
+    }
+    .div6{
+        position: relative;
+        left: 30px;
+        font-size: 30px;
+    }
+
+    .div1{
+        position: relative;
+        top: 25px;
+        height: 220px;
+    }
+</style>
+
+<html>
+
+
+
+    <head>
+        <meta http-equiv="content-type"content="text/html" charset="utf-8">
+        <script type="text/javascript" src="/1.js"></script>
+    </head>
+
+    <script type="text/javascript" src="/jquery.min.js"></script>
+    <script>
+        function showpage(obj,page){
+            $("#mainiframe").attr("src",page);
+            console.info(page)
+        }
+
+        function showpage1(obj,page){
+            $("#selectiframe").attr("src",page);
+            console.info(page)
+        }
+    </script>
+<body class="body">
+
+    
+        
+
+    <div class="border">
+        <span class="Vip"><font class="vipFont">开通会员</font></span>
+    </div>
+    <div class="next1">
+        <a href="javascript:void(0)" class="hei" onclick="showpage(this,'value.html')">黑椒VIP</a>
+        <a href="javascript:void(0)" class="yinbao" onclick="showpage(this,'value1.html')">音乐包</a>
+    </div>
+    <div class="div1">
+        <iframe id="mainiframe" class="iframe1" src="value.html" frameborder="no" scrolling="no" width="100%" height="400px" allowtransparency="true"></iframe>
+    </div>
+    <div class="div3">
+        <iframe id="selectiframe" class="iframe2" src="select.html" frameborder="no" scrolling="no" width="100%" height="70px" allowtransparency="true"></iframe>
+    
+        <a href="#nowhere" class="a2" onclick="showpage1(this,'text.html')" ><font>兑换优惠卷</font></a>
+        <a href="#nowhere" class="a3" onclick="showpage1(this,'select.html')"><font>取消兑换卷</font></a>
+    </div>
+    <div class="div4">
+        <img src="image/1.png" style="float: left;">
+        <span class="span1">用支付宝或者微信支付</span>
+        <div class="div5"><img src="image/2.png"></div>
+        <div class="div6">
+            <span>&yen;</span>
+            <b id="Prices">0</b>
+        </div>
+    </div>
+    <script>
+
+    </script>
+</body>
+</html>
