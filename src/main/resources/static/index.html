@@ -6,64 +6,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>音乐</title>
     <link rel="stylesheet" href="css/common.css">
-     <link rel="stylesheet" href="css/music-player.css">
-     <link rel="stylesheet" href="css/article-left-list.css">
-     <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/music-player.css">
+    <link rel="stylesheet" href="css/article-left-list.css">
+    <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/left_side.css">
 </head>
 
 <body>
-    <header>
-        <div class = "header-title">
+<header>
+    <div class = "header-title">
             <span class="Title">
                 <img src="../images/title.png">&nbsp;&nbsp;
             </span>
 
-        </div>
-        <div class = "header-search">
-            <input id="searchInfo" placeholder="搜索音乐、视频、歌手、电台" type="text"  size="25" />
-        </div>
-        <div class = "header-userInfo"></div>
-    </header>
+    </div>
+    <div class = "header-search">
+        <input id="searchInfo" placeholder="搜索音乐、视频、歌手、电台" type="text"  size="25" />
+    </div>
+    <div class = "header-userInfo">
+        <span class="user">用户:</span>
+        <em class="Font"  id="user">/</em>
+        <a href="VIP.html" class="VIP">VIP</a>
+    </div>
+</header>
 <!--    <img src="images/title.png" height="41" width="147"/>-->
-    <article>
-        <div class="left-side">
-            <div class="music-list">
+<article>
+    <div class="left-side">
+        <div class="music-list">
 
-                <form class="recommend">
-                    <p>推荐</p>
-                    <span id="FindMusic" onclick="showpage(this,'FindMusic.html')"><img src="images/song-list.png"  >发现音乐</span>
-                    <span id="PersonalBStation" onclick="showpage(this,'PersonalBStation.html')"><img src="images/song-list.png"  >私人电台</span>
-                    <span id="LookLive" onclick="showpage(this,'LookLive.html')"><img src="images/song-list.png"  >look直播</span>
-                </form>
+            <form class="recommend">
+                <p>推荐</p>
+                <span id="FindMusic" onclick="showpage(this,'FindMusic.html')"><img src="images/song-list.png"  >发现音乐</span>
+                <span id="PersonalBStation" onclick="showpage(this,'PersonalBStation.html')"><img src="images/song-list.png"  >私人电台</span>
+                <span id="LookLive" onclick="showpage(this,'LookLive.html')"><img src="images/song-list.png"  >look直播</span>
+            </form>
 
-                <form class="MyMusic">
-                    <p>我的音乐</p>
-                    <span id="LocalMusic" onclick="showpage(this,'LocalMusic.html')"><img src="images/song-list.png"  >本地音乐</span>
-                    <span id="DownLoadManage"  onclick="showpage(this,'DownLoadManage.html')"><img src="images/song-list.png" >下载管理</span>
-                    <span id="MycCollectMusic"  onclick="showpage(this,'musicList_detail.html')"><img src="images/song-list.png">我的收藏</span>
-                </form>
+            <form class="MyMusic">
+                <p>我的音乐</p>
+                <span id="LocalMusic" onclick="showpage(this,'LocalMusic.html')"><img src="images/song-list.png"  >本地音乐</span>
+                <span id="DownLoadManage"  onclick="showpage(this,'DownLoadManage.html')"><img src="images/song-list.png" >下载管理</span>
+                <span id="MycCollectMusic"  onclick="showpage(this,'musicList_detail.html')"><img src="images/song-list.png">我的收藏</span>
+            </form>
 
-                <form  class="MySonglist" id="hide"  style="margin:0 auto" >
-                    <!-- 设置点击添加小图标才显示的添加歌单名div -->
-                    <div class="addListInfo" >
-                        <div>新建歌单</div>
-                        <div ><input id="setListName" placeholder="请输入新建歌单名" type="text" max="20" autocomplete="off"/></div>
-                        <div class="choiceAddMusicList">
-                            <input type="button" value="确定"  onclick="sureAddMusicList(1)">
-                            <input type="button" value="取消" onclick="sureAddMusicList(0)">
-                        </div>
+            <form  class="MySonglist" id="hide"  style="margin:0 auto" >
+                <!-- 设置点击添加小图标才显示的添加歌单名div -->
+                <div class="addListInfo" >
+                    <div>新建歌单</div>
+                    <div ><input id="setListName" placeholder="请输入新建歌单名" type="text" max="20" autocomplete="off"/></div>
+                    <div class="choiceAddMusicList">
+                        <input type="button" value="确定"  onclick="sureAddMusicList(1)">
+                        <input type="button" value="取消" onclick="sureAddMusicList(0)">
                     </div>
-                    <div class="musicList_titleInfo" >
-                        <div id="userListTitle" onclick="ShowOrHide(this)">创建的歌单</div>
-                        <div id="ShowOrHideList" onclick="ShowOrHide(this)"><img src="images/showList.png"></div>
-                        <div id="addList" onclick="showddListInfo(this)"><img src="images/addMusicList.png"></div>
-                    </div>
-                    <span v-for="list in userEstablishMusicList" v-bind:id=list.mlid  onclick="showpage(this,'MusicList_detail.html');getMlid(this);">
+                </div>
+                <div class="musicList_titleInfo" >
+                    <div id="userListTitle" onclick="ShowOrHide(this)">创建的歌单</div>
+                    <div id="ShowOrHideList" onclick="ShowOrHide(this)"><img src="images/showList.png"></div>
+                    <div id="addList" onclick="showddListInfo(this)"><img src="images/addMusicList.png"></div>
+                </div>
+                <span v-for="list in userEstablishMusicList" v-bind:id=list.mlid  onclick="showpage(this,'MusicList_detail.html');getMlid(this);">
                         <img src="images/song-list.png" >
                         {{list.mlname}}</span>
 
-                </form>
+            </form>
 
             </div>
             <div class="player-info">
@@ -129,15 +133,25 @@
     <script src="js/left_side.js"></script>
     <script src="js/music-player.js"></script>
 
-    <script type="text/javascript">
+<script type="text/javascript">
+    function showpage(obj,page){
+        $("#rightMain").attr("src",page);
+        // $("#sideMenu li").removeClass("on");
+        // $(obj).parent().addClass("on");
+        // $("#here_area").text("当前位置："+$(obj).text());
+    }
 
-        function showpage(obj,page){
-            $("#rightMain").attr("src",page);
-            // $("#sideMenu li").removeClass("on");
-            // $(obj).parent().addClass("on");
-            // $("#here_area").text("当前位置："+$(obj).text());
-        }
-    </script>
+    //brc
+    $(function () {
+        $.post("/usermessage",{ },function (data) {
+            console.info(data);
+            if (data != null){
+                $("#user").text(data);
+            }
+        },"text");
+    })
+
+</script>
 </body>
 
 </html>
