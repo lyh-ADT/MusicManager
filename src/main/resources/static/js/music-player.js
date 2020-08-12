@@ -3,6 +3,8 @@ class MusicPlayer extends Audio{
         super(url);
         this.bindListeners();
         this.timeUpdateListeners = [];
+        this.musicList = [];
+        this.currentMusicIndex = 0;
     }
 
     /**
@@ -32,6 +34,12 @@ class MusicPlayer extends Audio{
             super.currentTime = this.progress_bar.value;
         }
         this.time = document.getElementById("player_time");
+
+        this.player_last_song_btn = document.getElementById("player_last_song_btn");
+        this.player_last_song_btn.onclick = this.lastSong;
+
+        this.player_next_song_btn = document.getElementById("player_next_song_btn");
+        this.player_next_song_btn.onclick = this.nextSong;
         
         this.volume_bar = document.getElementById("player_volume_bar");
         this.volume_bar.value = this.volume_bar.max = 100;
@@ -43,6 +51,7 @@ class MusicPlayer extends Audio{
         
         super.onloadeddata = this.loadeddata;
         super.ontimeupdate = this.timeupdate;
+        super.onended = this.ended;
     }
 
     /**
@@ -50,13 +59,15 @@ class MusicPlayer extends Audio{
      * @param {number} sid 歌曲ID
      * @param {number} mlid 歌单ID可选
      */
-    play(sid, mlid){
+    play(sid, mlid=undefined){
         if(sid !== undefined){
             this.sid = sid;
             super.src = `/song/${sid}/mp3`;
             this.updateInfo();
         }
-        // TODO: 歌单部分的逻辑，等dsq
+        if(mlid){
+            this.getMusicList(mlid, sid);
+        }
         super.play();
         this.play_btn.src = "./images/pause_button.png";
     }
@@ -73,6 +84,32 @@ class MusicPlayer extends Audio{
         document.getElementById("player_info_liked").src = data.liked ?　"./images/favor_icon_like.png":"./images/favor_icon_unlike.png";
     }
 
+    getMusicList(mlid, playingSid){
+        const uri = 'showMusicListInfo';
+        var url = uri + "?mlid=" + mlid;
+        $.post(url, (response)=>{
+            // console.info(response.data)
+            this.musicList = [];
+            for(let i=0; i < response.length; ++i){
+                const sid = response[i].sid;
+                this.musicList.push(sid);
+                if(parseInt(sid) === playingSid){
+                    this.currentMusicIndex = i;
+                }
+            }
+        });
+    }
+
+    lastSong = ()=>{
+        this.currentMusicIndex = (this.currentMusicIndex - 1 + this.musicList.length)%this.musicList.length;
+        this.play(this.musicList[this.currentMusicIndex]);
+    }
+
+    nextSong = ()=>{
+        this.currentMusicIndex = (this.currentMusicIndex + 1)%this.musicList.length;
+        this.play(this.musicList[this.currentMusicIndex]);
+    }
+
     loadeddata = ()=>{
         this.progress_bar.value = this.progress_bar.min = 0;
         this.progress_bar.max = Math.round(this.duration);
@@ -85,6 +122,10 @@ class MusicPlayer extends Audio{
         for (let callback of this.timeUpdateListeners) {
             callback();
         }
+    }
+
+    ended = ()=>{
+        this.nextSong();
     }
 
     /**
