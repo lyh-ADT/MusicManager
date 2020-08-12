@@ -52,12 +52,24 @@
                 </div>
             </div>
             <div class="comment" v-for="comment in comments">
-                <div style="width: 10%;margin:0 2%;">
-                    <img style="width: 100%;" :src="comment.avatar || '/images/song-list.png'" alt="">
+                <div class="content">
+                    <div style="width: 10%;margin:0 2%;">
+                        <img style="width: 100%;" :src="comment.avatar || '/images/song-list.png'" alt="">
+                    </div>
+                    <div style="width: 80%">
+                        <h3 style="margin-bottom:10px">{{comment.nickname}}</h3>
+                        <p>{{comment.content}}</p>
+                        <template v-if="comment.sub_cid">
+                            <div class="sub-comment"  v-for="parentComment in getParentComment(comment.sub_cid)">
+                                <span>@{{parentComment.nickname}}:</span>
+                                <span>{{parentComment.content}}</span>
+                            </div>
+                        </template>
+                    </div>
                 </div>
-                <div>
-                    <h3 style="margin-bottom:10%">{{comment.nickname}}</h3>
-                    <p>{{comment.content}}</p>
+
+                <div class="operations" style="clear: both;">
+                    <div @click="addSubComment(comment.cid)">评论</div>
                 </div>
                 <hr style="clear: both;">
             </div>
@@ -68,5 +80,11 @@
     <script src="js/vue.js"></script>
     <script src="js/music-player-lyric.js"></script>
     <script src="js/comments.js"></script>
+
+    <div id="comment-popover">
+        <textarea></textarea>
+        <br>
+        <button>发表</button>
+    </div>
 </body>
 </html>

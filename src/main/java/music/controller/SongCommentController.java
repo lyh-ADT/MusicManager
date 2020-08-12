@@ -26,8 +26,7 @@ public class SongCommentController {
 
     @PutMapping("/song/{sid}/comment")
     @ResponseBody
-    public String addComment(@PathVariable("sid") Integer sid, String content, Integer subCid, @SessionAttribute("uid") Integer uid){
-        // TODO: uid 还未确定，要等brc
+    public String addComment(@PathVariable("sid") Integer sid, String content,@RequestParam("sub_cid") Integer subCid, @SessionAttribute("uid") Integer uid){
         Comment comment = new Comment();
         comment.setSid(sid);
         comment.setContent(content);

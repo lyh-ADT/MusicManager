@@ -99,7 +99,10 @@ class Lyrics{
             }
         }
         needUpdate.classList.add(Lyrics.highlightCssClass);
-        needUpdate.scrollIntoView();
+        needUpdate.scrollIntoView({
+            behavior:"smooth",
+            block:"center"
+        });
     }
 }
 

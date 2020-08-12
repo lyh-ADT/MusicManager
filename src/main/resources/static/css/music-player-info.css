@@ -27,12 +27,25 @@
 .comment{
     width: 100%;
 }
-.comment>div{
+.comment>.content>div{
     float: left;
 }
 
+.comment>.operations>div{
+    float: right;
+    cursor: pointer;
+}
+
+.sub-comment{
+    margin-top: 20px;
+    width: 100%;
+    background-color: gray;
+}
+
 .active{
-    color: white;
+    color: red;
+    font-size: 2em;
+    margin: 10px 0;
 }
 
 .info{
@@ -57,4 +70,11 @@
     display: block;
     height: 30px;
 
+}
+
+#comment-popover{
+    display: none;
+    position: absolute;
+    padding: 10px;
+    background-color: gray;
 }

@@ -69,69 +69,69 @@
 
             </form>
 
-        </div>
-        <div class="player-info">
-            <div class="cover">
-                <img id="player_info_img" src="./images/favor_icon_like.png" alt="" onclick="showpage(this, 'player-detail.html')">
             </div>
-            <div class="info">
-                <div>
-                    <span id="player_info_title">标题</span>
-                    <img id="player_info_liked" src="./images/favor_icon_like.png" alt="">
+            <div class="player-info">
+                <div class="cover">
+                    <img id="player_info_img" src="./images/favor_icon_like.png" alt="" onclick="showpage(this, 'player-detail.html')">
                 </div>
-                <div>
-                    <span id="player_info_singer">歌手</span>
-                    <img id="player_info_share" src="./images/share_icon.png" alt="">
+                <div class="info">
+                    <div>
+                        <span id="player_info_title">标题</span>
+                        <img id="player_info_liked" src="./images/favor_icon_like.png" alt="">
+                    </div>
+                    <div>
+                        <span id="player_info_singer">歌手</span>
+                        <img id="player_info_share" src="./images/share_icon.png" alt="">
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="right-side" >
-        <iframe name="right" id="rightMain" src="FindMusic.html" frameborder="no" scrolling="no"></iframe>
-    </div>
-</article>
-<footer>
-    <div class="left-side">
-        <div style="width: fit-content;">
-            <div class="player-control-button">
-                <img src="./images/last_button.png" alt="" srcset="" id="player_last_song_btn">
+            <div class="right-side" >
+                <iframe name="right" id="rightMain" src="FindMusic.html" frameborder="no"></iframe>
             </div>
-            <div class="player-control-button">
-                <img src="./images/play_button.png" alt="" srcset="" style="padding-left: 10%;" id="player_play_btn">
-            </div>
-            <div class="player-control-button">
-                <img src="./images/next_button.png" alt="" srcset="" id="player_next_song_btn">
-            </div>
-        </div>
-    </div>
-    <div class="right-side">
-        <div class="progress-bar">
-            <div class="time">
-                <div id="player_time">03:25</div>
-            </div>
-            <div class="bar">
-                <input type="range" id="player_progress_bar">
+    </article>
+    <footer>
+        <div class="left-side">
+            <div style="width: fit-content;">
+                <div class="player-control-button">
+                    <img src="./images/last_button.png" alt="" srcset="" id="player_last_song_btn">
+                </div>
+                <div class="player-control-button">
+                    <img src="./images/play_button.png" alt="" srcset="" style="padding-left: 10%;" id="player_play_btn">
+                </div>
+                <div class="player-control-button">
+                    <img src="./images/next_button.png" alt="" srcset="" id="player_next_song_btn">
+                </div>
             </div>
         </div>
-        <div class="volume">
-            <div>
-                <img src="./images/volume_icon_on.png" alt="">
-                <input type="range" id="player_volume_bar">
+        <div class="right-side">
+            <div class="progress-bar">
+                <div class="time">
+                    <div id="player_time">03:25</div>
+                </div>
+                <div class="bar">
+                    <input type="range" id="player_progress_bar">
+                </div>
+            </div>
+            <div class="volume">
+                <div>
+                    <img src="./images/volume_icon_on.png" alt="">
+                    <input type="range" id="player_volume_bar">
+                </div>
+            </div>
+            <div class="buttons">
+                <div>
+                    <img src="./images/loop_list.png" alt="" style="cursor: pointer;" id="player_cycle_mode_btn">
+                </div>
             </div>
         </div>
-        <div class="buttons">
-            <div>
-                <img src="./images/loop_list.png" alt="">
-            </div>
-        </div>
-    </div>
-</footer>
-<script src="js/jquery-3.4.1.min.js"></script>
-<script src="js/axios.min.js"></script>
-<script src="js/vue.js"></script>
-<script src="js/header.js"></script>
-<script src="js/left_side.js"></script>
-<script src="js/music-player.js"></script>
+    </footer>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/header.js"></script>
+    <script src="js/left_side.js"></script>
+    <script src="js/music-player.js"></script>
 
 <script type="text/javascript">
     function showpage(obj,page){
@@ -140,7 +140,7 @@
         // $(obj).parent().addClass("on");
         // $("#here_area").text("当前位置："+$(obj).text());
     }
-    
+
     //brc
     $(function () {
         $.post("/usermessage",{ },function (data) {
@@ -150,7 +150,7 @@
             }
         },"text");
     })
-    
+
 </script>
 </body>
 
