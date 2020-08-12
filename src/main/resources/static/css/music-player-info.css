@@ -32,7 +32,9 @@
 }
 
 .active{
-    color: white;
+    color: red;
+    font-size: 2em;
+    margin: 10px 0;
 }
 
 .info{

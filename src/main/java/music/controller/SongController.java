@@ -15,6 +15,7 @@ import java.net.URLEncoder;
  * 歌曲的Controller
  * @author lyhADT
  */
+
 @Controller
 public class SongController {
 
@@ -36,6 +37,12 @@ public class SongController {
     @ResponseBody
     public String getSongLyric(@PathVariable("sid") String sid){
         return songService.getSongLyricUrl(sid);
+    }
+
+    @GetMapping("/song/randomId")
+    @ResponseBody
+    public int getRandomSid(){
+        return songService.getRandomSid();
     }
 
     private String urlEncodeLastPath(String url){

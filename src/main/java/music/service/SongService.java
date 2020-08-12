@@ -33,4 +33,10 @@ public interface SongService {
      * @return 歌词
      */
     String getSongLyricUrl(String sid);
+
+    /**
+     * 获取随机的一个sid
+     * @return sid
+     */
+    int getRandomSid();
 }
