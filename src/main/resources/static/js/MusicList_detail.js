@@ -7,7 +7,7 @@ var vue = new Vue({
         ListData:[],
         songsData:[],
         likeOrNot:[],
-        mild: ""
+        mild: 0
     },
     methods:{
         getMusicList:function(mlid){  //获取歌单中的歌曲信息
@@ -52,14 +52,39 @@ var vue = new Vue({
         },
         play:(sid)=>{
             window.parent.musicPlayer.play(sid, parseInt(vue.$data.mild));
-            window.parent.musicPlayer.changeCycleMode(window.parent.musicPlayer.currentCycleModeIndex);
         }
     },
     mounted:function(){
-
     }
 
 });
+
+
+function choiceLikeOrNot(obj , choice){
+    console.info(vue.$data.mild);
+    let sid = $(obj).parent().parent().attr("id");
+    if(choice == 1){  //添加喜欢方法
+        let url = "addLike" + "?sid=" + sid;
+        axios.post(url).then(function(response){
+            if(response.status ==200){
+                vue.getMusicList(vue.$data.mild);
+            } else if(response.status == 500){
+                alert("操作失败");
+            }
+        });
+    } else if(choice == 0){ //取消喜欢方法
+        let url1 = "cancelLike" + "?sid=" + sid;
+        axios.post(url1).then(function(response){
+            console.info(response.status);
+            if(response.status ==200){
+                vue.getMusicList(vue.$data.mild);
+            } else if(response.status == 500){
+                alert("操作失败");
+            }
+
+        });
+    }
+}
 
 
 function choices(){

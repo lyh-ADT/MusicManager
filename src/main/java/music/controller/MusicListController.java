@@ -40,7 +40,7 @@ public class MusicListController {
 
     @PostMapping("/addMusicList")
     @ResponseBody
-    public List<Map<String , String>>addMusicList(String newMusicListName){
+    public List<Map<String , String>> addMusicList(String newMusicListName){
         System.out.println(newMusicListName);
         return musicListServiceImpl.addMusicList(newMusicListName);
     }
@@ -51,4 +51,17 @@ public class MusicListController {
 
         return musicListServiceImpl.getMusicListInfo(mlid);
     }
+
+    @PostMapping("/addLike")
+    @ResponseBody
+    public List<Map<String , String>> addLike(Integer sid){
+        return musicListServiceImpl.addLike(sid);
+    }
+
+    @PostMapping("/cancelLike")
+    @ResponseBody
+    public List<Map<String , String>> cancelLike(Integer sid){
+        return musicListServiceImpl.cancelLike(sid);
+    }
+
 }

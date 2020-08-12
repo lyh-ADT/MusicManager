@@ -16,7 +16,6 @@ var vue = new Vue({
         },
         play:(sid)=>{
             window.parent.musicPlayer.play(sid);
-            window.parent.musicPlayer.changeCycleMode(window.parent.musicPlayer.currentCycleModeIndex);
         }
     }
 });

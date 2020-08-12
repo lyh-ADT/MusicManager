@@ -51,4 +51,13 @@ public class MusicListServiceImpl implements MusicListService {
         return musicListDao.addMusicList(newMusicListname);
     }
 
+    //添加song到我喜欢歌单
+    public List<Map<String , String>> addLike(Integer sid) {
+        return musicListDao.addLike(sid);
+    }
+    //将song从我喜欢歌单中删除
+    public List<Map<String , String>> cancelLike(Integer sid) {
+        return musicListDao.cancelLike(sid);
+    }
+
 }

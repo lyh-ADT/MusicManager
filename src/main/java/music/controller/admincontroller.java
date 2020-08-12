@@ -3,12 +3,10 @@ package music.controller;
 import music.dao.adminDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 @Controller
@@ -26,20 +24,8 @@ public class admincontroller {
 
     @PostMapping("/login")
     @ResponseBody
-    public int login(HttpServletRequest request){
-        String account = request.getParameter("account");
-        String pwd = request.getParameter("pwd");
-
+    public int login(String account, String pwd){
         Map<String,String> map = admindao.login(account,pwd);
-
-        if (map == null){
-            return -1;
-        }
-
-        HttpSession session = request.getSession();
-        session.setAttribute("nickname",map.get("nickname"));
-        session.setAttribute("pwd",map.get("pwd"));
-        session.setAttribute("uid", map.get("uid"));
         return 1;
     }
 }
