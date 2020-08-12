@@ -6,8 +6,6 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 /**
  * @author lyhADT
  */
@@ -21,4 +19,11 @@ public interface SongDao {
      */
     @Select("select * from song where sid=#{sid}")
     Song getSongBySid(@Param("sid") Integer sid);
+
+    /**
+     * 获取sid的最大值
+     * @return sid
+     */
+    @Select("select max(sid) from song")
+    int getMaxSid();
 }

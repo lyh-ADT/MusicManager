@@ -39,7 +39,7 @@ class MusicPlayer extends Audio{
         this.player_last_song_btn.onclick = this.lastSong;
 
         this.player_next_song_btn = document.getElementById("player_next_song_btn");
-        this.player_next_song_btn.onclick = this.nextSong;
+        this.player_next_song_btn.onclick = ()=>this.nextSong();
         
         this.volume_bar = document.getElementById("player_volume_bar");
         this.volume_bar.value = this.volume_bar.max = 100;
@@ -52,6 +52,7 @@ class MusicPlayer extends Audio{
         super.onloadeddata = this.loadeddata;
         super.ontimeupdate = this.timeupdate;
         super.onended = this.ended;
+        super.onerror = ()=>this.nextSong();
     }
 
     /**
@@ -105,10 +106,12 @@ class MusicPlayer extends Audio{
         this.play(this.musicList[this.currentMusicIndex]);
     }
 
-    nextSong = ()=>{
+    listCircle = ()=>{
         this.currentMusicIndex = (this.currentMusicIndex + 1)%this.musicList.length;
         this.play(this.musicList[this.currentMusicIndex]);
     }
+
+    nextSong = this.listCircle
 
     loadeddata = ()=>{
         this.progress_bar.value = this.progress_bar.min = 0;
@@ -134,6 +137,19 @@ class MusicPlayer extends Audio{
      */
     bindTimeUpdateListener(callback) {
         this.timeUpdateListeners.push(callback);
+    }
+
+    /**
+     * 播放私人FM
+     * 随机任意歌曲
+     */
+    playFM(){
+        this.nextSong = ()=>{
+            $.get("/song/randomId", (result)=>{
+                this.play(parseInt(result));
+            }, "text")
+        }
+        this.nextSong();
     }
 }
 

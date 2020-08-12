@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * @author lyhADT
@@ -44,5 +45,12 @@ public class SongServiceImpl implements SongService {
         int songId = Integer.parseInt(sid);
         Song song = songDao.getSongBySid(songId);
         return song.getLyric();
+    }
+
+    @Override
+    public int getRandomSid() {
+        int max = songDao.getMaxSid();
+        // [0, max)
+        return new Random().nextInt(max);
     }
 }

@@ -38,6 +38,12 @@ public class SongController {
         return songService.getSongLyricUrl(sid);
     }
 
+    @GetMapping("/song/randomId")
+    @ResponseBody
+    public int getRandomSid(){
+        return songService.getRandomSid();
+    }
+
     private String urlEncodeLastPath(String url){
         final int divide = url.lastIndexOf("/");
         if(divide == -1){
