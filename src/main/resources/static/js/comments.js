@@ -52,6 +52,14 @@ const comments_app = new Vue({
                     }
                 })
             }
+        },
+        getParentComment:function (cid) {
+            for(const comment of this.comments){
+                if(comment.cid === cid){
+                    return [comment];
+                }
+            }
+            return [];
         }
     },
     mounted: function () {

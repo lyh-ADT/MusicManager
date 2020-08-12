@@ -59,10 +59,12 @@
                     <div style="width: 80%">
                         <h3 style="margin-bottom:10px">{{comment.nickname}}</h3>
                         <p>{{comment.content}}</p>
-                        <div class="sub-comment" v-if="comment.sub_cid && parentComment.cid==comment.sub_cid" v-for="parentComment in comments">
-                            <span>@{{parentComment.nickname}}:</span>
-                            <span>{{parentComment.content}}</span>
-                        </div>
+                        <template v-if="comment.sub_cid">
+                            <div class="sub-comment"  v-for="parentComment in getParentComment(comment.sub_cid)">
+                                <span>@{{parentComment.nickname}}:</span>
+                                <span>{{parentComment.content}}</span>
+                            </div>
+                        </template>
                     </div>
                 </div>
 
