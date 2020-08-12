@@ -21,6 +21,9 @@ const comments_app = new Vue({
                 data: {content:this.inputComment, sub_cid:null},
                 success:function(result){
                     alert(result);
+                },
+                error: function () {
+                    alert("未登录");
                 }
             });
         }
