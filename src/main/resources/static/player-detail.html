@@ -12,27 +12,22 @@
         html, body{
             height: 100%;
             width: 100%;
+            background-color: #ececec;
         }
         .disk, .info, .comments, .recommend{
             float: left;
         }
-        .disk, .info{
-            width: 50%;
+        .info{
             height: 100%;
         }
-        .disk{
-            background-color: red;
-        }
-        .info{
-            background-color: blue;
+        .disk, .info{
+            width: 50%;
         }
         .comments{
             width: 70%;
-            background-color: blue;
         }
         .recommend{
             width: 30%;
-            background-color: red;
         }
     </style>
 </head>
@@ -50,14 +45,19 @@
         </div>
     </div>
     <div>
-        <div class="comments">
-            <div class="comment">
+        <div class="comments" id="comments_app">
+            <div class="add-comment">
+                <div>
+                    <input v-model="inputComment" type="text" placeholder="发表评论" @keypress="addComment">
+                </div>
+            </div>
+            <div class="comment" v-for="comment in comments">
                 <div style="width: 10%;margin:0 2%;">
-                    <img style="width: 100%;" src="http://p1.music.126.net/sQKLXBR_GThk5n-M2wtdDg==/758663033420897.jpg?param=130y130" alt="">
+                    <img style="width: 100%;" :src="comment.avatar || '/images/song-list.png'" alt="">
                 </div>
                 <div>
-                    <h3 style="margin-bottom:10%">昵称</h3>
-                    <p>评论</p>
+                    <h3 style="margin-bottom:10%">{{comment.nickname}}</h3>
+                    <p>{{comment.content}}</p>
                 </div>
                 <hr style="clear: both;">
             </div>
@@ -65,6 +65,8 @@
         <div class="recommend">s</div>
     </div>
     <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/vue.js"></script>
     <script src="js/music-player-lyric.js"></script>
+    <script src="js/comments.js"></script>
 </body>
 </html>

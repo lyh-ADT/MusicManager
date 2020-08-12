@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>网易云音乐</title>
+        <link href="images/title.jpg" rel="shortcut icon" type="image/x-icon"/>
+        <link href="css/register.css" rel="stylesheet" type="text/css"/>
+        <link href="css/footer.css" rel="stylesheet" type="text/css"/>
+    </head>
+
+    <body>
+        <header>
+           <img class="img1" src="images/enter_index.jpg">
+        </header>
+        <div class="register_main">
+            <div style="float: left;">
+                <div class="first_line" style="margin: 50px;"/>欢迎注册网易云音乐帐号</div>
+                <img src="images/g.jpg" width="580px" height="500px" style="margin: 50px;"/>
+            </div>
+            <div class="right" style="float: right;">
+                <ul>
+                    <p>注册</p>
+                    <br>
+                    <br>
+                    <li>
+                        <label>帐号注册:</label>
+                        <input type="text" id="account" class= "user" placeholder="请输入帐号" required>
+                        <span class="error">错误提示</span>
+                    </li>
+                    <br>
+                    <br>
+                    <li>
+                        <label>密码:</label>
+                        <input type="password" id="password" class= "user" placeholder="请输入密码" required>
+                        <span class="error">错误提示</span>
+                    </li>
+                    <br>
+                    <br>
+                    <li>
+                        <label>密码确认:</label>
+                        <input type="password" id="cor_password" class= "user" placeholder="请再次输入密码" required>
+                        <span class="error">错误提示</span>
+                    </li>
+                    <br>
+                    <br>
+                        <input type="button" id="button" onClick="checkRegister()" value="注 册">
+                </ul>
+            </div>
+        </div>
+        <script>
+            function checkRegister() {
+                var account = $.trim($("#account").val());
+                var pwd = $.trim( $("#password").val());
+                var pwd_ = $.trim($("#cor_password").val());
+
+                if (account == "" || pwd == "" || pwd_ != pwd_){
+                    alert("密码为空或两次输入密码不一致!");
+                    return;
+                }
+
+
+                $.post("regist", {account: account, pwd:pwd}, function(data) {
+                    data = parseInt($.trim(data));
+                    if(data == 1) {
+                        alert("注册成功!");
+                        location.href="";
+                    }
+                    else{
+                        alert("注册失败!")
+                    }
+                },"text");
+            }
+        </script>
+        <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+        <script src="js/register.js"></script>
+    </body>
+<html>
+
+
+

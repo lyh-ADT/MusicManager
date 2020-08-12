@@ -44,7 +44,7 @@ class Lyrics{
         return script;
     }
 
-    getLyric(){
+    getLyric = () => {
         const sid = this.music_player.sid;
         if(!sid){
             console.warn("没有播放音乐");
@@ -105,3 +105,8 @@ class Lyrics{
 
 const musicPlayer = window.parent.musicPlayer;
 const lyrics = new Lyrics(musicPlayer);
+
+window.onunload = function () {
+    // 清除musicPlayer的监听器，目前只有Lyrics会绑定它，所以直接清空
+    window.parent.musicPlayer.timeUpdateListeners = [];
+}

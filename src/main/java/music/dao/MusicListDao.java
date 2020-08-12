@@ -17,6 +17,7 @@ import java.util.Map;
 @Mapper
 public interface MusicListDao {
 
+
     @Select("select ml.imgUrl , mlname , date , description , sname , mlt.sid , singer from" +
             " music_list ml,music_list_detail mlt, song s where ml.mlid = mlt.mlid and mlt.sid = s.sid " +
             " and ml.uid = 1 and ml.mlid=#{mlid} order by mlt.sid desc")
@@ -31,4 +32,7 @@ public interface MusicListDao {
 
     @Select("select * from music_list where uid=#{uid}")
     List<music_list_info> getUserEstablishMusicList(@Param("uid") Integer uid);
+
+    @Select("insert into music_list values(0,1,#{newMusicListName},'imges/share_icon.png',null,now())")
+    List<Map<String , String>> addMusicList(@Param("newMusicListName") String newMusicListName);
 }

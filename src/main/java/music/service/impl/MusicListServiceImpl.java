@@ -39,4 +39,10 @@ public class MusicListServiceImpl implements MusicListService {
     public int[] judgeLikeOrNot(Integer mlid) {
         return musicListDao.judgeLikeOrNot(mlid);
     }
+
+
+    public List<Map<String , String>> addMusicList(String newMusicListname) {
+        System.out.println(newMusicListname);
+        return musicListDao.addMusicList(newMusicListname);
+    }
 }

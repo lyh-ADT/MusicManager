@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<style>
+.select{
+    width: 30%;
+    height: 40px;
+}
+font{
+    left: 30px;
+    color: blueviolet;
+}
+
+</style>
+
+<html>
+    <script type="text/javascript" src="/jquery.min.js"></script>
+    <script>
+        function showpage(obj,page){
+            $("#mainiframe").attr("src",page);
+            console.info(page)
+        }
+    </script>
+    
+    <select class="select">
+        <option value =""></option>
+    </select>
+    <font>选择兑换券</font>
+    
+</html>
+
