@@ -86,7 +86,7 @@ class MusicPlayer extends Audio{
         }
 
         this.player_cycle_mode_btn = document.getElementById("player_cycle_mode_btn");
-        this.player_cycle_mode_btn.onclick = this.changeCycleMode;
+        this.player_cycle_mode_btn.onclick = ()=> this.changeCycleMode();
 
         super.onloadeddata = this.loadeddata;
         super.ontimeupdate = this.timeupdate;

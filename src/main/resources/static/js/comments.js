@@ -21,8 +21,45 @@ const comments_app = new Vue({
                 data: {content:this.inputComment, sub_cid:null},
                 success:function(result){
                     alert(result);
+                },
+                error: function () {
+                    alert("未登录");
                 }
             });
+        },
+        addSubComment: function (cid) {
+            const dialog = document.getElementById("comment-popover");
+            dialog.style.display = "block";
+            // 居中显示
+            dialog.style.top = (window.innerHeight - dialog.clientHeight) / 2 + "px";
+            dialog.style.left = (window.innerWidth - dialog.offsetWidth) / 2 + "px";
+
+            const sid = window.parent.musicPlayer.sid;
+            const input = dialog.getElementsByTagName("textarea")[0];
+            const button = dialog.getElementsByTagName("button")[0];
+            button.onclick = function () {
+                $.ajax({
+                    url: `/song/${sid}/comment`,
+                    method:"PUT",
+                    data: {content:input.value, sub_cid:cid},
+                    success:function(result){
+                        alert(result);
+                        input.value = "";
+                        dialog.style.display = "none";
+                    },
+                    error: function () {
+                        alert("未登录");
+                    }
+                })
+            }
+        },
+        getParentComment:function (cid) {
+            for(const comment of this.comments){
+                if(comment.cid === cid){
+                    return [comment];
+                }
+            }
+            return [];
         }
     },
     mounted: function () {
