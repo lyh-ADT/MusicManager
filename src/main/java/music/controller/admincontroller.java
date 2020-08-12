@@ -24,6 +24,16 @@ public class admincontroller {
          return 1;
     }
 
+    @PostMapping("/usermessage")
+    @ResponseBody
+    public String usermessage(HttpSession session){
+        String nickname = (String)session.getAttribute("nickname");
+        return nickname;
+    }
+
+
+
+
     @PostMapping("/login")
     @ResponseBody
     public int login(HttpServletRequest request){
