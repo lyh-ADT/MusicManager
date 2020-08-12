@@ -56,13 +56,13 @@
                     </div>
                     <div class="musicList_titleInfo" >
                         <div id="userListTitle" onclick="ShowOrHide(this)">创建的歌单</div>
-                        <div id="ShowOrHideList" onclick="ShowOrHide(this)"><img src="images/hideList1.png"></div>
+                        <div id="ShowOrHideList" onclick="ShowOrHide(this)"><img src="images/showList.png"></div>
                         <div id="addList" onclick="showddListInfo(this)"><img src="images/addMusicList.png"></div>
                     </div>
                     <span v-for="list in userEstablishMusicList" v-bind:id=list.mlid  onclick="showpage(this,'MusicList_detail.html');getMlid(this);">
                         <img src="images/song-list.png" >
                         {{list.mlname}}</span>
-                    
+
                 </form>
 
             </div>
@@ -83,7 +83,7 @@
             </div>
         </div>
             <div class="right-side" >
-                <iframe name="right" id="rightMain" src="FindMusic.html" frameborder="no"></iframe>
+                <iframe name="right" id="rightMain" src="FindMusic.html" frameborder="no" scrolling="no"></iframe>
             </div>
     </article>
     <footer>
@@ -130,23 +130,12 @@
     <script src="js/music-player.js"></script>
 
     <script type="text/javascript">
-       function ShowOrHide(obj){
-
-           var id = $(obj).parent().parent().attr("id");
-           if( "hide"==id){
-               $("#hide span").show();
-               $("#hide").attr("id" , "show");
-           } else if("show"==id){
-               $("#show span").hide();
-               $("#show").attr("id" , "hide");
-           }
-        }
 
         function showpage(obj,page){
             $("#rightMain").attr("src",page);
             // $("#sideMenu li").removeClass("on");
             // $(obj).parent().addClass("on");
-            // $("#here_area").text("当前位置："+$(obj).text()); 
+            // $("#here_area").text("当前位置："+$(obj).text());
         }
     </script>
 </body>

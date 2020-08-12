@@ -184,7 +184,6 @@ article {
     display: none;
     position: absolute;
     background-color:white;
-    border-radius: 5px;
     border: 0.1px dashed  black;
     
 }
@@ -198,7 +197,6 @@ article {
 .showOptions>div:hover{
     background-color: gray;
 }
-
 
 
 

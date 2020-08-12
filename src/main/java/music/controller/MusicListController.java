@@ -1,8 +1,7 @@
 package music.controller;
 
-import music.dao.MusicListDao;
-import music.pojo.Song;
-import music.pojo.music_list_detail;
+import music.pojo.musicListInfo;
+import music.pojo.music_list_songs;
 import music.pojo.music_list_info;
 import music.service.impl.MusicListServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +20,9 @@ public class MusicListController {
 
     @PostMapping("/showMusicListInfo")
     @ResponseBody
-    public List<music_list_detail> search(Integer mlid){
+    public List<music_list_songs> search(Integer mlid){
 
-        return musicListServiceImpl.getMusicListInfo(mlid);
+        return musicListServiceImpl.getMusicListSongsInfo(mlid);
     }
 
     @PostMapping("/judgeLikeOrNot")
@@ -46,4 +45,10 @@ public class MusicListController {
         return musicListServiceImpl.addMusicList(newMusicListName);
     }
 
+    @PostMapping("/getMusicListIfo")
+    @ResponseBody
+    public List<musicListInfo> getMusicListInfo(Integer mlid){
+
+        return musicListServiceImpl.getMusicListInfo(mlid);
+    }
 }
