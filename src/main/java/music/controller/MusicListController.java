@@ -1,5 +1,6 @@
 package music.controller;
 
+import music.dao.MusicListDao;
 import music.pojo.Song;
 import music.pojo.music_list_detail;
 import music.pojo.music_list_info;
@@ -16,6 +17,7 @@ import java.util.Map;
 public class MusicListController {
     @Autowired
     MusicListServiceImpl musicListServiceImpl;
+
 
     @PostMapping("/showMusicListInfo")
     @ResponseBody
@@ -34,7 +36,14 @@ public class MusicListController {
     @PostMapping("/getUserEstablishMusicList")
     @ResponseBody
     public List<music_list_info> getUserEstablishMusicList(Integer uid){
-
         return musicListServiceImpl.getUserEstablishMusicList(uid);
     }
+
+    @PostMapping("/addMusicList")
+    @ResponseBody
+    public List<Map<String , String>>addMusicList(String newMusicListName){
+        System.out.println(newMusicListName);
+        return musicListServiceImpl.addMusicList(newMusicListName);
+    }
+
 }

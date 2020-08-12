@@ -55,12 +55,18 @@ function choices(){
                 // console.log(e.offsetX);     //打印出鼠标点击的X轴坐标
                 $(".showOptions").css("margin-top",(e.clientY-250)+'px');     //鼠标点击时给div定位Y轴
                 $(".showOptions").css("margin-left",e.clientX+'px');    //鼠标点击时给div定位X轴
-                $(".showOptions").css("display" , "block");        //显示div盒子
+                $(".showOptions").show();        //显示div盒子
             }else{
-                $(".showOptions").css("display" , "none");           //否则不显示div盒子
+                $(".showOptions").hide();          //否则不显示div盒子
             }
     }
 }
+
+$(".showOptions").hover(function () {
+    $(".showOptions").show();
+}, function () {
+    $(".showOptions").hide();
+})
 
 function showTrCSS(){
     $("#table4Songs>tbody>tr:even").css("background", 'snow');
