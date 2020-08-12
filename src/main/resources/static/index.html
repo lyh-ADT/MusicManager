@@ -9,6 +9,7 @@
      <link rel="stylesheet" href="css/music-player.css">
      <link rel="stylesheet" href="css/article-left-list.css">
      <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/left_side.css">
 </head>
 
 <body>
@@ -44,11 +45,24 @@
                 </form>
 
                 <form  class="MySonglist" id="hide"  style="margin:0 auto" >
-                    <div onclick="ShowOrHide(this)">创建的歌单</div>
+                    <!-- 设置点击添加小图标才显示的添加歌单名div -->
+                    <div class="addListInfo" >
+                        <div>新建歌单</div>
+                        <div ><input id="setListName" placeholder="请输入新建歌单名" type="text" max="20" autocomplete="off"/></div>
+                        <div class="choiceAddMusicList">
+                            <input type="button" value="确定"  onclick="sureAddMusicList(1)">
+                            <input type="button" value="取消" onclick="sureAddMusicList(0)">
+                        </div>
+                    </div>
+                    <div class="musicList_titleInfo" >
+                        <div id="userListTitle" onclick="ShowOrHide(this)">创建的歌单</div>
+                        <div id="ShowOrHideList" onclick="ShowOrHide(this)"><img src="images/showList.png"></div>
+                        <div id="addList" onclick="showddListInfo(this)"><img src="images/addMusicList.png"></div>
+                    </div>
                     <span v-for="list in userEstablishMusicList" v-bind:id=list.mlid  onclick="showpage(this,'MusicList_detail.html');getMlid(this);">
                         <img src="images/song-list.png" >
                         {{list.mlname}}</span>
-                    
+
                 </form>
 
             </div>
@@ -116,23 +130,12 @@
     <script src="js/music-player.js"></script>
 
     <script type="text/javascript">
-       function ShowOrHide(obj){
-
-           var id = $(obj).parent().attr("id");
-           if( "hide"==id){
-               $("#hide span").show();
-               $("#hide").attr("id" , "show");
-           } else if("show"==id){
-               $("#show span").hide();
-               $("#show").attr("id" , "hide");
-           }
-        }
 
         function showpage(obj,page){
             $("#rightMain").attr("src",page);
             // $("#sideMenu li").removeClass("on");
             // $(obj).parent().addClass("on");
-            // $("#here_area").text("当前位置："+$(obj).text()); 
+            // $("#here_area").text("当前位置："+$(obj).text());
         }
     </script>
 </body>

@@ -1,7 +1,8 @@
 package music.service.impl;
 
 import music.dao.MusicListDao;
-import music.pojo.music_list_detail;
+import music.pojo.musicListInfo;
+import music.pojo.music_list_songs;
 import music.pojo.music_list_info;
 import music.service.MusicListService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,12 +32,23 @@ public class MusicListServiceImpl implements MusicListService {
      * @return  列表相关信息
      */
     @Override
-    public List<music_list_detail> getMusicListInfo(int mlid) {
-        return musicListDao.getMusicListInfo(mlid);
+    public List<music_list_songs> getMusicListSongsInfo(int mlid) {
+        return musicListDao.getMusicListSongsInfo(mlid);
     }
 
     @Override
     public int[] judgeLikeOrNot(Integer mlid) {
         return musicListDao.judgeLikeOrNot(mlid);
     }
+
+    @Override
+    public List<musicListInfo> getMusicListInfo(Integer mlid) {
+        return musicListDao.getMusicListInfo(mlid);
+    }
+
+
+    public List<Map<String , String>> addMusicList(String newMusicListname) {
+        return musicListDao.addMusicList(newMusicListname);
+    }
+
 }

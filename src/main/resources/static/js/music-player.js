@@ -76,7 +76,7 @@ class MusicPlayer extends Audio{
 
         this.player_next_song_btn = document.getElementById("player_next_song_btn");
         this.player_next_song_btn.onclick = ()=>this.nextSong();
-        
+
         this.volume_bar = document.getElementById("player_volume_bar");
         this.volume_bar.value = this.volume_bar.max = 100;
         this.volume_bar.min = 0;
@@ -87,7 +87,7 @@ class MusicPlayer extends Audio{
 
         this.player_cycle_mode_btn = document.getElementById("player_cycle_mode_btn");
         this.player_cycle_mode_btn.onclick = this.changeCycleMode;
-        
+
         super.onloadeddata = this.loadeddata;
         super.ontimeupdate = this.timeupdate;
         super.onended = this.ended;
@@ -145,12 +145,7 @@ class MusicPlayer extends Audio{
         this.play(this.musicList[this.currentMusicIndex]);
     }
 
-    listCircle = ()=>{
-        this.currentMusicIndex = (this.currentMusicIndex + 1)%this.musicList.length;
-        this.play(this.musicList[this.currentMusicIndex]);
-    }
-
-    nextSong = this.listCircle
+    nextSong = this.cycleModes[this.currentCycleModeIndex].strategy;
 
     loadeddata = ()=>{
         this.progress_bar.value = this.progress_bar.min = 0;

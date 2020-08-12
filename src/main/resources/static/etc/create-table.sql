@@ -45,11 +45,3 @@ create table comment(
     constraint FK_comment_sub_cid foreign key (sub_cid) references comment(cid),
     constraint FK_comment_sid foreign key (sid) references song(sid)
 )CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-
-create table collect_detail(
-    cdid int primary key auto_increment,
-    mlid int not null,
-    uid int not null,
-    constraint FK_collect_detail_mlid foreign key (mlid) references music_list(mlid),
-    constraint FK_collect_detail_uid foreign key (uid) references user(uid)
-)CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
