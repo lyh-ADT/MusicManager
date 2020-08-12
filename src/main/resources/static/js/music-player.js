@@ -145,7 +145,10 @@ class MusicPlayer extends Audio{
         this.play(this.musicList[this.currentMusicIndex]);
     }
 
-    nextSong = this.cycleModes[this.currentCycleModeIndex].strategy;
+    nextSong = () => {
+        this.currentMusicIndex = (this.currentMusicIndex + 1)%this.musicList.length;
+        this.play(this.musicList[this.currentMusicIndex]);
+    }
 
     loadeddata = ()=>{
         this.progress_bar.value = this.progress_bar.min = 0;
