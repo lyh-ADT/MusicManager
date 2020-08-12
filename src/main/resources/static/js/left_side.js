@@ -26,6 +26,19 @@ let musicList = new Vue({
         this.getUserMusicList(this.uid);
     }
 })
+//显示或者隐藏用户音乐列表
+function ShowOrHide(obj){
+    var id = $(obj).parent().parent().attr("id");
+    if( "hide"==id){
+        $("#ShowOrHideList>img").attr("src","images/showList.png")
+        $("#hide span").show();
+        $("#hide").attr("id" , "show");
+    } else if("show"==id){
+        $("#ShowOrHideList>img").attr("src","images/hideList.png")
+        $("#show span").hide();
+        $("#show").attr("id" , "hide");
+    }
+}
 
 //点击创建的歌单的加号显示隐藏的创建歌单面板
 function showddListInfo(obj) {

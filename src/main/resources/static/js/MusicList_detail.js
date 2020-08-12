@@ -1,24 +1,34 @@
+
 var vue = new Vue({
     el:"#vue-app",
     data:{
         uri:'showMusicListInfo',
         uriJudgeLikeORNotInfo:'judgeLikeOrNot',
-        data:[],
+        ListData:[],
+        songsData:[],
         likeOrNot:[],
         mild: ""
     },
     methods:{
-        getMusicList:function(mlid){
+        getMusicList:function(mlid){  //获取歌单中的歌曲信息
+            vue.getMusicListInfo(mlid);
             // vue.$data.mlid = mlid;
             var url = this.uri + "?mlid=" + mlid;
             axios.post(url).then(function(response){
                 // console.info(response.data)
                 vue.JudgeLikeORNotInfo(mlid);
-                vue.$data.data = response.data;
+                vue.$data.songsData = response.data;
                 vue.$nextTick(() =>{
                     choices();
                     showTrCSS();
                 })
+            });
+        },
+        getMusicListInfo:function(mlid){  //获取歌单的信息
+            var url= "getMusicListIfo" +"?mlid=" + mlid;
+            axios.post(url).then(function(response){
+                console.info(response.data);
+                vue.$data.ListData = response.data;
             });
         },
         JudgeLikeORNotInfo:function(mlid){
@@ -27,10 +37,10 @@ var vue = new Vue({
             axios.post(url1).then(function(response){
                 // console.info(response.data)
                 vue.$data.likeOrNot = response.data;
-                for (var i = 0 ; i < vue.$data.data.length ; i++){
+                for (var i = 0 ; i < vue.$data.songsData.length ; i++){
                     for(var j = 0 ; j < vue.$data.likeOrNot.length ; j++){
-                        if( vue.$data.data[i].sid ==  vue.$data.likeOrNot[j]){
-                            vue.$data.data[i].likeOrNot = true;
+                        if( vue.$data.songsData[i].sid ==  vue.$data.likeOrNot[j]){
+                            vue.$data.songsData[i].likeOrNot = true;
                         }
                     }
                 }
