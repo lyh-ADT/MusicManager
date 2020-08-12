@@ -91,10 +91,7 @@ function choices(){
     // console.info(vue.$data.data)
         document.getElementById("songsInfo").onmouseup = function(e){
             if(e.button===2){       //如果button=1（鼠标左键），button=2（鼠标右键），button=0（鼠标中间键）
-                // console.log(e);     //将传进去的参数打印出来
-                // console.log(e.offsetY);     //打印出鼠标点击的Y轴坐标
-                // console.log(e.offsetX);     //打印出鼠标点击的X轴坐标
-                $(".showOptions").css("margin-top",(e.clientY-250)+'px');     //鼠标点击时给div定位Y轴
+                $(".showOptions").css("margin-top",(e.clientY-260)+'px');     //鼠标点击时给div定位Y轴
                 $(".showOptions").css("margin-left",e.clientX+'px');    //鼠标点击时给div定位X轴
                 $(".showOptions").show();        //显示div盒子
             }else{

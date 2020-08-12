@@ -5,12 +5,12 @@
 .music-list>form {
     margin: 1px;
     padding: 5px;
-    width: 100%;
+    width: 320px;
     float: left;
 }
 
 .music-list>form>span {
-    width: 100%;
+    width: 90%;
     float: left;
     color: gray;
     font-size: 20px;
@@ -50,7 +50,7 @@
 
 #userListTitle{
     float: left;
-    width: 250px;
+    width: 220px;
 }
 #ShowOrHideList{
     float: right;

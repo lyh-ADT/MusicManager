@@ -179,19 +179,25 @@ article {
 * 设置隐藏列表
  */
 .showOptions {
-    width: 200px;
-    height: 100px;
+    width: 130px;
+    height: 150px;
     display: none;
     position: absolute;
     background-color:white;
     border: 0.1px dashed  black;
-    
+
 }
 .showOptions>div{
-    width: 100%; 
-    height: 30%;
-    font-size: 25px;
+    width: 100%;
+    height: 20%;
+    font-size: 20px;
     margin-top: 10px;
+}
+.showOptions>div>img{
+    padding-top: 5px;
+    height: 50%;
+    width: 18px;
+    float:right;
 }
 
 .showOptions>div:hover{
