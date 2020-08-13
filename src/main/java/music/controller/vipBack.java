@@ -18,28 +18,42 @@ public class vipBack {
 
     @PostMapping("/findPrice")
     @ResponseBody
-    public List<Map<String, String>> findPrice(){
+    public  List<Map<String, Object>> findPrice(){
         return vipDao.findPrice();
     }
 
-    @PostMapping("/updatedata1")
+    @PostMapping("/back/updatedata1")
     @ResponseBody
     public int updatedata1(String select1, String input1){
         vipDao.updatePrice(select1,input1);
         return  1;
     }
 
-    @PostMapping("/updatedata2")
+    @PostMapping("/back/updatedata2")
     @ResponseBody
-    public int updatedata2(String select1, String input1){
-        vipDao.updatePrice(select1,input1);
+    public int updatedata2(String select2, String input2){
+        vipDao.updatePrice(select2,input2);
         return  1;
     }
 
-    @PostMapping("/updatedata3")
+    @PostMapping("/back/updatedata3")
     @ResponseBody
-    public int updatedata3(String select1, String input1){
-        vipDao.updatePrice(select1,input1);
+    public int updatedata3(String select3, String input3){
+        vipDao.addcode(select3,input3);
         return  1;
     }
+
+    @PostMapping("/updatevoucher")
+    @ResponseBody
+
+    public int updatevoucher(String nickname,String code){
+        vipDao.updatevourcher(nickname,code);
+        return 1;
+    }
+    @PostMapping("/findVoucher")
+    @ResponseBody
+    public  List<Map<String, Object>> findVoucher(String nickname){
+        return vipDao.findVoucher(nickname);
+    }
+
 }
