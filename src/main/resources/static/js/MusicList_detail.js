@@ -52,6 +52,7 @@ var vue = new Vue({
         },
         play:(sid)=>{
             window.parent.musicPlayer.play(sid, parseInt(vue.$data.mild));
+            window.parent.musicPlayer.changeCycleMode(window.parent.musicPlayer.currentCycleModeIndex);
         }
     },
     mounted:function(){
