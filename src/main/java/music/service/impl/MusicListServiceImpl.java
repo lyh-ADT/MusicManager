@@ -46,9 +46,33 @@ public class MusicListServiceImpl implements MusicListService {
         return musicListDao.getMusicListInfo(mlid);
     }
 
+    @Override
+    public List<music_list_info> getRemoveableMusicList(Integer mlid) {
+        return musicListDao.getRemoveableMusicList(mlid);
+    }
+
+    @Override
+    public List<Map<String, String>> addSongToMusicList(Integer mlid, Integer sid) {
+        return musicListDao.addSongToMusicList(mlid , sid);
+    }
+
+    @Override
+    public List<Map<String, String>> deleteSongToMusicList(Integer mlid, Integer sid) {
+        return musicListDao.deleteSongToMusicList(mlid , sid);
+    }
+
 
     public List<Map<String , String>> addMusicList(String newMusicListname) {
         return musicListDao.addMusicList(newMusicListname);
+    }
+
+    //添加song到我喜欢歌单
+    public List<Map<String , String>> addLike(Integer sid) {
+        return musicListDao.addLike(sid);
+    }
+    //将song从我喜欢歌单中删除
+    public List<Map<String , String>> cancelLike(Integer sid) {
+        return musicListDao.cancelLike(sid);
     }
 
 }
