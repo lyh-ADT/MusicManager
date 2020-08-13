@@ -86,7 +86,7 @@ class MusicPlayer extends Audio{
         }
 
         this.player_cycle_mode_btn = document.getElementById("player_cycle_mode_btn");
-        this.player_cycle_mode_btn.onclick = this.changeCycleMode;
+        this.player_cycle_mode_btn.onclick = ()=>this.changeCycleMode();
 
         super.onloadeddata = this.loadeddata;
         super.ontimeupdate = this.timeupdate;
@@ -198,7 +198,7 @@ class MusicPlayer extends Audio{
      */
     changeCycleMode = (index=undefined)=>{
         if(index === undefined){
-            this.currentCycleModeIndex = index = (this.currentCycleModeIndex + 1) % this.cycleModes.length;
+            this.currentCycleModeIndex = index = (this.currentCycleModeIndex + 1) % (this.cycleModes.length-1);
         }
         const cycleMode = this.cycleModes[index];
         this.player_cycle_mode_btn.src = cycleMode.icon;
