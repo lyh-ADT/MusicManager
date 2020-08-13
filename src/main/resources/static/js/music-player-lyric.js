@@ -107,6 +107,7 @@ class Lyrics{
 
 const musicPlayer = window.parent.musicPlayer;
 const lyrics = new Lyrics(musicPlayer);
+$("#song-name").text(musicPlayer.musicInfo.name);
 
 window.onunload = function () {
     // 清除musicPlayer的监听器，目前只有Lyrics会绑定它，所以直接清空

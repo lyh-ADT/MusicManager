@@ -2,6 +2,7 @@ class MusicPlayer extends Audio{
     constructor(url){
         super(url);
         this.bindListeners();
+        this.musicInfo = {};
         this.timeUpdateListeners = [];
         this.musicList = [];
         this.currentMusicIndex = 0;
@@ -115,6 +116,7 @@ class MusicPlayer extends Audio{
     updateInfo(){
         $.get(`/song/${this.sid}/info`, (data)=>{
             this.setInfo(data);
+            this.musicInfo = data;
         }, "json");
     }
 
