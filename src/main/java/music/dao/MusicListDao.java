@@ -48,4 +48,12 @@ public interface MusicListDao {
     @Select("delete from music_list_detail where sid=#{sid} and mlid = 1")
     List<Map<String , String>> cancelLike(@Param("sid") Integer sid);
 
+    @Select("select * from music_list where mlid not in (#{mlid})")
+    List<music_list_info> getRemoveableMusicList(@Param("mlid") Integer mlid);
+
+    @Select("insert into music_list_detail values(#{sid} , #{mlid} , 0)")
+    List<Map<String, String>> addSongToMusicList(@Param("mlid") Integer mlid, @Param("sid") Integer sid);
+
+    @Select("delete from music_list_detail where sid=#{sid} and mlid=#{mlid}")
+    List<Map<String , String>> deleteSongToMusicList(@Param("mlid") Integer mlid, @Param("sid") Integer sid);
 }
