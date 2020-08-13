@@ -20,8 +20,8 @@ public class admincontroller {
     @PostMapping("/regist")
     @ResponseBody
     public int regist(String account,String pwd){
-        admindao.addAdmin(account,pwd);
-        return 1;
+         admindao.addAdmin(account,pwd);
+         return 1;
     }
 
     @PostMapping("/usermessage")
