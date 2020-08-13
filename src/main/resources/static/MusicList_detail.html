@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="opeartor">
-                    <div id="palyAllSongs" @click="play(songsData[0].sid)"></div>
+                    <div id="palyAllSongs"></div>
                     <div id="collecMusicList">
 
                     </div>
@@ -52,9 +52,13 @@
     <article>
          <!-- 显示添加歌单下载等信息 -->
         <div class="showOptions">
-            <div id="addInSongList">添加到歌单</div>
-            <div id="songDownload">下载</div> 
+            <div id="addInSongList">添加到歌单
+                <img src="images/hideList.png">
+            </div>
+            <div id="songDownload">下载</div>
+            <div id="removeLite">移出歌单</div>
         </div>
+        <!--  -->
         <div style="margin-left:50px ; color: rgb(73, 70, 236);">歌曲列表</div>
         <table id="table4Songs" >
             <thead>
@@ -68,8 +72,8 @@
             <tbody id="songsInfo">
                 <tr v-for="(song ,index) in songsData"    v-bind:id=song.sid v-on:dblclick="play(song.sid)">
                     <td align="center" >{{index+1}}</td>
-                    <td align="center" class="likeOrNot" v-if="song.likeOrNot"><img title="取消喜欢" src="images/favor_icon_like.png"></td>
-                    <td align="center" class="likeOrNot" v-else><img title="添加喜欢 " src="images/favor_icon_unlike.png"></td>
+                    <td align="center" class="likeOrNot" v-if="song.likeOrNot"><img title="取消喜欢" src="images/favor_icon_like.png" onclick="choiceLikeOrNot(this ,0)"></td>
+                    <td align="center" class="likeOrNot" v-else><img title="添加喜欢 " src="images/favor_icon_unlike.png"  onclick="choiceLikeOrNot(this,1)"></td>
                     <td>{{song.sname}}</td>
                     <td>{{song.singer}}</td>
                 </tr>

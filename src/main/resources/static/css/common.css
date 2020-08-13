@@ -84,3 +84,9 @@ article .right-side iframe {
 .music-list span{
     cursor:pointer;  /*鼠标停留显示小手*/
 }
+
+.VIP{
+    color: #47aa34;
+    position: relative;
+    left: 70px;
+}

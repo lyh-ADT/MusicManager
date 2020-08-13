@@ -7,7 +7,7 @@ var vue = new Vue({
         ListData:[],
         songsData:[],
         likeOrNot:[],
-        mild: ""
+        mild: 0
     },
     methods:{
         getMusicList:function(mlid){  //获取歌单中的歌曲信息
@@ -56,20 +56,43 @@ var vue = new Vue({
         }
     },
     mounted:function(){
-
     }
 
 });
+
+
+function choiceLikeOrNot(obj , choice){
+    console.info(vue.$data.mild);
+    let sid = $(obj).parent().parent().attr("id");
+    if(choice == 1){  //添加喜欢方法
+        let url = "addLike" + "?sid=" + sid;
+        axios.post(url).then(function(response){
+            if(response.status ==200){
+                vue.getMusicList(vue.$data.mild);
+            } else if(response.status == 500){
+                alert("操作失败");
+            }
+        });
+    } else if(choice == 0){ //取消喜欢方法
+        let url1 = "cancelLike" + "?sid=" + sid;
+        axios.post(url1).then(function(response){
+            console.info(response.status);
+            if(response.status ==200){
+                vue.getMusicList(vue.$data.mild);
+            } else if(response.status == 500){
+                alert("操作失败");
+            }
+
+        });
+    }
+}
 
 
 function choices(){
     // console.info(vue.$data.data)
         document.getElementById("songsInfo").onmouseup = function(e){
             if(e.button===2){       //如果button=1（鼠标左键），button=2（鼠标右键），button=0（鼠标中间键）
-                // console.log(e);     //将传进去的参数打印出来
-                // console.log(e.offsetY);     //打印出鼠标点击的Y轴坐标
-                // console.log(e.offsetX);     //打印出鼠标点击的X轴坐标
-                $(".showOptions").css("margin-top",(e.clientY-250)+'px');     //鼠标点击时给div定位Y轴
+                $(".showOptions").css("margin-top",(e.clientY-260)+'px');     //鼠标点击时给div定位Y轴
                 $(".showOptions").css("margin-left",e.clientX+'px');    //鼠标点击时给div定位X轴
                 $(".showOptions").show();        //显示div盒子
             }else{

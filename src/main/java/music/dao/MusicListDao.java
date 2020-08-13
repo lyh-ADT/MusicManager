@@ -39,4 +39,13 @@ public interface MusicListDao {
 
     @Select("select * from music_list where mlid=#{mlid}")
     List<musicListInfo> getMusicListInfo(@Param("mlid") Integer mlid);
+
+
+    @Select("insert into music_list_detail values(#{sid} , 1 , 0)")
+    List<Map<String , String>> addLike(@Param("sid") Integer sid);
+
+
+    @Select("delete from music_list_detail where sid=#{sid} and mlid = 1")
+    List<Map<String , String>> cancelLike(@Param("sid") Integer sid);
+
 }
