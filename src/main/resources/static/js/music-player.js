@@ -5,6 +5,7 @@ class MusicPlayer extends Audio{
         this.timeUpdateListeners = [];
         this.musicList = [];
         this.currentMusicIndex = 0;
+        this.currentCycleModeIndex = 0;
     }
 
     /**
@@ -17,6 +18,41 @@ class MusicPlayer extends Audio{
         let minute = Math.round(seconds / 60);
         return `${minute}:${second < 10? "0"+second: second}`;
     }
+
+    cycleModes = [
+        {
+            name: "列表循环",
+            icon: "images/loop_list.png",
+            strategy: () => {
+                this.currentMusicIndex = (this.currentMusicIndex + 1)%this.musicList.length;
+                this.play(this.musicList[this.currentMusicIndex]);
+            }
+        },
+        {
+            name: "单曲循环",
+            icon: "images/loop_one.png",
+            strategy: () => {
+                return super.play();
+            }
+        },
+        {
+            name: "随机播放",
+            icon: "images/loop_random.png",
+            strategy: () => {
+                const index = Math.floor(Math.random() * this.musicList.length);
+                this.play(index);
+            }
+        },
+        {
+            name: "私人FM",
+            icon: "javascript:void(0)",
+            strategy: () => {
+                $.get("/song/randomId", (result)=>{
+                    this.play(parseInt(result));
+                }, "text");
+            }
+        }
+    ];
 
     bindListeners(){
         this.play_btn = document.getElementById("player_play_btn");
@@ -39,8 +75,8 @@ class MusicPlayer extends Audio{
         this.player_last_song_btn.onclick = this.lastSong;
 
         this.player_next_song_btn = document.getElementById("player_next_song_btn");
-        this.player_next_song_btn.onclick = this.nextSong;
-        
+        this.player_next_song_btn.onclick = ()=>this.nextSong();
+
         this.volume_bar = document.getElementById("player_volume_bar");
         this.volume_bar.value = this.volume_bar.max = 100;
         this.volume_bar.min = 0;
@@ -48,10 +84,14 @@ class MusicPlayer extends Audio{
         this.volume_bar.oninput = ()=>{
             super.volume = this.volume_bar.value / this.volume_bar.max;
         }
-        
+
+        this.player_cycle_mode_btn = document.getElementById("player_cycle_mode_btn");
+        this.player_cycle_mode_btn.onclick = ()=> this.changeCycleMode();
+
         super.onloadeddata = this.loadeddata;
         super.ontimeupdate = this.timeupdate;
         super.onended = this.ended;
+        super.onerror = ()=>this.nextSong();
     }
 
     /**
@@ -105,7 +145,7 @@ class MusicPlayer extends Audio{
         this.play(this.musicList[this.currentMusicIndex]);
     }
 
-    nextSong = ()=>{
+    nextSong = () => {
         this.currentMusicIndex = (this.currentMusicIndex + 1)%this.musicList.length;
         this.play(this.musicList[this.currentMusicIndex]);
     }
@@ -134,6 +174,36 @@ class MusicPlayer extends Audio{
      */
     bindTimeUpdateListener(callback) {
         this.timeUpdateListeners.push(callback);
+    }
+
+    /**
+     * 播放私人FM
+     * 随机任意歌曲
+     */
+    playFM(){
+        for(let i=0; i < this.cycleModes.length; i++){
+            const cycleMode = this.cycleModes[i];
+            if(cycleMode.name === "私人FM"){
+                this.changeCycleMode(i);
+                this.nextSong();
+                return;
+            }
+        }
+        console.error("没有私人FM模式");
+    }
+
+    /**
+     * 切换播放循环模式
+     * @param index {number} 可选，如果不指定就下一个模式，否则直接进入指定的模式，且不更新this.currentCycleModeIndex
+     */
+    changeCycleMode = (index=undefined)=>{
+        if(index === undefined){
+            this.currentCycleModeIndex = index = (this.currentCycleModeIndex + 1) % this.cycleModes.length;
+        }
+        const cycleMode = this.cycleModes[index];
+        this.player_cycle_mode_btn.src = cycleMode.icon;
+        this.nextSong = cycleMode.strategy;
+        console.log("播放模式: "+cycleMode.name);
     }
 }
 

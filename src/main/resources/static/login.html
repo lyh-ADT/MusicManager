@@ -21,7 +21,7 @@
 
             $.post("/login", {account: account, pwd:pwd}, function(data) {
                 data = parseInt($.trim(data));
-                if(data == 0) {
+                if(data == -1) {
                     alert("帐号或者密码错误，请确认后重新登陆...");
                 }
                 else{
