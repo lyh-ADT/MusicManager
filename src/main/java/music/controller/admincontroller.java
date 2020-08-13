@@ -32,8 +32,6 @@ public class admincontroller {
     }
 
 
-
-
     @PostMapping("/login")
     @ResponseBody
     public int login(HttpServletRequest request){
