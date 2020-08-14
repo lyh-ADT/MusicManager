@@ -42,6 +42,11 @@ public class MusicListServiceImpl implements MusicListService {
     }
 
     @Override
+    public int[] JudgeLikeORNotInfoForSearch(String allResultId) {
+        return musicListDao.JudgeLikeORNotInfoForSearch(allResultId);
+    }
+
+    @Override
     public List<musicListInfo> getMusicListInfo(Integer mlid) {
         return musicListDao.getMusicListInfo(mlid);
     }
@@ -61,6 +66,19 @@ public class MusicListServiceImpl implements MusicListService {
         return musicListDao.deleteSongToMusicList(mlid , sid);
     }
 
+    @Override
+    public boolean isMusicListOwner(Integer mlid, Integer uid) {
+        return musicListDao.checkMusicListOwner(mlid, uid) != null;
+    }
+
+    @Override
+    public String setMusicListDescription(Integer mlid, String description, Integer uid) {
+        if(musicListDao.setMusicListDescription(mlid, description, uid) == 1){
+            return "修改成功";
+        }
+        return "修改失败";
+    }
+
 
     public List<Map<String , String>> addMusicList(String newMusicListname) {
         return musicListDao.addMusicList(newMusicListname);
@@ -74,5 +92,6 @@ public class MusicListServiceImpl implements MusicListService {
     public List<Map<String , String>> cancelLike(Integer sid) {
         return musicListDao.cancelLike(sid);
     }
+
 
 }

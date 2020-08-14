@@ -29,11 +29,17 @@
 }
 
 .header-userInfo{
-    margin-top: -37px;
-    margin-left: 1000px;
     width: 45%;
     height: 100%;
     float: left;
+}
+
+.header-userInfo-detail{
+    width: 100%;
+    height: 100%;
+    float: left;
+    text-align: center;
+    padding-top: 20px;
 }
 
 .header-search>input{
