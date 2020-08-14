@@ -66,6 +66,11 @@ public class MusicListServiceImpl implements MusicListService {
         return musicListDao.deleteSongToMusicList(mlid , sid);
     }
 
+    @Override
+    public boolean isMusicListOwner(Integer mlid, Integer uid) {
+        return musicListDao.checkMusicListOwner(mlid, uid) != null;
+    }
+
 
     public List<Map<String , String>> addMusicList(String newMusicListname) {
         return musicListDao.addMusicList(newMusicListname);

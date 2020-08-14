@@ -59,4 +59,7 @@ public interface MusicListDao {
 
     @Select("delete from music_list_detail where sid=#{sid} and mlid=#{mlid}")
     List<Map<String , String>> deleteSongToMusicList(@Param("mlid") Integer mlid, @Param("sid") Integer sid);
+
+    @Select("select * from music_list where mlid=#{mlid} and uid=#{uid}")
+    musicListInfo checkMusicListOwner(@Param("mlid") Integer mlid, @Param("uid") Integer uid);
 }

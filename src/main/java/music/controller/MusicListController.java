@@ -6,9 +6,7 @@ import music.pojo.music_list_info;
 import music.service.impl.MusicListServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -89,6 +87,12 @@ public class MusicListController {
     @ResponseBody
     public List<Map<String , String>> deleteSongToMusicList(Integer mlid , Integer sid){
         return musicListServiceImpl.deleteSongToMusicList(mlid , sid);
+    }
+
+    @GetMapping("/MusicListOwner")
+    @ResponseBody
+    public boolean isMusicListOwner(@RequestParam Integer mlid, @SessionAttribute Integer uid){
+        return musicListServiceImpl.isMusicListOwner(mlid, uid);
     }
 
 }

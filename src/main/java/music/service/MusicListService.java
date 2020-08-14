@@ -31,5 +31,12 @@ public interface MusicListService {
     List<Map<String, String>> deleteSongToMusicList(Integer mlid, Integer sid);
 
 
+    /**
+     * 确认是否是歌单的所有者
+     * @param mlid 歌单编号
+     * @param uid 用户编号
+     * @return 是返回true，否返回false
+     */
+    boolean isMusicListOwner(Integer mlid, Integer uid);
 }
 
