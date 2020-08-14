@@ -4,7 +4,7 @@ $("#searchInfo").keydown(function (e) {
     if (searchInfo != "" && e.keyCode == "13") {
         showpage(0, "songs.html")
         $("#rightMain")[0].onload=function(){
-            $("#rightMain")[0].contentWindow.search_app.search(searchInfo);
+            $("#rightMain")[0].contentWindow.getMusicList_app.search(searchInfo);
         }
     }
 })

@@ -2,6 +2,8 @@ package music.service.impl;
 
 import music.dao.SearchSongsDao;
 import music.pojo.Song;
+import music.pojo.music_list_info;
+import music.pojo.music_list_songs;
 import music.service.SearchSongsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +20,7 @@ public class SearchSongsServiceImpl implements SearchSongsService {
      * @return
      */
     @Override
-    public List<Song> search(String searchInfo) {
+    public List<music_list_songs> search(String searchInfo) {
         return searchSongsDao.findSongsBysearchSongsInfo(searchInfo);
     }
 
