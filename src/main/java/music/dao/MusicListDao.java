@@ -30,6 +30,9 @@ public interface MusicListDao {
             " where t1.sid = mld.sid and mld.mlid=1")
     int[] judgeLikeOrNot(@Param("mlid") Integer mlid);
 
+    @Select("select sid from music_list_detail where mlid=1 and find_in_set(sid,#{allResultId})")
+    int [] JudgeLikeORNotInfoForSearch(@Param("allResultId") String allResultId);
+
 
     @Select("select * from music_list where uid=#{uid}")
     List<music_list_info> getUserEstablishMusicList(@Param("uid") Integer uid);

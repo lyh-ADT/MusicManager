@@ -8,6 +8,7 @@
 
 </head>
 <body>
+<div id="vue-app" >
     <header>
         <div class="searchResult">
            <div>搜索"<font titla="111"id="searchResult"></font>"，共找到<font id="searchSongNum"></font>首歌曲</div>
@@ -15,10 +16,17 @@
     </header>
     <article>
         <!-- 显示添加歌单下载等信息 -->
-     <div class="showOptions">
-        <div id="addInSongList">添加到歌单</div>
-        <div id="songDownload">下载</div> 
-    </div>
+        <div class="showOptions">
+            <div id="addInSongList" onclick="showRemoveableMusicListInSearch()">添加到歌单
+                <img  id="showList" src="images/hideList.png">
+            </div>
+            <div id="songDownload">下载</div>
+        </div>
+        <!-- 添加song到歌单中是显示歌单列表 -->
+        <div class="showMoveMusicList" >
+            <div v-for="musicList in removeableMusicList" v-bind:id="'musicList-'+ musicList.mlid" onclick ="changeSongStatusInThisMusicList(this,1)">{{musicList.mlname}}</div>
+        </div>
+
         <table id="table4SearchSongs" >
             <thead>
                 <tr>
@@ -29,20 +37,23 @@
                 </tr>
             </thead>
             <tbody id="songsInfo">
-                <tr  v-for="(item , index) in songs" v-bind:id=item.sid v-on:dblclick="play(item.sid)">
+                <tr  v-for="(item , index) in searchSongs" v-bind:id=item.sid v-on:dblclick="play(item.sid)" onmouseup="choicesInSearch(this)">
                     <td align="center" >{{index+1}}</td>
-                    <td align="center" class="likeOrNot"><img title="添加喜欢" src="images/like.gif"></td>
+                    <td align="center" class="likeOrNot" v-if="item.likeOrNot"><img title="取消喜欢" src="images/favor_icon_like.png" onclick="choiceLikeOrNot(this ,0)"></td>
+                    <td align="center" class="likeOrNot" v-else><img title="添加喜欢 " src="images/favor_icon_unlike.png"  onclick="choiceLikeOrNot(this,1)"></td>
                     <td id="sname">{{item.sname}}</td>
                     <td id="singer">{{item.singer}}</td>
                 </tr>
             </tbody>
         </table>
     </article>
+</div>
      
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="js/vue.js"></script>
     <script type="text/javascript" src="js/axios.min.js"></script>
-    <script type="text/javascript" src="js/songs.js"></script>
+<!--    <script type="text/javascript" src="js/songs.js"></script>-->
+    <script type="text/javascript" src="js/MusicList_detail.js"></script>
     <script type="text/javascript">
     $(function(){
         document.oncontextmenu = function(){return false};     //禁止鼠标右键菜单显示

@@ -1,6 +1,8 @@
 package music.dao;
 
 import music.pojo.Song;
+import music.pojo.music_list_info;
+import music.pojo.music_list_songs;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -19,6 +21,6 @@ public interface SearchSongsDao {
      * @param searchInfo  搜索栏信息
      * @return
      */
-    @Select("SELECT  * FROM song WHERE sname LIKE CONCAT('%',#{searchinfo},'%') ")
-    List<Song> findSongsBysearchSongsInfo(@Param("searchinfo") String searchinfo);
+    @Select("SELECT  sname,sid,singer FROM song WHERE sname LIKE CONCAT('%',#{searchinfo},'%') ")
+    List<music_list_songs> findSongsBysearchSongsInfo(@Param("searchinfo") String searchinfo);
 }

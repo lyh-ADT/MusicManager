@@ -15,6 +15,9 @@ public interface MusicListService {
     //判断歌单中的歌曲是否在“我喜欢”歌单中
     int[] judgeLikeOrNot(Integer mlid);
 
+    //判断搜索出来的歌曲是否在“我喜欢”歌单中
+    int[] JudgeLikeORNotInfoForSearch(String allResultId);
+
     //获取歌单中歌曲方法
     public List<musicListInfo> getMusicListInfo(Integer mlid);
 
@@ -26,5 +29,7 @@ public interface MusicListService {
 
     //将指定歌曲从指定歌单中删除操作
     List<Map<String, String>> deleteSongToMusicList(Integer mlid, Integer sid);
+
+
 }
 

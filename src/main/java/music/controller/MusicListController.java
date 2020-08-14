@@ -33,6 +33,13 @@ public class MusicListController {
         return musicListServiceImpl.judgeLikeOrNot(mlid);
     }
 
+    @PostMapping("/JudgeLikeORNotInfoForSearch")
+    @ResponseBody
+    public int[] JudgeLikeORNotInfoForSearch(String allResultId){
+
+        return musicListServiceImpl.JudgeLikeORNotInfoForSearch(allResultId);
+    }
+
     @PostMapping("/getUserEstablishMusicList")
     @ResponseBody
     public List<music_list_info> getUserEstablishMusicList(Integer uid){

@@ -57,6 +57,7 @@ class Lyrics{
             success:(result)=>{
                 this.script = this.parseText(result);
                 this.fillLyric();
+                $("#song-name").text(musicPlayer.musicInfo.name);
             }
         })
     }
@@ -91,18 +92,17 @@ class Lyrics{
             throw new Error("下标越界啦");
         }
         const timestamp = this.script[index].time;
-        let needUpdate = null;
         for (let line of lines) {
             line.classList.remove(Lyrics.highlightCssClass);
             if (line.dataset.timestamp === timestamp) {
-                needUpdate = line;
+                const needUpdate = line;
+
+                needUpdate.classList.add(Lyrics.highlightCssClass);
+                const container = needUpdate.parentNode.parentNode;
+                container.scrollTop = needUpdate.offsetTop - (container.offsetHeight / 2) ;
+                return;
             }
         }
-        needUpdate.classList.add(Lyrics.highlightCssClass);
-        needUpdate.scrollIntoView({
-            behavior:"smooth",
-            block:"center"
-        });
     }
 }
 
