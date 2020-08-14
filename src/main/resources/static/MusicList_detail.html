@@ -42,8 +42,10 @@
 <!--                    <span id="MusicList_label"></span>-->
 <!--                </div>-->
                 <div class="MusicList_intro">
-                    简介&nbsp;:{{ListData[0].description}}
-                    <span id="MusicList_lintro"></span>
+                    <span style="vertical-align: top;">简介&nbsp;:</span>
+                    <textarea readonly v-model="ListData[0].description" id="MusicList_lintro"
+                              ondblclick="vue.editDescription(this)"
+                              onblur="vue.submitDescription(this)"></textarea>
                 </div>
             </div>
         </div>

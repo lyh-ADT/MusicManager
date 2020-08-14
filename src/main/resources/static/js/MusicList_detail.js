@@ -134,6 +134,41 @@ var vue = new Vue({
                 })
 
             })
+        },
+
+        editDescription:function (textareaObj) {
+            if(vue.mlid <= 0){
+                return;
+            }
+            $.ajax({
+                url:`/MusicListOwner?mlid=${vue.mlid}`,
+                success: function (result) {
+                    if(!result){
+                        alert("您不是歌单的所有者");
+                        return;
+                    }
+                    textareaObj.removeAttribute("readonly");
+                    textareaObj.setSelectionRange(textareaObj.value.length, textareaObj.value.length);
+                },
+                error: function () {
+                    alert("请登录");
+                }
+            });
+        },
+
+        submitDescription:function (textareaObj) {
+            textareaObj.setAttribute("readonly", true);
+            $.ajax({
+                url: `/MusicList/${vue.mlid}/description`,
+                method:"POST",
+                data:{description:textareaObj.value},
+                success:function (result) {
+                    alert(result);
+                },
+                error:function () {
+                    alert("请登录");
+                }
+            })
         }
     },
     mounted: function () {
