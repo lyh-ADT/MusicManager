@@ -47,8 +47,7 @@ public class vipBack {
     @ResponseBody
 
     public int updatevoucher(String nickname,String code){
-        vipDao.updatevourcher(nickname,code);
-        return 1;
+        return vipDao.updatevourcher(nickname,code);
     }
     @PostMapping("/findVoucher")
     @ResponseBody

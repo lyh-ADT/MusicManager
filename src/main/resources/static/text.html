@@ -27,9 +27,15 @@ font{
                 console.info(data);
                 if (data != null){
                     var x = $("#input1").val();
+                    if (x == ""){
+                        alert("兑换码不能为空!");
+                        return;
+                    }
                     $.post("/updatevoucher",{nickname:data,code:x},function (result) {
-                        if (result == 1){
+                        if (result >= 1){
                             alert("兑换成功!");
+                        }else {
+                            alert("兑换码有误!");
                         }
                     },"text");
                 }
