@@ -38,5 +38,14 @@ public interface MusicListService {
      * @return 是返回true，否返回false
      */
     boolean isMusicListOwner(Integer mlid, Integer uid);
+
+    /**
+     * 修改歌单简介
+     * @param mlid 歌单编号
+     * @param description 歌单简介
+     * @param uid 用户编号，用于验证身份
+     * @return 提示信息
+     */
+    String setMusicListDescription(Integer mlid, String description, Integer uid);
 }
 

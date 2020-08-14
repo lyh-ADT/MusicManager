@@ -71,6 +71,14 @@ public class MusicListServiceImpl implements MusicListService {
         return musicListDao.checkMusicListOwner(mlid, uid) != null;
     }
 
+    @Override
+    public String setMusicListDescription(Integer mlid, String description, Integer uid) {
+        if(musicListDao.setMusicListDescription(mlid, description, uid) == 1){
+            return "修改成功";
+        }
+        return "修改失败";
+    }
+
 
     public List<Map<String , String>> addMusicList(String newMusicListname) {
         return musicListDao.addMusicList(newMusicListname);

@@ -95,4 +95,10 @@ public class MusicListController {
         return musicListServiceImpl.isMusicListOwner(mlid, uid);
     }
 
+    @PostMapping("/MusicList/{mlid}/description")
+    @ResponseBody
+    public String setMusicListDescription(@PathVariable("mlid") Integer mlid, @RequestParam("description") String description, @SessionAttribute Integer uid){
+        return musicListServiceImpl.setMusicListDescription(mlid, description, uid);
+    }
+
 }

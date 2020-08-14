@@ -158,6 +158,17 @@ var vue = new Vue({
 
         submitDescription:function (textareaObj) {
             textareaObj.setAttribute("readonly", true);
+            $.ajax({
+                url: `/MusicList/${vue.mlid}/description`,
+                method:"POST",
+                data:{description:textareaObj.value},
+                success:function (result) {
+                    alert(result);
+                },
+                error:function () {
+                    alert("请登录");
+                }
+            })
         }
     },
     mounted: function () {
