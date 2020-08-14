@@ -17,7 +17,6 @@ let musicList = new Vue({
         getUserMusicList:function(uid){
             let url = this.uri + "?uid=" + uid
             axios.post(url).then(function (response) {
-                // console.info(response);
                 musicList.$data.userEstablishMusicList = response.data
             })
         }

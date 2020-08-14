@@ -116,7 +116,7 @@ font{
                 alert("价格不能为空!")
                 return;
             }
-            $.post("/updatedata1",{select1:select1,input1:input1}, function (data) {
+            $.post("updatedata1",{select1:select1,input1:input1}, function (data) {
                 if (data == 1){
                     alert("修改成功！");
                 }
@@ -143,7 +143,7 @@ font{
             var select3 = $.trim($("#select3").val());
             var input3 = $.trim($("#input3").val());
             if (input3 == ""){
-                alert("价格不能为空!")
+                alert("优惠券不能为空!")
                 return;
             }
             $.post("updatedata3",{select3:select3,input3:input3}, function (data) {

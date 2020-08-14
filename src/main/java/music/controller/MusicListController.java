@@ -7,6 +7,7 @@ import music.service.impl.MusicListServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -30,6 +31,13 @@ public class MusicListController {
     public int[] judgeLikeOrNot(Integer mlid){
 
         return musicListServiceImpl.judgeLikeOrNot(mlid);
+    }
+
+    @PostMapping("/JudgeLikeORNotInfoForSearch")
+    @ResponseBody
+    public int[] JudgeLikeORNotInfoForSearch(String allResultId){
+
+        return musicListServiceImpl.JudgeLikeORNotInfoForSearch(allResultId);
     }
 
     @PostMapping("/getUserEstablishMusicList")
@@ -62,6 +70,25 @@ public class MusicListController {
     @ResponseBody
     public List<Map<String , String>> cancelLike(Integer sid){
         return musicListServiceImpl.cancelLike(sid);
+    }
+
+    @PostMapping("/getRemoveableMusicList")
+    @ResponseBody
+    public List<music_list_info> getRemoveableMusicList(Integer mlid){
+        return musicListServiceImpl.getRemoveableMusicList(mlid);
+    }
+
+    @PostMapping("/addSongToMusicList")
+    @ResponseBody
+    public List<Map<String , String>> addSongToMusicList(Integer mlid , Integer sid){
+
+        return musicListServiceImpl.addSongToMusicList(mlid , sid);
+    }
+
+    @PostMapping("/deleteSongToMusicList")
+    @ResponseBody
+    public List<Map<String , String>> deleteSongToMusicList(Integer mlid , Integer sid){
+        return musicListServiceImpl.deleteSongToMusicList(mlid , sid);
     }
 
 }

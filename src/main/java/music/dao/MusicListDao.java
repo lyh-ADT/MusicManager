@@ -30,6 +30,9 @@ public interface MusicListDao {
             " where t1.sid = mld.sid and mld.mlid=1")
     int[] judgeLikeOrNot(@Param("mlid") Integer mlid);
 
+    @Select("select sid from music_list_detail where mlid=1 and find_in_set(sid,#{allResultId})")
+    int [] JudgeLikeORNotInfoForSearch(@Param("allResultId") String allResultId);
+
 
     @Select("select * from music_list where uid=#{uid}")
     List<music_list_info> getUserEstablishMusicList(@Param("uid") Integer uid);
@@ -48,4 +51,12 @@ public interface MusicListDao {
     @Select("delete from music_list_detail where sid=#{sid} and mlid = 1")
     List<Map<String , String>> cancelLike(@Param("sid") Integer sid);
 
+    @Select("select * from music_list where mlid not in (#{mlid})")
+    List<music_list_info> getRemoveableMusicList(@Param("mlid") Integer mlid);
+
+    @Select("insert into music_list_detail values(#{sid} , #{mlid} , 0)")
+    List<Map<String, String>> addSongToMusicList(@Param("mlid") Integer mlid, @Param("sid") Integer sid);
+
+    @Select("delete from music_list_detail where sid=#{sid} and mlid=#{mlid}")
+    List<Map<String , String>> deleteSongToMusicList(@Param("mlid") Integer mlid, @Param("sid") Integer sid);
 }

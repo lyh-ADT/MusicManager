@@ -42,8 +42,28 @@ public class MusicListServiceImpl implements MusicListService {
     }
 
     @Override
+    public int[] JudgeLikeORNotInfoForSearch(String allResultId) {
+        return musicListDao.JudgeLikeORNotInfoForSearch(allResultId);
+    }
+
+    @Override
     public List<musicListInfo> getMusicListInfo(Integer mlid) {
         return musicListDao.getMusicListInfo(mlid);
+    }
+
+    @Override
+    public List<music_list_info> getRemoveableMusicList(Integer mlid) {
+        return musicListDao.getRemoveableMusicList(mlid);
+    }
+
+    @Override
+    public List<Map<String, String>> addSongToMusicList(Integer mlid, Integer sid) {
+        return musicListDao.addSongToMusicList(mlid , sid);
+    }
+
+    @Override
+    public List<Map<String, String>> deleteSongToMusicList(Integer mlid, Integer sid) {
+        return musicListDao.deleteSongToMusicList(mlid , sid);
     }
 
 
@@ -59,5 +79,6 @@ public class MusicListServiceImpl implements MusicListService {
     public List<Map<String , String>> cancelLike(Integer sid) {
         return musicListDao.cancelLike(sid);
     }
+
 
 }

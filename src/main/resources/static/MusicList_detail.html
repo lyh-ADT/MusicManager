@@ -24,7 +24,7 @@
                 </span>
 
                 <div class="songInfoAndAddDate">
-                    <div id="songNumber">歌曲数<span>&nbsp;|&nbsp;</span>{{ListData.length}}</div>
+                    <div id="songNumber">歌曲数<span>&nbsp;|&nbsp;</span>{{songsData.length}}</div>
                     <div id="playNumber">播放数<span>&nbsp;|&nbsp;</span>{{ Math.round(Math.random() * 100)}}</div>
                     <font>{{ListData[0].date.substring(0,10)}}创建</font>
                 </div>
@@ -43,7 +43,7 @@
 <!--                </div>-->
                 <div class="MusicList_intro">
                     简介&nbsp;:{{ListData[0].description}}
-                    <span id="MusicList_lintro">欧美</span>
+                    <span id="MusicList_lintro"></span>
                 </div>
             </div>
         </div>
@@ -52,13 +52,16 @@
     <article>
          <!-- 显示添加歌单下载等信息 -->
         <div class="showOptions">
-            <div id="addInSongList">添加到歌单
-                <img src="images/hideList.png">
+            <div id="addInSongList" onclick="showRemoveableMusicList()">添加到歌单
+                <img  id="showList" src="images/hideList.png">
             </div>
             <div id="songDownload">下载</div>
-            <div id="removeLite">移出歌单</div>
+            <div id="removeLite" onclick ="changeSongStatusInThisMusicList(this,0)">移出歌单</div>
         </div>
-        <!--  -->
+        <!-- 添加song到歌单中是显示歌单列表 -->
+        <div class="showMoveMusicList">
+            <div v-for="musicList in removeableMusicList" v-bind:id="'musicList-'+ musicList.mlid" onclick ="changeSongStatusInThisMusicList(this,1)">{{musicList.mlname}}</div>
+        </div>
         <div style="margin-left:50px ; color: rgb(73, 70, 236);">歌曲列表</div>
         <table id="table4Songs" >
             <thead>
@@ -70,7 +73,7 @@
                 </tr>
             </thead>
             <tbody id="songsInfo">
-                <tr v-for="(song ,index) in songsData"    v-bind:id=song.sid v-on:dblclick="play(song.sid)">
+                <tr v-for="(song ,index) in songsData"    v-bind:id=song.sid v-on:dblclick="play(song.sid)" onmouseup="choices(this)">
                     <td align="center" >{{index+1}}</td>
                     <td align="center" class="likeOrNot" v-if="song.likeOrNot"><img title="取消喜欢" src="images/favor_icon_like.png" onclick="choiceLikeOrNot(this ,0)"></td>
                     <td align="center" class="likeOrNot" v-else><img title="添加喜欢 " src="images/favor_icon_unlike.png"  onclick="choiceLikeOrNot(this,1)"></td>

@@ -18,10 +18,32 @@ font{
             $("#mainiframe").attr("src",page);
             console.info(page)
         }
+        $(function () {
+            $.post("/usermessage",{ },function (data) {
+                console.info(data);
+                if (data != null){
+
+                    $.post("/findVoucher", {nickname:data}, function (result) {
+                        var str = "";
+                        $.each(result,function (index,item) {
+                            str += "<option>" + item.class + "</option>";
+                        })
+                        $("#select1").append($(str));
+                    }, "json");
+                }
+
+            },"text")
+        })
+        function retvoucher() {
+            var x = $("#select1").val();
+            var y = parseFloat(x[2])
+            console.info(parseFloat(x[2]));
+            window.parent.finPrice(y);
+        }
     </script>
     
-    <select class="select">
-        <option value =""></option>
+    <select class="select" id="select1" onclick="retvoucher()">
+
     </select>
     <font>选择兑换券</font>
     
