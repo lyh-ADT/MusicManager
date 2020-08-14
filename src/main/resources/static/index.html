@@ -26,7 +26,7 @@
     <div class="header-userInfo">
         <div class="header-userInfo-detail">
             <span class="user">用户:</span>
-            <em class="Font" id="user">/</em>
+            <a href="login.html" class="Font" id="user">登录</a>
             <a href="VIP.html" class="VIP">VIP</a>
         </div>
     </div>
@@ -152,7 +152,7 @@
     $(function () {
         $.post("/usermessage", {}, function (data) {
             console.info(data);
-            if (data != null) {
+            if (data != "") {
                 $("#user").text(data);
             }
         }, "text");
