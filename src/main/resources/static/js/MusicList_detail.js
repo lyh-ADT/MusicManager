@@ -307,4 +307,13 @@ function showTrCSS() {
     })
 }
 
+function downloadMusic(){
+    const sid = vue.$data.choiceSid;
+    const url = `/song/${sid}/download`;
+    const a = `<a id="download-link" href="${url}" download>下载</a>`;
+    $(document.body).append($(a));
+    $("#download-link")[0].click();
+    $("#download-link").remove();
+}
+
 window.getMusicList_app = vue;

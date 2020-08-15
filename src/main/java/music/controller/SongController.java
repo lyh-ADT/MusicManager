@@ -8,8 +8,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.net.URLEncoder;
+import java.util.Map;
 
 /**
  * 歌曲的Controller
@@ -43,6 +50,28 @@ public class SongController {
     @ResponseBody
     public int getRandomSid(){
         return songService.getRandomSid();
+    }
+
+    @GetMapping("/song/{sid}/download")
+    public String download(@PathVariable("sid") String sid, HttpServletResponse response) throws IOException {
+        Map<String, Object> song = songService.getSongInfo(sid, null);
+        System.out.println(song.get("name"));
+        String name = URLEncoder.encode((String) song.get("name"), "utf-8").replace("+", "%20");
+        response.setHeader("Content-Disposition", "attachment;fileName="+name+".mp3");
+
+        HttpURLConnection connection = (HttpURLConnection) new URL(urlEncodeLastPath(songService.getUrlBySid(sid))).openConnection();
+        connection.setRequestMethod("GET");
+        connection.getResponseCode();
+        InputStream inputStream = connection.getInputStream();
+        OutputStream outputStream = response.getOutputStream();
+        byte[] buffer = new byte[1024];
+        int read = 0;
+        while ((read=inputStream.read(buffer,0,buffer.length)) != -1){
+            outputStream.write(buffer, 0, read);
+        }
+
+        inputStream.close();
+        return null;
     }
 
     private String urlEncodeLastPath(String url){
