@@ -2,7 +2,8 @@ const comments_app = new Vue({
     el: "#comments_app",
     data: {
         comments: [],
-        inputComment: ""
+        inputComment: "",
+
     },
     methods:{
         addComment: function(ev){

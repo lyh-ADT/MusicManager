@@ -2,40 +2,73 @@ function getMlid(obj) {
     // console.info($(obj).val());
     // mlid = parseInt($(obj).val());
     let mlid = $(obj).attr("id");
+    console.info($("#rightMain")[0]);
     $("#rightMain")[0].onload = function () {
         $("#rightMain")[0].contentWindow.getMusicList_app.getMusicList(mlid);
+        $("#rightMain")[0].contentWindow.getMusicList_app.judgeListBelongOrnot(mlid);
     }
 }
 let musicList = new Vue({
     el: ".music-list",
     data: {
         uri: "getUserEstablishMusicList",
-        uid:1,
+        uid:0,
         userEstablishMusicList: [],
+        userCollectMusicList:[]
     },
     methods: {
+        //获取用户id
+        getUid:function(){
+            $.post("getUid" , {} , response =>{
+                musicList.$data.uid = response;
+                window.uid = musicList.$data.uid
+                console.info("登录用户id="+window.uid)
+                musicList.getUserMusicList(musicList.$data.uid)
+                musicList.getUserCollectMusicList(musicList.$data.uid);
+            })
+        },
         getUserMusicList:function(uid){
             let url = this.uri + "?uid=" + uid
             axios.post(url).then(function (response) {
                 musicList.$data.userEstablishMusicList = response.data
             })
+        },
+        getUserCollectMusicList:function(uid){
+            let url = "getUserCollectMusicList" + "?uid=" + uid
+            axios.post(url).then(function (response) {
+                musicList.$data.userCollectMusicList = response.data
+            })
+
         }
     },
-    mounted: function (uid) {
-        this.getUserMusicList(this.uid);
+    mounted: function(){
+        this.getUid();
+
     }
 })
 //显示或者隐藏用户音乐列表
-function ShowOrHide(obj){
-    var id = $(obj).parent().parent().attr("id");
-    if( "hide"==id){
-        $("#ShowOrHideList>img").attr("src","images/showList.png")
-        $("#hide span").show();
-        $("#hide").attr("id" , "show");
-    } else if("show"==id){
-        $("#ShowOrHideList>img").attr("src","images/hideList.png")
-        $("#show span").hide();
-        $("#show").attr("id" , "hide");
+function ShowOrHide(obj , choice){
+    var status = $(obj).parent().parent().attr("class");
+    if( "hide"==status){
+        if(choice == 0){
+            $("#ShowOrHideList>img").attr("src","images/showList.png")
+            $("#MySonglist span").show();
+            $("#MySonglist").attr("class" , "show");
+        }else if(choice == 1){
+            $("#ShowOrHideCollectList>img").attr("src","images/showList.png")
+            $("#CollectSonglist span").show();
+            $("#CollectSonglist").attr("class" , "show");
+        }
+    } else if("show"==status){
+        if(choice == 0){
+            $("#ShowOrHideList>img").attr("src","images/hideList.png")
+            $("#MySonglist span").hide();
+            $("#MySonglist").attr("class" , "hide");
+        }else if(choice == 1){
+            $("#ShowOrHideCollectList>img").attr("src","images/hideList.png")
+            $("#CollectSonglist span").hide();
+            $("#CollectSonglist").attr("class" , "hide");
+        }
     }
 }
 
@@ -69,3 +102,5 @@ $(".addListInfo").hover(function () {
         $(".addListInfo").hide();
     }
  }
+
+window.musicList = musicList

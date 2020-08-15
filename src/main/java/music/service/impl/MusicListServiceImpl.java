@@ -7,7 +7,6 @@ import music.pojo.music_list_info;
 import music.service.MusicListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Map;
 
@@ -37,13 +36,13 @@ public class MusicListServiceImpl implements MusicListService {
     }
 
     @Override
-    public int[] judgeLikeOrNot(Integer mlid) {
-        return musicListDao.judgeLikeOrNot(mlid);
+    public int[] judgeLikeOrNot(Integer mlid , Integer userFavoriteList) {
+        return musicListDao.judgeLikeOrNot(mlid , userFavoriteList);
     }
 
     @Override
-    public int[] JudgeLikeORNotInfoForSearch(String allResultId) {
-        return musicListDao.JudgeLikeORNotInfoForSearch(allResultId);
+    public int[] JudgeLikeORNotInfoForSearch(String allResultId , Integer userFavoriteList) {
+        return musicListDao.JudgeLikeORNotInfoForSearch(allResultId , userFavoriteList);
     }
 
     @Override
@@ -52,8 +51,8 @@ public class MusicListServiceImpl implements MusicListService {
     }
 
     @Override
-    public List<music_list_info> getRemoveableMusicList(Integer mlid) {
-        return musicListDao.getRemoveableMusicList(mlid);
+    public List<music_list_info> getRemoveableMusicList(Integer mlid ,Integer uid) {
+        return musicListDao.getRemoveableMusicList(mlid , uid);
     }
 
     @Override
@@ -66,18 +65,44 @@ public class MusicListServiceImpl implements MusicListService {
         return musicListDao.deleteSongToMusicList(mlid , sid);
     }
 
+    @Override
+    public List<music_list_info> getRecommedMusicList() {
+        return musicListDao.getRecommedMusicList();
+    }
+
+    @Override
+    public List<music_list_info> getUserFavoriteList(Integer uid) {
+        return musicListDao.getUserFavoriteList(uid);
+    }
+
+    @Override
+    public List<music_list_info> getUserCollectMusicList(Integer uid) {
+        return musicListDao.getUserCollectMusicList(uid);
+    }
+
+    @Override
+    public int judgeListBelongOrnot(Integer mlid, Integer uid) {
+        return musicListDao.judgeListBelongOrnot(mlid , uid);
+    }
+
+    @Override
+    public List<Map<String, String>> collectThisList(Integer uid, Integer mlid) {
+        return musicListDao.collectThisList(uid , mlid);
+    }
+
 
     public List<Map<String , String>> addMusicList(String newMusicListname) {
         return musicListDao.addMusicList(newMusicListname);
     }
 
     //添加song到我喜欢歌单
-    public List<Map<String , String>> addLike(Integer sid) {
-        return musicListDao.addLike(sid);
+    public List<Map<String , String>> addLike(Integer sid , Integer userFavoriteList) {
+        return musicListDao.addLike(sid , userFavoriteList);
     }
+
     //将song从我喜欢歌单中删除
-    public List<Map<String , String>> cancelLike(Integer sid) {
-        return musicListDao.cancelLike(sid);
+    public List<Map<String , String>> cancelLike(Integer sid , Integer userFavoriteList) {
+        return musicListDao.cancelLike(sid , userFavoriteList);
     }
 
 

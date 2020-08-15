@@ -2,6 +2,7 @@ package music.pojo;
 
 public class music_list_info {
     String mlname;
+    String imgUrl;
     Integer mlid;
     Integer uid;
 
@@ -9,6 +10,7 @@ public class music_list_info {
     public String toString() {
         return "music_list_info{" +
                 "mlname='" + mlname + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
                 ", mlid=" + mlid +
                 ", uid=" + uid +
                 '}';
@@ -36,5 +38,13 @@ public class music_list_info {
 
     public void setUid(Integer uid) {
         this.uid = uid;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 }

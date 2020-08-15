@@ -14,7 +14,7 @@
         <div class="MusicList_header">
             <div class="user_img">
                 <div id="user_img">
-                    <img src="images/MusicListPhoto.jpg">
+                    <img v-bind:src=ListData[0].imgurl style="width: 200px; height: 200px">
                 </div>
             </div>
 
@@ -31,16 +31,9 @@
 
                 <div class="opeartor">
                     <div id="palyAllSongs"></div>
-                    <div id="collecMusicList">
-
-                    </div>
-                    <div id="downloadAll"></div>
+                    <div v-if="judgeListBelongOrnotInfo" id="collecMusicList" onclick="collectThisList()"></div>
+                    <div v-else id="collecMusicList"  style="opacity: 0.2"></div>
                 </div>
-
-<!--                <div class="MusicList_label">-->
-<!--                    标签&nbsp;:-->
-<!--                    <span id="MusicList_label"></span>-->
-<!--                </div>-->
                 <div class="MusicList_intro">
                     简介&nbsp;:{{ListData[0].description}}
                     <span id="MusicList_lintro"></span>
@@ -93,6 +86,7 @@
     $(function(){
         document.oncontextmenu = function(){return false};     //禁止鼠标右键菜单显示
     })
+
 
     </script>
 </body>
