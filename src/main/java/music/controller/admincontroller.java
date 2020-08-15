@@ -50,4 +50,10 @@ public class admincontroller {
         session.setAttribute("uid", map.get("uid"));
         return 1;
     }
+    @PostMapping("/getUid")
+    @ResponseBody
+    public Integer getUid(HttpSession session){
+        return (Integer) session.getAttribute("uid");
+    }
+
 }

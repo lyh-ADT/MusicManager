@@ -35,95 +35,21 @@
         </div>
     </header>
     <article>
+        <div id="vue_findMusicInfo" style="width: 100% ; height: 100%">
         <div class="songList">
             <div class="recommendList">
                 <div id="recommendList-title">
                     <span>推荐歌单</span>
-                    <a href="">更多</a>
                 </div>
             </div>
             <ul class="m-cvrlst">
-                <li>
+                <li v-for="musicList in recommendList">
                     <div class="u-cover">
-                        <img src="images/cat.jpg">
-                        <a title="〔吉他与猫〕当夕阳的余晖落在琴弦上" href="https://music.163.com/playlist?id=5005878631" class="msk"
-                            data-res-id="5005878631" data-res-type="13" data-res-action="log"
-                            data-res-data="recommendclick|0|featured|user-playlist"></a>
-
+                        <img v-bind:src=musicList.imgUrl  v-bind:id=musicList.mlid onclick="getRcommecdMlid(this)">
                     </div>
-                    <p class="dec">
-                        <a title="〔吉他与猫〕当夕阳的余晖落在琴弦上" class="tit s-fc0"
-                            href="https://music.163.com/playlist?id=5005878631" data-res-id="5005878631"
-                            data-res-type="13" data-res-action="log"
-                            data-res-data="recommendclick|0|featured|user-playlist">
-                            〔吉他与猫〕当夕阳的余晖落在琴弦上
-                        </a>
-                    </p>
-                </li>
-                <li>
-                    <div class="SongList">
-                        <img src="images/cat.jpg">
-                        <a title="〔吉他与猫〕当夕阳的余晖落在琴弦上" href="https://music.163.com/playlist?id=5005878631" class="msk"
-                            data-res-id="5005878631" data-res-type="13" data-res-action="log"
-                            data-res-data="recommendclick|0|featured|user-playlist"></a>
-                    </div>
-                    <p class="dec">
-                        <a title="〔吉他与猫〕当夕阳的余晖落在琴弦上" class="tit s-fc0"
-                            href="https://music.163.com/playlist?id=5005878631" data-res-id="5005878631"
-                            data-res-type="13" data-res-action="log"
-                            data-res-data="recommendclick|0|featured|user-playlist">
-                            〔吉他与猫〕当夕阳的余晖落在琴弦上
-                        </a>
-                    </p>
-                </li>
-                <li>
-                    <div class="SongList">
-                        <img src="images/cat.jpg">
-                        <a title="〔吉他与猫〕当夕阳的余晖落在琴弦上" href="https://music.163.com/playlist?id=5005878631" class="msk"
-                            data-res-id="5005878631" data-res-type="13" data-res-action="log"
-                            data-res-data="recommendclick|0|featured|user-playlist"></a>
-
-                    </div>
-                    <p class="dec">
-                        <a title="〔吉他与猫〕当夕阳的余晖落在琴弦上" class="tit s-fc0"
-                            href="https://music.163.com/playlist?id=5005878631" data-res-id="5005878631"
-                            data-res-type="13" data-res-action="log"
-                            data-res-data="recommendclick|0|featured|user-playlist">
-                            〔吉他与猫〕当夕阳的余晖落在琴弦上
-                        </a>
-                    </p>
-                </li>
-                <li>
-                    <div class="SongList">
-                        <img src="images/cat.jpg">
-                        <a title="〔吉他与猫〕当夕阳的余晖落在琴弦上" href="https://music.163.com/playlist?id=5005878631" class="msk"
-                            data-res-id="5005878631" data-res-type="13" data-res-action="log"
-                            data-res-data="recommendclick|0|featured|user-playlist"></a>
-
-                    </div>
-                    <p class="dec">
-                        <a title="〔吉他与猫〕当夕阳的余晖落在琴弦上" class="tit s-fc0"
-                            href="https://music.163.com/playlist?id=5005878631" data-res-id="5005878631"
-                            data-res-type="13" data-res-action="log"
-                            data-res-data="recommendclick|0|featured|user-playlist">
-                            〔吉他与猫〕当夕阳的余晖落在琴弦上
-                        </a>
-                    </p>
-                </li>
-                <li>
-                    <div class="SongList">
-                        <img src="images/cat.jpg">
-                        <a title="〔吉他与猫〕当夕阳的余晖落在琴弦上" href="https://music.163.com/playlist?id=5005878631" class="msk"
-                            data-res-id="5005878631" data-res-type="13" data-res-action="log"
-                            data-res-data="recommendclick|0|featured|user-playlist"></a>
-
-                    </div>
-                    <p class="dec">
-                        <a title="〔吉他与猫〕当夕阳的余晖落在琴弦上" class="tit s-fc0"
-                            href="https://music.163.com/playlist?id=5005878631" data-res-id="5005878631"
-                            data-res-type="13" data-res-action="log"
-                            data-res-data="recommendclick|0|featured|user-playlist">
-                            〔吉他与猫〕当夕阳的余晖落在琴弦上
+                    <p v-bind:id=musicList.mlid>
+                        <a  v-bind:title=musicList.mlname v-bind:id=musicList.mlid onclick="getRcommecdMlid(this)">
+                            {{musicList.mlname}}
                         </a>
                     </p>
                 </li>
@@ -131,101 +57,34 @@
         </div>
             <div class="songList">
                 <div class="recommendList">
-                    <div id="recommendList-title">
+                    <div id="personalRecommendList-title">
                         <span>个性化推荐</span>
                     </div>
                 </div>
                 <ul class="m-cvrlst">
-                    <li>
-                        <div class="u-cover">
-                            <img src="images/cat.jpg">
-                            <a title="〔吉他与猫〕当夕阳的余晖落在琴弦上" href="https://music.163.com/playlist?id=5005878631" class="msk"
-                                data-res-id="5005878631" data-res-type="13" data-res-action="log"
-                                data-res-data="recommendclick|0|featured|user-playlist"></a>
-    
+                    <li v-for="musicList in personalizedList">
+                        <div class="u-cover" >
+                            <img v-bind:src=musicList.imgUrl v-bind:id=musicList.mlid onclick="getRcommecdMlid(this)">
                         </div>
-                        <p class="dec">
-                            <a title="〔吉他与猫〕当夕阳的余晖落在琴弦上" class="tit s-fc0"
-                                href="https://music.163.com/playlist?id=5005878631" data-res-id="5005878631"
-                                data-res-type="13" data-res-action="log"
-                                data-res-data="recommendclick|0|featured|user-playlist">
-                                〔吉他与猫〕当夕阳的余晖落在琴弦上
-                            </a>
-                        </p>
-                    </li>
-                    <li>
-                        <div class="SongList">
-                            <img src="images/cat.jpg">
-                            <a title="〔吉他与猫〕当夕阳的余晖落在琴弦上" href="https://music.163.com/playlist?id=5005878631" class="msk"
-                                data-res-id="5005878631" data-res-type="13" data-res-action="log"
-                                data-res-data="recommendclick|0|featured|user-playlist"></a>
-                        </div>
-                        <p class="dec">
-                            <a title="〔吉他与猫〕当夕阳的余晖落在琴弦上" class="tit s-fc0"
-                                href="https://music.163.com/playlist?id=5005878631" data-res-id="5005878631"
-                                data-res-type="13" data-res-action="log"
-                                data-res-data="recommendclick|0|featured|user-playlist">
-                                〔吉他与猫〕当夕阳的余晖落在琴弦上
-                            </a>
-                        </p>
-                    </li>
-                    <li>
-                        <div class="SongList">
-                            <img src="images/cat.jpg">
-                            <a title="〔吉他与猫〕当夕阳的余晖落在琴弦上" href="https://music.163.com/playlist?id=5005878631" class="msk"
-                                data-res-id="5005878631" data-res-type="13" data-res-action="log"
-                                data-res-data="recommendclick|0|featured|user-playlist"></a>
-    
-                        </div>
-                        <p class="dec">
-                            <a title="〔吉他与猫〕当夕阳的余晖落在琴弦上" class="tit s-fc0"
-                                href="https://music.163.com/playlist?id=5005878631" data-res-id="5005878631"
-                                data-res-type="13" data-res-action="log"
-                                data-res-data="recommendclick|0|featured|user-playlist">
-                                〔吉他与猫〕当夕阳的余晖落在琴弦上
-                            </a>
-                        </p>
-                    </li>
-                    <li>
-                        <div class="SongList">
-                            <img src="images/cat.jpg">
-                            <a title="〔吉他与猫〕当夕阳的余晖落在琴弦上" href="https://music.163.com/playlist?id=5005878631" class="msk"
-                                data-res-id="5005878631" data-res-type="13" data-res-action="log"
-                                data-res-data="recommendclick|0|featured|user-playlist"></a>
-    
-                        </div>
-                        <p class="dec">
-                            <a title="〔吉他与猫〕当夕阳的余晖落在琴弦上" class="tit s-fc0"
-                                href="https://music.163.com/playlist?id=5005878631" data-res-id="5005878631"
-                                data-res-type="13" data-res-action="log"
-                                data-res-data="recommendclick|0|featured|user-playlist">
-                                〔吉他与猫〕当夕阳的余晖落在琴弦上
-                            </a>
-                        </p>
-                    </li>
-                    <li>
-                        <div class="SongList">
-                            <img src="images/cat.jpg">
-                            <a title="〔吉他与猫〕当夕阳的余晖落在琴弦上" href="https://music.163.com/playlist?id=5005878631" class="msk"
-                                data-res-id="5005878631" data-res-type="13" data-res-action="log"
-                                data-res-data="recommendclick|0|featured|user-playlist"></a>
-    
-                        </div>
-                        <p class="dec">
-                            <a title="〔吉他与猫〕当夕阳的余晖落在琴弦上" class="tit s-fc0"
-                                href="https://music.163.com/playlist?id=5005878631" data-res-id="5005878631"
-                                data-res-type="13" data-res-action="log"
-                                data-res-data="recommendclick|0|featured|user-playlist">
-                                〔吉他与猫〕当夕阳的余晖落在琴弦上
+                        <p v-bind:id=musicList.mlid>
+                            <a v-bind:title=musicList.mlname v-bind:id=musicList.mlid onclick="getRcommecdMlid(this)">
+                                {{musicList.mlname}}
                             </a>
                         </p>
                     </li>
                 </ul>
             </div>
+        </div>
     </article>
+
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/axios.min.js"></script>
     <script src="js/slide.js" type="text/javascript"></script>
+    <script src="js/findMusic.js" type="text/javascript"></script>
+
+
 </body>
 
 </html>
