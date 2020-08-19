@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<style>
+.select{
+    width: 30%;
+    height: 40px;
+    color: brown;
+}
+font{
+    color: blueviolet;
+}
+
+.button1{
+    color: aquamarine;
+}
+</style>
+
+<html>
+    <script type="text/javascript" src="/jquery.min.js"></script>
+    <script type="text/javascript">
+        function showpage(obj,page){
+        $("#mainiframe").attr("src",page);
+        console.info(page)
+    }
+
+        function addSelect() {
+            $.post("/usermessage",{ },function (data) {
+                console.info(data);
+                if (data != null){
+                    var x = $("#input1").val();
+                    if (x == ""){
+                        alert("兑换码不能为空!");
+                        return;
+                    }
+                    $.post("/updatevoucher",{nickname:data,code:x},function (result) {
+                        if (result >= 1){
+                            alert("兑换成功!");
+                        }else {
+                            alert("兑换码有误!");
+                        }
+                    },"text");
+                }
+            },"text");
+        }
+
+    </script>
+    <input class="select" rows="1" id="input1">
+        <button onclick="addSelect()" class="button1">兑换</button>
+           <font>请输入兑换码</font>
+    </input>
+    
+    
+</html>
+

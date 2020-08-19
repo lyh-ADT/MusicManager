@@ -1,0 +1,90 @@
+.music-list {
+    font-size: 20px;
+}
+
+.music-list>form {
+    margin: 1px;
+    padding: 5px;
+    width: 320px;
+    float: left;
+}
+
+.music-list>form>span {
+    width: 90%;
+    float: left;
+    color: gray;
+    font-size: 20px;
+    margin: 3px 0 ;
+    /* padding: 2px;  */
+    text-align: center;
+    
+    
+}
+.music-list>form>span:hover{
+    color: black;
+}
+
+/* .music-list>form>span {
+    margin: 1px;
+    padding: 3px;
+    padding-left: 40px;
+} */
+
+.music-list>form>p {
+    color: gray;
+    font-family: '黑体';
+}
+
+.music-list>form>span>img {
+    width: 7%;
+    height: 8%;
+    margin-top: 2%;
+    
+}
+
+/*.musicList_titleInfo>img{*/
+/*    float: right;*/
+/*    width: 27px;*/
+/*    height: 27px;*/
+/*}*/
+
+#userListTitle{
+    float: left;
+    width: 220px;
+}
+#ShowOrHideList{
+    float: right;
+    width: 27px;
+    height: 27px;
+    margin: 0 10px;
+}
+#ShowOrHideList>img{
+    width: 15px;
+    height: 15px;
+}
+#userCollectTitle{
+    float: left;
+    width: 250px;
+}
+#ShowOrHideCollectList{
+    float: right;
+    width: 27px;
+    height: 27px;
+    margin: 0 10px;
+}
+#ShowOrHideCollectList>img{
+    width: 15px;
+    height: 15px;
+}
+
+#addList{
+    float: right;
+    width: 27px;
+    height: 27px;
+}
+#addList>img{
+    padding-top: 2px;
+    width: 22px;
+    height: 22px;
+}
+

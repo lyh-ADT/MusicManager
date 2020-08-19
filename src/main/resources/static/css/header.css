@@ -1,0 +1,63 @@
+.header-title{
+    width: 20%;
+    height: 100%;
+    float: left;
+}
+
+.header-title>span{
+    margin: 0 25%;
+    font-size: 18px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: white;
+}
+
+.header-title>span>img{
+    margin-top:3%;
+    /*width: 50%;*/
+    /*height: 50%;*/
+}
+
+.header-title>span>em{
+    margin-top:5%;
+    width: 8%;
+    height: 40%;
+}
+.header-search{
+    width: 35%;
+    height: 100%;
+    float: left;
+}
+
+.header-userInfo{
+    width: 45%;
+    height: 100%;
+    float: left;
+}
+
+.header-userInfo-detail{
+    width: 100%;
+    height: 100%;
+    float: left;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.header-search>input{
+    border-radius: 5px;
+    width: 70%;
+    height: 20px;
+    margin: 3% 20%;
+    outline: crimson;
+}
+.VIP{
+    color: greenyellow;
+    text-decoration: none;
+}
+
+.user{
+    color: greenyellow
+}
+.Font{
+    color: lawngreen;
+    text-decoration: none;
+}

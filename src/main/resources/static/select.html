@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<style>
+.select{
+    width: 30%;
+    height: 40px;
+}
+font{
+    left: 30px;
+    color: blueviolet;
+}
+
+</style>
+
+<html>
+    <script type="text/javascript" src="/jquery.min.js"></script>
+    <script>
+        function showpage(obj,page){
+            $("#mainiframe").attr("src",page);
+            console.info(page)
+        }
+        $(function () {
+            $.post("/usermessage",{ },function (data) {
+                console.info(data);
+                if (data != null){
+
+                    $.post("/findVoucher", {nickname:data}, function (result) {
+                        var str = "";
+                        $.each(result,function (index,item) {
+                            str += "<option>" + item.class + "</option>";
+                        })
+                        $("#select1").append($(str));
+                    }, "json");
+                }
+
+            },"text")
+        })
+    </script>
+
+    <script>
+        function a() {
+            var x = $("#select1").val();
+            console.info(x);
+            var y = parseFloat(x[2]);
+            console.info(parseFloat(x[2]));
+            window.parent.finPrice(y);
+        }
+        window.parent.a = a;
+    </script>
+    <select class="select" id="select1" onclick="a()">
+
+    </select>
+    <font>选择兑换券</font>
+    
+</html>
+

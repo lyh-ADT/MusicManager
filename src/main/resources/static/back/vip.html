@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<style>
+input{
+    width: 200px;
+    height: 40px;
+}
+.div0{
+    position: relative;
+    top: 55px;
+}
+.div1{
+    position: relative;
+    top: 80px;
+}
+
+.div2{
+    position: relative;
+    top: 100px;
+}
+
+.div3{
+    position: relative;
+    top: 80px;
+}
+
+.div4{
+    position: relative;
+    top: 100px;
+}
+
+.div5{
+    position: relative;
+    top: 120px;
+}
+
+.div6{
+    position: relative;
+    top: 140px;
+}
+
+.div10{
+    position: relative;
+    top: 160px;
+}
+
+.div7{
+    position: relative;
+    top: 180px;
+}
+
+.div8{
+    position: relative;
+    top: 200px;
+}
+
+.div9{
+    position: relative;
+    top: 220px;
+}
+
+.div11{
+    position: relative;
+    top: 240px;
+}
+
+.div12{
+    position: relative;
+    top: 260px;
+}
+
+.div13{
+    position: relative;
+    top: 280px;
+}
+
+select{
+    width: 200px;
+    height: 40px;
+}
+
+button{
+    width: 50px;
+    height: 20px;
+    position: relative;
+    left: 30px;
+}
+
+font{
+    position: relative;
+    left: 80px;
+
+}
+.font1{
+    position: relative;
+    left: 144px;
+
+}
+
+</style>
+
+
+
+
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="../jquery.min.js"></script>
+    </head>
+
+    <script>
+        function updatedata1(){
+            var select1 = $.trim($("#select1").val());
+            var input1 = $.trim($("#input1").val());
+            if (input1 == ""){
+                alert("价格不能为空!")
+                return;
+            }
+            $.post("updatedata1",{select1:select1,input1:input1}, function (data) {
+                if (data == 1){
+                    alert("修改成功！");
+                }
+            },"text")
+        }
+
+
+        function updatedata2(){
+            var select2 = $.trim($("#select2").val());
+            var input2 = $.trim($("#input2").val());
+            if (input2 == ""){
+                alert("价格不能为空!")
+                return;
+            }
+            $.post("updatedata2",{select2:select2,input2:input2}, function (data) {
+                if (data == 1){
+                    alert("修改成功！");
+                }
+            },"text")
+        }
+
+
+        function updatedata3(){
+            var select3 = $.trim($("#select3").val());
+            var input3 = $.trim($("#input3").val());
+            if (input3 == ""){
+                alert("优惠券不能为空!")
+                return;
+            }
+            $.post("updatedata3",{select3:select3,input3:input3}, function (data) {
+                if (data == 1){
+                    alert("添加成功！");
+                }
+            },"text")
+        }
+    </script>
+
+    
+    <body>
+
+        <div class="div0">黑椒vip系列:</div>
+        <div class="div1">
+            <select id="select1">
+                <option>1个月的价格(自动续费)</option>
+                <option>1年的价格(自动续费)</option>
+                <option>1个季度的价格(自动续费)</option>
+                <option>6个月的价格(非自动续费)</option>
+                <option>3个月的价格(非自动续费)</option>
+                <option>1个月的价格(非自动续费)</option>
+
+            </select>
+            
+        </div>
+        
+
+        <div class="div2">
+            <input placeholder="修改价格" id="input1">
+
+            </input>
+            <button onclick="updatedata1()">修改</button>
+        </div>
+
+
+        <div class="div10">音乐包系列:</div>
+        <div class="div7">
+            <select id="select2">
+                <option>1个月的价格(音乐包)</option>
+                <option>1年的价格(音乐包)</option>
+                <option>1个季度的价格(音乐包)</option>
+            </select>
+        </div>
+        
+
+        <div class="div8">
+            <input placeholder="修改价格" id="input2">
+
+            </input>
+            <button onclick="updatedata2()">修改</button>
+        </div>
+
+        
+
+        <div class="div11">优惠卷:</div>
+        <div class="div12">
+            <select id="select3">
+                <option>降价10%</option>
+                <option>降价20%</option>
+                <option>降价30%</option>
+                <option>降价40%</option>
+                <option>降价50%</option>
+            </select>
+        </div>
+
+        <div class="div13">
+            <input placeholder="输入兑换码" id="input3">
+
+            </input>
+            <button onclick="updatedata3()" >输入</button>
+        </div>
+    </body>
+</html>
+
+
+
+

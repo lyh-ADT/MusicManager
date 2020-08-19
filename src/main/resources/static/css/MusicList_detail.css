@@ -1,0 +1,239 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+header {
+    width: 100%;
+    height: 30%;
+}
+
+article {
+    width: 100%;
+    height: auto;
+}
+
+/*
+头部样式设置
+*/
+#vue-app{
+    width: 100%;
+    height: 100%;
+}
+
+.MusicList_header {
+    width: 100%;
+    height: 100%;
+    margin-left: 50px;
+}
+
+.user_img {
+    width: 15%;
+    height: 100%;
+    float: left;
+}
+
+#user_img {
+    width: 15%;
+    height: auto;
+    float: left;
+}
+
+.MusicListInfo {
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+
+.MusicListInfo>span {
+    width: 100%;
+    height: auto;
+    margin-left: 20px;
+    font-size: 28px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.MusicListInfo span div {
+    margin-left: 20px;
+    margin-top: 5px;
+    width: auto;
+    height: auto;
+    float: left;
+    font-size: 16px;
+    border: 1px solid red;
+}
+
+.songInfoAndAddDate {
+    width: 100%;
+    height: auto;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 14px;
+    margin: 15px 20px;
+}
+
+#songNumber {
+    float: left;
+}
+
+#playNumber {
+    margin: 0 20px;
+    float: left;
+}
+.likeOrNot>img{
+    height: 30px;
+    overflow: auto;
+}
+
+/*播放收藏下载全部*/
+
+.opeartor {
+    width: 100%;
+    height: auto;
+    float: left;
+}
+
+.opeartor div {
+    width: 100px;
+    height: 25px;
+    margin: 10px 20px;
+    border-radius: 5px;
+}
+
+.opeartor div:hover {
+    opacity: 0.6;
+}
+
+#palyAllSongs {
+    background: url(../images/playMusic.png);
+    float: left;
+    /*background-color: pink;*/
+}
+
+#collecMusicList {
+    background: url(../images/collect.png) no-repeat;
+    background-color: white;
+    border: 1px solid black;
+    float: left;
+}
+
+#downloadAll {
+    border: 1px solid black;
+    background: url(../images/downloadAll.png);
+    float: left;
+}
+
+/*标签*/
+
+.MusicList_label {
+    width: 100%;
+    float: left;
+    font-family: 'Times New Roman', Times, serif;
+    margin: 7px 20px;
+}
+
+.MusicList_label>span {
+    color: gray;
+}
+
+/*标签*/
+
+.MusicList_intro {
+    width: 100%;
+    float: left;
+    margin: 7px 20px;
+    font-family: 'Times New Roman', Times, serif;
+    
+}
+
+/*表格*/
+#table4Songs {
+    /* background-color: pink; */
+    width: 100%;
+    height: auto;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    table-layout: fixed;
+    font-family: 'Times New Roman', Times, serif;
+}
+#table4Songs thead td{
+    border: 1px solid black;
+    
+}
+
+#table4Songs thead tr{
+    border: 1px;
+    line-height: 35px;
+}
+
+#table4Songs tbody tr{
+    line-height: 30px;
+}
+#table4Songs thead div{
+    border: 1px solid black;
+    border-right: 0px;
+}
+/*
+* 设置隐藏列表
+ */
+.showOptions {
+    width: 130px;
+    height: 150px;
+    display: none;
+    position: absolute;
+    background-color:white;
+    border: 0.1px dashed  black;
+
+}
+.showOptions>div{
+    width: 100%;
+    height: 20%;
+    font-size: 20px;
+    margin-top: 10px;
+}
+.showOptions>div>img{
+    padding-top: 5px;
+    height: 50%;
+    width: 18px;
+    float:right;
+}
+
+.showOptions>div:hover{
+    background-color: gray;
+}
+
+/*
+* 设置歌单列表
+ */
+.showMoveMusicList {
+    width: 130px;
+    height: auto;
+    display: none;
+    position: absolute;
+    background-color:white;
+    border: 0.1px solid black;
+
+}
+.showMoveMusicList>div{
+    width: 100%;
+    height: 20px;
+    font-size: 16px;
+    margin-top: 6px;
+}
+
+
+.showMoveMusicList>div:hover{
+    background-color: gray;
+}
+
+#MusicList_lintro{
+    border: 0;
+    vertical-align: baseline;
+}
+
+
+
+
+
